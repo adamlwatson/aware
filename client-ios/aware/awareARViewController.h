@@ -12,6 +12,5 @@
 
 @property (nonatomic, strong) NSArray *placesOfInterest;
 
-- (NSArray *) getLocalCoords;
 - (void) updateLocations;
 @end
