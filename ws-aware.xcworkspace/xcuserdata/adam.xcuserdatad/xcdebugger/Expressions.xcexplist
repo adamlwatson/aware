@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "__40-[awareARViewController updateLocations]_block_invoke_0:awareARViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "headers">
+            </PersistentString>
+            <PersistentString
+               value = "resp_code">
+            </PersistentString>
+            <PersistentString
+               value = "responseString">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__40-[awareARViewController updateLocations]_block_invoke_079:awareARViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "error.userInfo">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[awareARViewController viewDidLoad]:awareARViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "numPois">
+            </PersistentString>
+            <PersistentString
+               value = "placesOfInterest">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

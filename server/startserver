@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ruby ./aware_server.rb -s -v -c ./config/aware_server_config.rb -p 8000

@@ -1,0 +1,136 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    activemodel (3.1.1)
+      activesupport (= 3.1.1)
+      builder (~> 3.0.0)
+      i18n (~> 0.6)
+    activesupport (3.1.1)
+      multi_json (~> 1.0)
+    addressable (2.2.6)
+    archive-tar-minitar (0.5.2)
+    async-rack (0.5.1)
+      rack (~> 1.1)
+    bson (1.4.0)
+    bson_ext (1.4.0)
+    builder (3.0.0)
+    capistrano (2.9.0)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
+    capistrano-ext (1.2.1)
+      capistrano (>= 1.0.0)
+    columnize (0.3.4)
+    diff-lcs (1.1.3)
+    em-http-request (1.0.0)
+      addressable (>= 2.2.3)
+      em-socksify
+      eventmachine (>= 1.0.0.beta.3)
+      http_parser.rb (>= 0.5.2)
+    em-mongo (0.4.1)
+      bson (>= 1.1.3)
+      bson_ext (>= 1.1.3)
+      eventmachine (>= 0.12.10)
+    em-socksify (0.1.0)
+      eventmachine
+    em-synchrony (1.0.0)
+      eventmachine (>= 1.0.0.beta.1)
+    eventmachine (1.0.0.beta.3)
+    goliath (0.9.4)
+      async-rack
+      em-synchrony (>= 1.0.0)
+      eventmachine (>= 1.0.0.beta.3)
+      http_parser.rb
+      http_router (~> 0.9.0)
+      log4r
+      multi_json
+      rack (>= 1.2.2)
+      rack-contrib
+      rack-respond_to
+    highline (1.6.2)
+    http_parser.rb (0.5.3)
+    http_router (0.9.7)
+      rack (>= 1.0.0)
+      url_mount (~> 0.2.1)
+    i18n (0.6.0)
+    linecache19 (0.5.12)
+      ruby_core_source (>= 0.1.4)
+    log4r (1.1.9)
+    mongo (1.4.0)
+      bson (= 1.4.0)
+    mongoid (2.3.2)
+      activemodel (~> 3.1)
+      mongo (~> 1.4)
+      tzinfo (~> 0.3.22)
+    multi_json (1.0.3)
+    mysql2 (0.2.13)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-sftp (2.0.5)
+      net-ssh (>= 2.0.9)
+    net-ssh (2.2.1)
+    net-ssh-gateway (1.1.0)
+      net-ssh (>= 1.99.1)
+    rack (1.3.5)
+    rack-accept-media-types (0.9)
+    rack-contrib (1.1.0)
+      rack (>= 0.9.1)
+    rack-oauth2-server (2.4.1)
+      bson_ext
+      mongo (~> 1)
+      rack (~> 1.1)
+      sinatra (~> 1.1)
+    rack-protection (1.1.4)
+      rack
+    rack-respond_to (0.9.8)
+      rack-accept-media-types (>= 0.6)
+    remcached (0.4.1)
+    rspec (2.7.0)
+      rspec-core (~> 2.7.0)
+      rspec-expectations (~> 2.7.0)
+      rspec-mocks (~> 2.7.0)
+    rspec-core (2.7.1)
+    rspec-expectations (2.7.0)
+      diff-lcs (~> 1.1.2)
+    rspec-mocks (2.7.0)
+    ruby-debug-base19 (0.11.25)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby_core_source (>= 0.1.4)
+    ruby-debug19 (0.11.6)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby-debug-base19 (>= 0.11.19)
+    ruby_core_source (0.1.5)
+      archive-tar-minitar (>= 0.5.2)
+    sinatra (1.3.1)
+      rack (~> 1.3, >= 1.3.4)
+      rack-protection (~> 1.1, >= 1.1.2)
+      tilt (~> 1.3, >= 1.3.3)
+    tilt (1.3.3)
+    tzinfo (0.3.30)
+    url_mount (0.2.1)
+      rack
+    yajl-ruby (1.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  capistrano
+  capistrano-ext
+  em-http-request (= 1.0.0)
+  em-mongo
+  em-synchrony (= 1.0.0)
+  eventmachine (= 1.0.0.beta.3)
+  goliath
+  mongoid
+  mysql2 (~> 0.2.13)
+  rack
+  rack-oauth2-server
+  remcached
+  rspec
+  ruby-debug19
+  yajl-ruby
