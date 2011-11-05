@@ -45,6 +45,10 @@
 		66351243145BB5B100FA6B2C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6635121A145BB30F00FA6B2C /* CFNetwork.framework */; };
 		66351244145BB5B100FA6B2C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6635121D145BB30F00FA6B2C /* MobileCoreServices.framework */; };
 		66351245145BB5B100FA6B2C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66351220145BB30F00FA6B2C /* SystemConfiguration.framework */; };
+		664D79EC1463987900E05B1A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663511C7145BAB1100FA6B2C /* Foundation.framework */; };
+		664D79F6146398C600E05B1A /* CRVStompClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 664D79E314638C9500E05B1A /* CRVStompClient.m */; };
+		664D79F7146398D400E05B1A /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 664D79E114638C9500E05B1A /* AsyncSocket.m */; };
+		664D79FA146398F200E05B1A /* libstompclient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 664D79EB1463987900E05B1A /* libstompclient.a */; };
 		665243ED14609D8F00131FE8 /* ObjectLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 665243EC14609D8F00131FE8 /* ObjectLocation.m */; };
 		6652442C1460C9B300131FE8 /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 665243F21460C2C300131FE8 /* NSString+MD5Addition.m */; };
 		6652442D1460C9B300131FE8 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 665243F41460C2C300131FE8 /* UIDevice+IdentifierAddition.m */; };
@@ -133,6 +137,13 @@
 			remoteGlobalIDString = 66351231145BB4EF00FA6B2C;
 			remoteInfo = "asi-http-request";
 		};
+		664D79F8146398DE00E05B1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 663511B8145BAB1100FA6B2C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 664D79EA1463987900E05B1A;
+			remoteInfo = stompclient;
+		};
 		66BE411E145F257C0048807D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 663511B8145BAB1100FA6B2C /* Project object */;
@@ -185,6 +196,11 @@
 		66351220145BB30F00FA6B2C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6635122B145BB35B00FA6B2C /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		66351232145BB4EF00FA6B2C /* libasi-http-request.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libasi-http-request.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		664D79E014638C9500E05B1A /* AsyncSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AsyncSocket.h; path = ../stompclient/AsyncSocket.h; sourceTree = "<group>"; };
+		664D79E114638C9500E05B1A /* AsyncSocket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AsyncSocket.m; path = ../stompclient/AsyncSocket.m; sourceTree = "<group>"; };
+		664D79E214638C9500E05B1A /* CRVStompClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CRVStompClient.h; path = ../stompclient/CRVStompClient.h; sourceTree = "<group>"; };
+		664D79E314638C9500E05B1A /* CRVStompClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CRVStompClient.m; path = ../stompclient/CRVStompClient.m; sourceTree = "<group>"; };
+		664D79EB1463987900E05B1A /* libstompclient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libstompclient.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		665243EB14609D8F00131FE8 /* ObjectLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectLocation.h; sourceTree = "<group>"; };
 		665243EC14609D8F00131FE8 /* ObjectLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectLocation.m; sourceTree = "<group>"; };
 		665243F11460C2C300131FE8 /* NSString+MD5Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5Addition.h"; sourceTree = "<group>"; };
@@ -255,6 +271,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				664D79FA146398F200E05B1A /* libstompclient.a in Frameworks */,
 				66BE411D145F25750048807D /* libjsonkit.a in Frameworks */,
 				66DB5762145D1035007C838C /* libasi-http-request.a in Frameworks */,
 				6635122C145BB35B00FA6B2C /* libxml2.dylib in Frameworks */,
@@ -299,6 +316,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		664D79E81463987900E05B1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				664D79EC1463987900E05B1A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		66BE410C145F24690048807D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -328,6 +353,7 @@
 				663511F0145BAB1100FA6B2C /* aware-client-iosTests.octest */,
 				66351232145BB4EF00FA6B2C /* libasi-http-request.a */,
 				66BE410F145F24690048807D /* libjsonkit.a */,
+				664D79EB1463987900E05B1A /* libstompclient.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -432,6 +458,17 @@
 			name = storyboards;
 			sourceTree = "<group>";
 		};
+		664D79DF14638C9500E05B1A /* stompclient */ = {
+			isa = PBXGroup;
+			children = (
+				664D79E014638C9500E05B1A /* AsyncSocket.h */,
+				664D79E114638C9500E05B1A /* AsyncSocket.m */,
+				664D79E214638C9500E05B1A /* CRVStompClient.h */,
+				664D79E314638C9500E05B1A /* CRVStompClient.m */,
+			);
+			path = stompclient;
+			sourceTree = "<group>";
+		};
 		665243E914609D3200131FE8 /* apimodels */ = {
 			isa = PBXGroup;
 			children = (
@@ -466,6 +503,7 @@
 		66A1ADE2145D0D1D007CE1AB /* external */ = {
 			isa = PBXGroup;
 			children = (
+				664D79DF14638C9500E05B1A /* stompclient */,
 				665243F01460C2C300131FE8 /* UDID-ios5 */,
 				66BE4105145F23340048807D /* JSONKit */,
 				66A1ADE3145D0D1D007CE1AB /* asi-http-request */,
@@ -622,6 +660,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		664D79E91463987900E05B1A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		66BE410D145F24690048807D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -643,6 +688,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				664D79F9146398DE00E05B1A /* PBXTargetDependency */,
 				6635123E145BB55000FA6B2C /* PBXTargetDependency */,
 				66BE411F145F257C0048807D /* PBXTargetDependency */,
 			);
@@ -688,6 +734,23 @@
 			productReference = 66351232145BB4EF00FA6B2C /* libasi-http-request.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		664D79EA1463987900E05B1A /* stompclient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 664D79F31463987900E05B1A /* Build configuration list for PBXNativeTarget "stompclient" */;
+			buildPhases = (
+				664D79E71463987900E05B1A /* Sources */,
+				664D79E81463987900E05B1A /* Frameworks */,
+				664D79E91463987900E05B1A /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = stompclient;
+			productName = stompclient;
+			productReference = 664D79EB1463987900E05B1A /* libstompclient.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		66BE410E145F24690048807D /* jsonkit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66BE4117145F24690048807D /* Build configuration list for PBXNativeTarget "jsonkit" */;
@@ -727,6 +790,7 @@
 			targets = (
 				66351231145BB4EF00FA6B2C /* asi-http-request */,
 				66BE410E145F24690048807D /* jsonkit */,
+				664D79EA1463987900E05B1A /* stompclient */,
 				663511C0145BAB1100FA6B2C /* aware-client-ios */,
 				663511EF145BAB1100FA6B2C /* aware-client-iosTests */,
 			);
@@ -830,6 +894,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		664D79E71463987900E05B1A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				664D79F7146398D400E05B1A /* AsyncSocket.m in Sources */,
+				664D79F6146398C600E05B1A /* CRVStompClient.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		66BE410B145F24690048807D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -855,6 +928,11 @@
 			isa = PBXTargetDependency;
 			target = 66351231145BB4EF00FA6B2C /* asi-http-request */;
 			targetProxy = 6635123F145BB56D00FA6B2C /* PBXContainerItemProxy */;
+		};
+		664D79F9146398DE00E05B1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 664D79EA1463987900E05B1A /* stompclient */;
+			targetProxy = 664D79F8146398DE00E05B1A /* PBXContainerItemProxy */;
 		};
 		66BE411F145F257C0048807D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1062,6 +1140,32 @@
 			};
 			name = Release;
 		};
+		664D79F41463987900E05B1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/stompclient.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$SRCROOT/external/stompclient/stompclient-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		664D79F51463987900E05B1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/stompclient.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$SRCROOT/external/stompclient/stompclient-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		66BE4118145F24690048807D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1126,6 +1230,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		664D79F31463987900E05B1A /* Build configuration list for PBXNativeTarget "stompclient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				664D79F41463987900E05B1A /* Debug */,
+				664D79F51463987900E05B1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		66BE4117145F24690048807D /* Build configuration list for PBXNativeTarget "jsonkit" */ = {
 			isa = XCConfigurationList;

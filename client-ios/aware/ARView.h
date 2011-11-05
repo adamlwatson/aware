@@ -57,5 +57,6 @@
 
 - (void)start;
 - (void)stop;
+- (CLLocation *)userLocation;
 
 @end

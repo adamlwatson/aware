@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'stompclient' target in the 'stompclient' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

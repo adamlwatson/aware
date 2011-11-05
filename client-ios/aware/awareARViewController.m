@@ -14,13 +14,16 @@
 #import "apiutil.h"
 #import "NSString+MD5Addition.h"
 #import "UIDevice+IdentifierAddition.h"
+#import "CRVStompClient.h"
 
 #import <CoreLocation/CoreLocation.h>
 
 @implementation awareARViewController
 
 @synthesize placesOfInterest;
-
+@synthesize sendLocationTimer;
+@synthesize lastLocation;
+@synthesize stompClient;
 
 - (void)didReceiveMemoryWarning
 {
@@ -31,7 +34,7 @@
 - (void)updateLocations
 {
     APIUtil *api = [APIUtil sharedInstance];
-    __block __weak ASIHTTPRequest *request = [api createAPIRequestObject];
+    __block __weak ASIHTTPRequest *request = [api createAPIRequestWithURI:@"/locations"];
     
     [request setCompletionBlock:^{
         
@@ -93,7 +96,13 @@
         NSLog(@"Setting places of interest...");
         
         ARView *arView = (ARView *)self.view;
-        [arView setPlacesOfInterest:allPois];	
+        [arView setPlacesOfInterest:allPois];
+        
+        // send my location every second to the server
+        //NSTimer *t = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(sendMyLocationToServer) userInfo:nil repeats:true];
+        //self.sendLocationTimer = t;
+        
+        [self setupStompQueues];
         
     }];
     [request setFailedBlock:^{
@@ -102,6 +111,106 @@
     }];
     
     [request startAsynchronous];
+
+}
+
+
+- (void) sendMyLocationToServer
+{
+    ARView *arView = (ARView *)self.view;
+    CLLocation *loc = [arView userLocation];
+    //NSLog(@"loc nil? %s", (loc == nil) ? "true" : "false");
+    //NSLog(@"lat diff = %s", (loc.coordinate.latitude != self.lastLocation.coordinate.latitude) ? "true" : "false");
+    //NSLog(@"long diff = %s", (loc.coordinate.longitude != self.lastLocation.coordinate.longitude) ? "true" : "false");
+    
+    if ((loc != nil) &&
+        (
+         (loc.coordinate.latitude != self.lastLocation.coordinate.latitude ) ||
+         (loc.coordinate.longitude != self.lastLocation.coordinate.longitude) )
+        ) {
+        
+        NSLog(@"uploading location change: %@", loc);
+        self.lastLocation = [loc copy];
+    
+        APIUtil *api = [APIUtil sharedInstance];
+        NSString *uri = [NSString stringWithFormat:@"/sendlocation/%f/%f", loc.coordinate.latitude, loc.coordinate.longitude ];
+        
+        __block __weak ASIHTTPRequest *request = [api createAPIRequestWithURI:uri];
+
+        [request setCompletionBlock:^{
+            
+            NSString *responseString = [request responseString];
+            //NSDictionary *headers = [request responseHeaders];
+            //int respCode = [request responseStatusCode];
+            //NSData *responseData = [request responseData];
+            
+            NSDictionary *resDict = [responseString objectFromJSONString];
+            if ([resDict objectForKey:@"success"] == false) {
+                NSArray *err = [resDict objectForKey:@"error"];
+                NSLog(@"error: %@", err);
+                return; //TODO: retry and exponentially back off on failure
+            } else {
+                //NSLog(@"success: %@", resDict);
+            }
+            
+            //NSNumber *numResults = [resDict valueForKey:@"result_count"];
+            //NSArray *resultArr = [resDict objectForKey:@"result"];
+            
+        
+        }];
+    
+        [request setFailedBlock:^{
+            NSError *error = [request error];
+            NSLog(@"an error occurred while calling the REST api... %@", error);
+        }];
+
+        [request startAsynchronous];
+    }
+}
+
+     
+#pragma mark - Stomp Queues
+
+#define kUsername   @"guest"
+#define kPassword   @"guest"
+//#define kQueueName  @"/amq/queue/stream.one"
+#define kQueueName  @"/exchange/aware.fanout"
+
+     
+- (void) setupStompQueues
+{
+    NSLog(@"Setting up stomp client...");
+    CRVStompClient *s = [[CRVStompClient alloc] 
+                         initWithHost:@"192.168.1.110" 
+                         port:61613 
+                         login:kUsername
+                         passcode:kPassword
+                         delegate:self];
+    [s connect];
+    
+    
+    NSDictionary *headers = [NSDictionary dictionaryWithObjectsAndKeys:     
+                             @"client", @"ack", 
+                             @"true", @"activemq.dispatchAsync",
+                             @"1", @"activemq.prefetchSize", nil];
+    [s subscribeToDestination:kQueueName withHeader: headers];
+    
+    NSLog(@"connected to stomp service: %@", kQueueName);
+    
+    [self setStompClient: s];
+    
+}
+
+#pragma mark CRVStompClientDelegate
+- (void)stompClientDidConnect:(CRVStompClient *)stompService {
+    NSLog(@"stompServiceDidConnect");
+}
+
+- (void)stompClient:(CRVStompClient *)stompService messageReceived:(NSString *)body withHeader:(NSDictionary *)messageHeader {
+    NSLog(@"gotMessage body: %@, header: %@", body, messageHeader);
+    NSLog(@"Message ID: %@", [messageHeader valueForKey:@"message-id"]);
+    // If we have successfully received the message ackknowledge it.
+    [stompService ack: [messageHeader valueForKey:@"message-id"]];
 }
 
 
@@ -118,6 +227,9 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    
+    [stompClient unsubscribeFromDestination: kQueueName];
+    
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -127,6 +239,7 @@
     [super viewWillAppear:animated];
     ARView *arView = (ARView *)self.view;
 	[arView start];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -145,6 +258,12 @@
 	[super viewDidDisappear:animated];
 	ARView *arView = (ARView *)self.view;
 	[arView stop];
+    
+    if (self.sendLocationTimer != nil) {
+        [sendLocationTimer invalidate];
+        self.sendLocationTimer = nil;
+
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

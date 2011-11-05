@@ -19,6 +19,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>stompclient.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>test.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -43,6 +48,11 @@
 			<true/>
 		</dict>
 		<key>66351231145BB4EF00FA6B2C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>664D79EA1463987900E05B1A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

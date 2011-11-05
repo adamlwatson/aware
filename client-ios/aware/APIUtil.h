@@ -10,12 +10,11 @@
 
 @interface APIUtil : NSObject 
 
-@property (nonatomic, strong) NSString *someProp;
+@property (nonatomic, strong) NSString *urlPrefix;
 
 // methods
 + (id)sharedInstance;
 
-- (id)createAPIRequestObject;
-
+- (id)createAPIRequestWithURI:(NSString *)uri;
 
 @end

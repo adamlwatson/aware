@@ -3,20 +3,6 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "__40-[awareARViewController updateLocations]_block_invoke_0:awareARViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "headers">
-            </PersistentString>
-            <PersistentString
-               value = "resp_code">
-            </PersistentString>
-            <PersistentString
-               value = "responseString">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "__40-[awareARViewController updateLocations]_block_invoke_079:awareARViewController.m">
          <PersistentStrings>
             <PersistentString
@@ -34,6 +20,34 @@
                value = "placesOfInterest">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__40-[awareARViewController updateLocations]_block_invoke_0:awareARViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "headers">
+            </PersistentString>
+            <PersistentString
+               value = "resp_code">
+            </PersistentString>
+            <PersistentString
+               value = "responseString">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ARView userLocationCoordinate]:ARView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "location">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ARView stopDeviceMotion]:ARView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[awareARViewController sendMyLocationToServer]:awareARViewController.m">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

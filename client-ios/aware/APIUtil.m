@@ -14,7 +14,7 @@ static APIUtil *sharedInstance;
 
 @implementation APIUtil
 
-@synthesize someProp;
+@synthesize urlPrefix;
 
 
 #pragma mark Singleton Methods
@@ -25,18 +25,27 @@ static APIUtil *sharedInstance;
     }
     return sharedInstance;
 }
+
 - (id)init {
     if (self = [super init]) {
-        someProp = [[NSString alloc] initWithString:@"Default Property Value"];
+        
+        #ifdef DEBUG
+            urlPrefix = [[NSString alloc] initWithString:@"https://adam-15:8000"];
+            NSLog(@"DEBUG MODE: %@", urlPrefix);
+        #else
+            urlPrefix = [[NSString alloc] initWithString:@"https://prod:8000"];
+        #endif 
     }
     return self;
 }
 
 
 #pragma mark Utility Methods
-
-- (id)createAPIRequestObject {
-    NSURL *url = [NSURL URLWithString:@"https://adam-15:8000/locations"];
+- (id)createAPIRequestWithURI:(NSString *)uri {
+    
+    NSString *apiUrl =[NSString stringWithFormat:@"%@%@", urlPrefix, uri]; 
+    NSURL *url = [NSURL URLWithString:apiUrl];
+    
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     
     #ifdef DEBUG

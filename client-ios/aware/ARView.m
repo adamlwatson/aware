@@ -215,9 +215,12 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
 
 - (void)startLocation
 {
+    #ifdef DEBUG
+        NSLog(@"Staring location services...");
+    #endif
 	locationManager = [[CLLocationManager alloc] init];
 	locationManager.delegate = self;
-	locationManager.distanceFilter = 100.0;
+	locationManager.distanceFilter = .1;
 	[locationManager startUpdatingLocation];
 }
 
@@ -228,13 +231,16 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
 }
 
 - (void)startDeviceMotion
-{	
+{
+    #ifdef DEBUG
+        NSLog(@"Staring device motion services...");
+    #endif
 	motionManager = [[CMMotionManager alloc] init];
 	
 	// Tell CoreMotion to show the compass calibration HUD when required to provide true north-referenced attitude
 	motionManager.showsDeviceMovementDisplay = YES;
 
-	
+	//TODO: Make this a dynamic value
 	motionManager.deviceMotionUpdateInterval = 1.0 / 60.0;
 	
 	// New in iOS 5.0: Attitude that is referenced to true north
@@ -372,7 +378,10 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-	location = newLocation;
+    #ifdef DEBUG
+        NSLog(@"Setting location instance var");
+    #endif
+    location = newLocation;
 	if (placesOfInterest != nil) {
 		[self updatePlacesOfInterestCoordinates];
 	}	
@@ -395,6 +404,14 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
 	}
 	return self;
 }
+
+#pragma mark-
+#pragma mark Custom methods
+
+-(CLLocation *) userLocation {
+    return location;
+}
+
 
 @end
 
@@ -473,6 +490,7 @@ void transformFromCMRotationMatrix(vec4f_t mout, const CMRotationMatrix *m)
 	mout[14] = 0.0f;
 	mout[15] = 1.0f;
 }
+
 
 #pragma mark -
 #pragma mark Geodetic utilities definition
