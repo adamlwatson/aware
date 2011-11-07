@@ -3,10 +3,16 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "__40-[awareARViewController updateLocations]_block_invoke_079:awareARViewController.m">
+         contextName = "__40-[awareARViewController updateLocations]_block_invoke_0:awareARViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "error.userInfo">
+               value = "headers">
+            </PersistentString>
+            <PersistentString
+               value = "resp_code">
+            </PersistentString>
+            <PersistentString
+               value = "responseString">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -22,18 +28,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__40-[awareARViewController updateLocations]_block_invoke_0:awareARViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "headers">
-            </PersistentString>
-            <PersistentString
-               value = "resp_code">
-            </PersistentString>
-            <PersistentString
-               value = "responseString">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "-[ARView stopDeviceMotion]:ARView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[awareARViewController sendMyLocationToServer]:awareARViewController.m">
       </ContextState>
       <ContextState
          contextName = "-[ARView userLocationCoordinate]:ARView.m">
@@ -44,10 +42,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[ARView stopDeviceMotion]:ARView.m">
+         contextName = "-[awareARViewController setupAMQPConsumer]:awareARViewController.m">
       </ContextState>
       <ContextState
-         contextName = "-[awareARViewController sendMyLocationToServer]:awareARViewController.m">
+         contextName = "__40-[awareARViewController updateLocations]_block_invoke_079:awareARViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "error.userInfo">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

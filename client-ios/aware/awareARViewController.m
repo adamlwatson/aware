@@ -15,6 +15,7 @@
 #import "NSString+MD5Addition.h"
 #import "UIDevice+IdentifierAddition.h"
 #import "CRVStompClient.h"
+#import "AMQPWrapper.h"
 
 #import <CoreLocation/CoreLocation.h>
 
@@ -102,7 +103,8 @@
         //NSTimer *t = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(sendMyLocationToServer) userInfo:nil repeats:true];
         //self.sendLocationTimer = t;
         
-        [self setupStompQueues];
+        //[self setupStompQueues];
+
         
     }];
     [request setFailedBlock:^{
@@ -111,6 +113,7 @@
     }];
     
     [request startAsynchronous];
+    [self setupAMQPConsumer];
 
 }
 
@@ -170,18 +173,19 @@
 
      
 #pragma mark - Stomp Queues
-
+#define kHostname   @"192.168.1.110"
 #define kUsername   @"guest"
 #define kPassword   @"guest"
+#define kQueueName  @"stream.one"
 //#define kQueueName  @"/amq/queue/stream.one"
-#define kQueueName  @"/exchange/aware.fanout"
+//#define kQueueName  @"/exchange/aware.fanout"
 
      
 - (void) setupStompQueues
 {
     NSLog(@"Setting up stomp client...");
     CRVStompClient *s = [[CRVStompClient alloc] 
-                         initWithHost:@"192.168.1.110" 
+                         initWithHost:kHostname 
                          port:61613 
                          login:kUsername
                          passcode:kPassword
@@ -214,6 +218,40 @@
 }
 
 
+@synthesize conn, channel, queue, consumer, thread;
+
+#pragma mark - AMQP Native Client
+- (void)setupAMQPConsumer
+{
+    
+    conn = [[AMQPConnection alloc] init];
+    [conn connectToHost:@"192.168.1.110" onPort:5672];
+    [conn loginAsUser:kUsername withPassword:kPassword onVHost:@"/"];
+    
+    channel = [[AMQPChannel alloc] init];
+    [channel openChannel:1 onConnection:conn];
+    
+    queue = [[AMQPQueue alloc] initWithName:kQueueName onChannel:channel isPassive:true isExclusive:false isDurable:false getsAutoDeleted:true];
+    
+    //create a threaded consumer
+    consumer = [[AMQPConsumer alloc] initForQueue:queue onChannel:channel useAcknowledgements:true isExclusive:false receiveLocalMessages:false];
+    
+    thread = [[AMQPConsumerThread alloc] initWithConsumer:consumer];
+    [thread setDelegate:self];
+    
+    [NSThread detachNewThreadSelector:@selector(main) toTarget:thread withObject:nil];
+    [thread start];
+    
+    NSLog(@"%@", thread);
+    
+}
+
+- (void) amqpConsumerThreadReceivedNewMessage:(AMQPMessage*)msg
+{
+    NSLog(@"AMQP: %@", msg.body);
+}
+
+
 
 #pragma mark - View lifecycle
 
@@ -227,8 +265,14 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    
+
     [stompClient unsubscribeFromDestination: kQueueName];
+
+#ifdef DEBUG
+    NSLog(@"cancelling thread");
+#endif
+
+    [thread cancel];
     
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

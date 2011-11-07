@@ -13,9 +13,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6652440B1460C38300131FE8"
-               BuildableName = "libtest.a"
-               BlueprintName = "test"
+               BlueprintIdentifier = "666AF82514665A4B00AA5767"
+               BuildableName = "librabbitmq-c.a"
+               BlueprintName = "rabbitmq-c"
                ReferencedContainer = "container:aware-client-ios.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

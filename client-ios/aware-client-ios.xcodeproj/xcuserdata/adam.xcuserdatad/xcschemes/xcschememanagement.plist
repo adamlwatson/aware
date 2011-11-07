@@ -7,7 +7,7 @@
 		<key>JSONKit.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<key>asi-http-request.xcscheme</key>
 		<dict>
@@ -17,22 +17,27 @@
 		<key>aware.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
-		<key>stompclient.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
-		<key>test.xcscheme</key>
+		<key>rabbitmq-c.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
-		<key>udid-ios5.xcscheme</key>
+		<key>rabbitmq-objc.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>stompclient.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>
+		</dict>
+		<key>udid-ios5.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -68,6 +73,36 @@
 			<true/>
 		</dict>
 		<key>6652441A1460C4CB00131FE8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6654B650146709FE002191C0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>666AF82514665A4B00AA5767</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>66B5007B1465D72500283639</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>66B500BA1465E1D100283639</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>66B500D6146658CB00283639</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>66B5FFDB1465D2AB00283639</key>
 		<dict>
 			<key>primary</key>
 			<true/>

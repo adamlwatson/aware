@@ -52,6 +52,34 @@
 		665243ED14609D8F00131FE8 /* ObjectLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 665243EC14609D8F00131FE8 /* ObjectLocation.m */; };
 		6652442C1460C9B300131FE8 /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 665243F21460C2C300131FE8 /* NSString+MD5Addition.m */; };
 		6652442D1460C9B300131FE8 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 665243F41460C2C300131FE8 /* UIDevice+IdentifierAddition.m */; };
+		6654B643146704A5002191C0 /* platform_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 6654B6031466FDA3002191C0 /* platform_utils.c */; };
+		6654B644146704A5002191C0 /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 6654B6041466FDA3002191C0 /* utils.c */; };
+		6654B652146709FE002191C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663511C7145BAB1100FA6B2C /* Foundation.framework */; };
+		6654B65C14670A17002191C0 /* AMQPChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B500941465E19100283639 /* AMQPChannel.m */; };
+		6654B65D14670A17002191C0 /* AMQPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B500961465E19100283639 /* AMQPConnection.m */; };
+		6654B65E14670A17002191C0 /* AMQPConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B500981465E19100283639 /* AMQPConsumer.m */; };
+		6654B65F14670A17002191C0 /* AMQPConsumerThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B5009A1465E19100283639 /* AMQPConsumerThread.m */; };
+		6654B66014670A17002191C0 /* AMQPExchange.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B5009D1465E19100283639 /* AMQPExchange.m */; };
+		6654B66114670A17002191C0 /* AMQPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B5009F1465E19100283639 /* AMQPMessage.m */; };
+		6654B66214670A17002191C0 /* AMQPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B500A11465E19100283639 /* AMQPObject.m */; };
+		6654B66314670A17002191C0 /* AMQPQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B500A31465E19100283639 /* AMQPQueue.m */; };
+		6654B66414670A2B002191C0 /* librabbitmq-objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6654B651146709FE002191C0 /* librabbitmq-objc.a */; };
+		6654B66714670AB9002191C0 /* amqp.h in Headers */ = {isa = PBXBuildFile; fileRef = 66B5000A1465D6DA00283639 /* amqp.h */; };
+		6654B66914670D65002191C0 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6654B66814670D65002191C0 /* CoreFoundation.framework */; };
+		6654B67114670F6B002191C0 /* amqp.h in Headers */ = {isa = PBXBuildFile; fileRef = 66B5000A1465D6DA00283639 /* amqp.h */; };
+		6654B67214670F9E002191C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663511C5145BAB1100FA6B2C /* UIKit.framework */; };
+		6654B67314670FD1002191C0 /* amqp_framing.h in Headers */ = {isa = PBXBuildFile; fileRef = 66B500141465D6DA00283639 /* amqp_framing.h */; };
+		666AF82714665A4B00AA5767 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663511C7145BAB1100FA6B2C /* Foundation.framework */; };
+		666AF83114665A8D00AA5767 /* amqp_api.c in Sources */ = {isa = PBXBuildFile; fileRef = 66B5000B1465D6DA00283639 /* amqp_api.c */; };
+		666AF83214665A8D00AA5767 /* amqp_connection.c in Sources */ = {isa = PBXBuildFile; fileRef = 66B500101465D6DA00283639 /* amqp_connection.c */; };
+		666AF83314665A8D00AA5767 /* amqp_framing.c in Sources */ = {isa = PBXBuildFile; fileRef = 66B500131465D6DA00283639 /* amqp_framing.c */; };
+		666AF83414665A8D00AA5767 /* amqp_mem.c in Sources */ = {isa = PBXBuildFile; fileRef = 66B500171465D6DA00283639 /* amqp_mem.c */; };
+		666AF83514665A8D00AA5767 /* amqp_socket.c in Sources */ = {isa = PBXBuildFile; fileRef = 66B5001B1465D6DA00283639 /* amqp_socket.c */; };
+		666AF83614665A8D00AA5767 /* amqp_table.c in Sources */ = {isa = PBXBuildFile; fileRef = 66B5001E1465D6DA00283639 /* amqp_table.c */; };
+		666AF83714665A8D00AA5767 /* amqp_url.c in Sources */ = {isa = PBXBuildFile; fileRef = 66B500211465D6DA00283639 /* amqp_url.c */; };
+		666AF83814665A8D00AA5767 /* socket.c in Sources */ = {isa = PBXBuildFile; fileRef = 66B500461465D6DA00283639 /* socket.c */; };
+		666AF83914665A9600AA5767 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663511C5145BAB1100FA6B2C /* UIKit.framework */; };
+		666AF83A14665AD700AA5767 /* librabbitmq-c.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 666AF82614665A4B00AA5767 /* librabbitmq-c.a */; };
 		66A1AE1D145D0D1D007CE1AB /* asi-http-request-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 66A1ADE4145D0D1D007CE1AB /* asi-http-request-Prefix.pch */; };
 		66A1AE1E145D0D1D007CE1AB /* ASIAuthenticationDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A1ADE5145D0D1D007CE1AB /* ASIAuthenticationDialog.h */; };
 		66A1AE1F145D0D1D007CE1AB /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1ADE6145D0D1D007CE1AB /* ASIAuthenticationDialog.m */; };
@@ -107,10 +135,8 @@
 		66BBA466145D0652003B64C8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663511C9145BAB1100FA6B2C /* CoreGraphics.framework */; };
 		66BBA467145D0663003B64C8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663511C5145BAB1100FA6B2C /* UIKit.framework */; };
 		66BE4110145F24690048807D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663511C7145BAB1100FA6B2C /* Foundation.framework */; };
-		66BE411B145F25380048807D /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 66BE411A145F25380048807D /* JSONKit.h */; };
 		66BE411C145F253B0048807D /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BE4107145F23340048807D /* JSONKit.m */; };
 		66BE411D145F25750048807D /* libjsonkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66BE410F145F24690048807D /* libjsonkit.a */; };
-		66BE4122145F78FE0048807D /* APIUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 66BE4120145F78FE0048807D /* APIUtil.h */; };
 		66BE4124145F85F70048807D /* APIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BE4121145F78FE0048807D /* APIUtil.m */; };
 		66DB5762145D1035007C838C /* libasi-http-request.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66351232145BB4EF00FA6B2C /* libasi-http-request.a */; };
 /* End PBXBuildFile section */
@@ -143,6 +169,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 664D79EA1463987900E05B1A;
 			remoteInfo = stompclient;
+		};
+		6654B63914670329002191C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 663511B8145BAB1100FA6B2C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 666AF82514665A4B00AA5767;
+			remoteInfo = "rabbitmq-c";
+		};
+		6654B66514670A3D002191C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 663511B8145BAB1100FA6B2C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6654B650146709FE002191C0;
+			remoteInfo = "rabbitmq-objc";
+		};
+		6654B66F14670F44002191C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 663511B8145BAB1100FA6B2C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 666AF82514665A4B00AA5767;
+			remoteInfo = "rabbitmq-c";
 		};
 		66BE411E145F257C0048807D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -207,6 +254,156 @@
 		665243F21460C2C300131FE8 /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Addition.m"; sourceTree = "<group>"; };
 		665243F31460C2C300131FE8 /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
 		665243F41460C2C300131FE8 /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
+		6654B55E1466FDA3002191C0 /* amqp_bind.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_bind.Po; sourceTree = "<group>"; };
+		6654B55F1466FDA3002191C0 /* amqp_consumer.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_consumer.Po; sourceTree = "<group>"; };
+		6654B5601466FDA3002191C0 /* amqp_exchange_declare.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_exchange_declare.Po; sourceTree = "<group>"; };
+		6654B5611466FDA3002191C0 /* amqp_listen.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_listen.Po; sourceTree = "<group>"; };
+		6654B5621466FDA3002191C0 /* amqp_listenq.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_listenq.Po; sourceTree = "<group>"; };
+		6654B5631466FDA3002191C0 /* amqp_producer.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_producer.Po; sourceTree = "<group>"; };
+		6654B5641466FDA3002191C0 /* amqp_sendstring.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_sendstring.Po; sourceTree = "<group>"; };
+		6654B5651466FDA3002191C0 /* amqp_unbind.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_unbind.Po; sourceTree = "<group>"; };
+		6654B5661466FDA3002191C0 /* platform_utils.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = platform_utils.Po; sourceTree = "<group>"; };
+		6654B5671466FDA3002191C0 /* utils.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = utils.Po; sourceTree = "<group>"; };
+		6654B5691466FDA3002191C0 /* amqp_bind */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = amqp_bind; sourceTree = "<group>"; };
+		6654B56A1466FDA3002191C0 /* amqp_consumer */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = amqp_consumer; sourceTree = "<group>"; };
+		6654B56B1466FDA3002191C0 /* amqp_exchange_declare */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = amqp_exchange_declare; sourceTree = "<group>"; };
+		6654B56C1466FDA3002191C0 /* amqp_listen */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = amqp_listen; sourceTree = "<group>"; };
+		6654B56D1466FDA3002191C0 /* amqp_listenq */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = amqp_listenq; sourceTree = "<group>"; };
+		6654B56E1466FDA3002191C0 /* amqp_producer */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = amqp_producer; sourceTree = "<group>"; };
+		6654B56F1466FDA3002191C0 /* amqp_sendstring */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = amqp_sendstring; sourceTree = "<group>"; };
+		6654B5701466FDA3002191C0 /* amqp_unbind */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = amqp_unbind; sourceTree = "<group>"; };
+		6654B5711466FDA3002191C0 /* amqp_bind */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = amqp_bind; sourceTree = "<group>"; };
+		6654B5721466FDA3002191C0 /* amqp_bind.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = amqp_bind.c; sourceTree = "<group>"; };
+		6654B5731466FDA3002191C0 /* amqp_bind.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_bind.o; sourceTree = "<group>"; };
+		6654B5741466FDA3002191C0 /* amqp_consumer */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = amqp_consumer; sourceTree = "<group>"; };
+		6654B5751466FDA3002191C0 /* amqp_consumer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = amqp_consumer.c; sourceTree = "<group>"; };
+		6654B5761466FDA3002191C0 /* amqp_consumer.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_consumer.o; sourceTree = "<group>"; };
+		6654B5771466FDA3002191C0 /* amqp_exchange_declare */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = amqp_exchange_declare; sourceTree = "<group>"; };
+		6654B5781466FDA3002191C0 /* amqp_exchange_declare.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = amqp_exchange_declare.c; sourceTree = "<group>"; };
+		6654B5791466FDA3002191C0 /* amqp_exchange_declare.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_exchange_declare.o; sourceTree = "<group>"; };
+		6654B57A1466FDA3002191C0 /* amqp_listen */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = amqp_listen; sourceTree = "<group>"; };
+		6654B57B1466FDA3002191C0 /* amqp_listen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = amqp_listen.c; sourceTree = "<group>"; };
+		6654B57C1466FDA3002191C0 /* amqp_listen.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_listen.o; sourceTree = "<group>"; };
+		6654B57D1466FDA3002191C0 /* amqp_listenq */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = amqp_listenq; sourceTree = "<group>"; };
+		6654B57E1466FDA3002191C0 /* amqp_listenq.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = amqp_listenq.c; sourceTree = "<group>"; };
+		6654B57F1466FDA3002191C0 /* amqp_listenq.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_listenq.o; sourceTree = "<group>"; };
+		6654B5801466FDA3002191C0 /* amqp_producer */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = amqp_producer; sourceTree = "<group>"; };
+		6654B5811466FDA3002191C0 /* amqp_producer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = amqp_producer.c; sourceTree = "<group>"; };
+		6654B5821466FDA3002191C0 /* amqp_producer.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_producer.o; sourceTree = "<group>"; };
+		6654B5831466FDA3002191C0 /* amqp_sendstring */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = amqp_sendstring; sourceTree = "<group>"; };
+		6654B5841466FDA3002191C0 /* amqp_sendstring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = amqp_sendstring.c; sourceTree = "<group>"; };
+		6654B5851466FDA3002191C0 /* amqp_sendstring.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_sendstring.o; sourceTree = "<group>"; };
+		6654B5861466FDA3002191C0 /* amqp_unbind */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = amqp_unbind; sourceTree = "<group>"; };
+		6654B5871466FDA3002191C0 /* amqp_unbind.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = amqp_unbind.c; sourceTree = "<group>"; };
+		6654B5881466FDA3002191C0 /* amqp_unbind.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_unbind.o; sourceTree = "<group>"; };
+		6654B5891466FDA3002191C0 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
+		6654B58C1466FDA3002191C0 /* amqp_bind.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_bind.c.o; sourceTree = "<group>"; };
+		6654B58D1466FDA3002191C0 /* build.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build.make; sourceTree = "<group>"; };
+		6654B58E1466FDA3002191C0 /* C.includecache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = C.includecache; sourceTree = "<group>"; };
+		6654B58F1466FDA3002191C0 /* cmake_clean.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_clean.cmake; sourceTree = "<group>"; };
+		6654B5901466FDA3002191C0 /* depend.internal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = depend.internal; sourceTree = "<group>"; };
+		6654B5911466FDA3002191C0 /* depend.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = depend.make; sourceTree = "<group>"; };
+		6654B5921466FDA3002191C0 /* DependInfo.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DependInfo.cmake; sourceTree = "<group>"; };
+		6654B5931466FDA3002191C0 /* flags.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flags.make; sourceTree = "<group>"; };
+		6654B5941466FDA3002191C0 /* link.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = link.txt; sourceTree = "<group>"; };
+		6654B5951466FDA3002191C0 /* progress.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = progress.make; sourceTree = "<group>"; };
+		6654B5971466FDA3002191C0 /* platform_utils.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = platform_utils.c.o; sourceTree = "<group>"; };
+		6654B5981466FDA3002191C0 /* utils.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = utils.c.o; sourceTree = "<group>"; };
+		6654B59A1466FDA3002191C0 /* amqp_consumer.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_consumer.c.o; sourceTree = "<group>"; };
+		6654B59B1466FDA3002191C0 /* build.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build.make; sourceTree = "<group>"; };
+		6654B59C1466FDA3002191C0 /* C.includecache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = C.includecache; sourceTree = "<group>"; };
+		6654B59D1466FDA3002191C0 /* cmake_clean.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_clean.cmake; sourceTree = "<group>"; };
+		6654B59E1466FDA3002191C0 /* depend.internal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = depend.internal; sourceTree = "<group>"; };
+		6654B59F1466FDA3002191C0 /* depend.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = depend.make; sourceTree = "<group>"; };
+		6654B5A01466FDA3002191C0 /* DependInfo.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DependInfo.cmake; sourceTree = "<group>"; };
+		6654B5A11466FDA3002191C0 /* flags.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flags.make; sourceTree = "<group>"; };
+		6654B5A21466FDA3002191C0 /* link.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = link.txt; sourceTree = "<group>"; };
+		6654B5A31466FDA3002191C0 /* progress.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = progress.make; sourceTree = "<group>"; };
+		6654B5A51466FDA3002191C0 /* platform_utils.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = platform_utils.c.o; sourceTree = "<group>"; };
+		6654B5A61466FDA3002191C0 /* utils.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = utils.c.o; sourceTree = "<group>"; };
+		6654B5A81466FDA3002191C0 /* amqp_exchange_declare.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_exchange_declare.c.o; sourceTree = "<group>"; };
+		6654B5A91466FDA3002191C0 /* build.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build.make; sourceTree = "<group>"; };
+		6654B5AA1466FDA3002191C0 /* C.includecache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = C.includecache; sourceTree = "<group>"; };
+		6654B5AB1466FDA3002191C0 /* cmake_clean.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_clean.cmake; sourceTree = "<group>"; };
+		6654B5AC1466FDA3002191C0 /* depend.internal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = depend.internal; sourceTree = "<group>"; };
+		6654B5AD1466FDA3002191C0 /* depend.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = depend.make; sourceTree = "<group>"; };
+		6654B5AE1466FDA3002191C0 /* DependInfo.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DependInfo.cmake; sourceTree = "<group>"; };
+		6654B5AF1466FDA3002191C0 /* flags.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flags.make; sourceTree = "<group>"; };
+		6654B5B01466FDA3002191C0 /* link.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = link.txt; sourceTree = "<group>"; };
+		6654B5B11466FDA3002191C0 /* progress.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = progress.make; sourceTree = "<group>"; };
+		6654B5B31466FDA3002191C0 /* platform_utils.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = platform_utils.c.o; sourceTree = "<group>"; };
+		6654B5B41466FDA3002191C0 /* utils.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = utils.c.o; sourceTree = "<group>"; };
+		6654B5B61466FDA3002191C0 /* amqp_listen.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_listen.c.o; sourceTree = "<group>"; };
+		6654B5B71466FDA3002191C0 /* build.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build.make; sourceTree = "<group>"; };
+		6654B5B81466FDA3002191C0 /* C.includecache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = C.includecache; sourceTree = "<group>"; };
+		6654B5B91466FDA3002191C0 /* cmake_clean.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_clean.cmake; sourceTree = "<group>"; };
+		6654B5BA1466FDA3002191C0 /* depend.internal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = depend.internal; sourceTree = "<group>"; };
+		6654B5BB1466FDA3002191C0 /* depend.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = depend.make; sourceTree = "<group>"; };
+		6654B5BC1466FDA3002191C0 /* DependInfo.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DependInfo.cmake; sourceTree = "<group>"; };
+		6654B5BD1466FDA3002191C0 /* flags.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flags.make; sourceTree = "<group>"; };
+		6654B5BE1466FDA3002191C0 /* link.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = link.txt; sourceTree = "<group>"; };
+		6654B5BF1466FDA3002191C0 /* progress.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = progress.make; sourceTree = "<group>"; };
+		6654B5C11466FDA3002191C0 /* platform_utils.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = platform_utils.c.o; sourceTree = "<group>"; };
+		6654B5C21466FDA3002191C0 /* utils.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = utils.c.o; sourceTree = "<group>"; };
+		6654B5C41466FDA3002191C0 /* amqp_listenq.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_listenq.c.o; sourceTree = "<group>"; };
+		6654B5C51466FDA3002191C0 /* build.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build.make; sourceTree = "<group>"; };
+		6654B5C61466FDA3002191C0 /* C.includecache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = C.includecache; sourceTree = "<group>"; };
+		6654B5C71466FDA3002191C0 /* cmake_clean.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_clean.cmake; sourceTree = "<group>"; };
+		6654B5C81466FDA3002191C0 /* depend.internal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = depend.internal; sourceTree = "<group>"; };
+		6654B5C91466FDA3002191C0 /* depend.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = depend.make; sourceTree = "<group>"; };
+		6654B5CA1466FDA3002191C0 /* DependInfo.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DependInfo.cmake; sourceTree = "<group>"; };
+		6654B5CB1466FDA3002191C0 /* flags.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flags.make; sourceTree = "<group>"; };
+		6654B5CC1466FDA3002191C0 /* link.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = link.txt; sourceTree = "<group>"; };
+		6654B5CD1466FDA3002191C0 /* progress.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = progress.make; sourceTree = "<group>"; };
+		6654B5CF1466FDA3002191C0 /* platform_utils.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = platform_utils.c.o; sourceTree = "<group>"; };
+		6654B5D01466FDA3002191C0 /* utils.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = utils.c.o; sourceTree = "<group>"; };
+		6654B5D21466FDA3002191C0 /* amqp_producer.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_producer.c.o; sourceTree = "<group>"; };
+		6654B5D31466FDA3002191C0 /* build.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build.make; sourceTree = "<group>"; };
+		6654B5D41466FDA3002191C0 /* C.includecache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = C.includecache; sourceTree = "<group>"; };
+		6654B5D51466FDA3002191C0 /* cmake_clean.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_clean.cmake; sourceTree = "<group>"; };
+		6654B5D61466FDA3002191C0 /* depend.internal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = depend.internal; sourceTree = "<group>"; };
+		6654B5D71466FDA3002191C0 /* depend.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = depend.make; sourceTree = "<group>"; };
+		6654B5D81466FDA3002191C0 /* DependInfo.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DependInfo.cmake; sourceTree = "<group>"; };
+		6654B5D91466FDA3002191C0 /* flags.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flags.make; sourceTree = "<group>"; };
+		6654B5DA1466FDA3002191C0 /* link.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = link.txt; sourceTree = "<group>"; };
+		6654B5DB1466FDA3002191C0 /* progress.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = progress.make; sourceTree = "<group>"; };
+		6654B5DD1466FDA3002191C0 /* platform_utils.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = platform_utils.c.o; sourceTree = "<group>"; };
+		6654B5DE1466FDA3002191C0 /* utils.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = utils.c.o; sourceTree = "<group>"; };
+		6654B5E01466FDA3002191C0 /* amqp_sendstring.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_sendstring.c.o; sourceTree = "<group>"; };
+		6654B5E11466FDA3002191C0 /* build.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build.make; sourceTree = "<group>"; };
+		6654B5E21466FDA3002191C0 /* C.includecache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = C.includecache; sourceTree = "<group>"; };
+		6654B5E31466FDA3002191C0 /* cmake_clean.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_clean.cmake; sourceTree = "<group>"; };
+		6654B5E41466FDA3002191C0 /* depend.internal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = depend.internal; sourceTree = "<group>"; };
+		6654B5E51466FDA3002191C0 /* depend.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = depend.make; sourceTree = "<group>"; };
+		6654B5E61466FDA3002191C0 /* DependInfo.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DependInfo.cmake; sourceTree = "<group>"; };
+		6654B5E71466FDA3002191C0 /* flags.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flags.make; sourceTree = "<group>"; };
+		6654B5E81466FDA3002191C0 /* link.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = link.txt; sourceTree = "<group>"; };
+		6654B5E91466FDA3002191C0 /* progress.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = progress.make; sourceTree = "<group>"; };
+		6654B5EB1466FDA3002191C0 /* platform_utils.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = platform_utils.c.o; sourceTree = "<group>"; };
+		6654B5EC1466FDA3002191C0 /* utils.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = utils.c.o; sourceTree = "<group>"; };
+		6654B5EE1466FDA3002191C0 /* amqp_unbind.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_unbind.c.o; sourceTree = "<group>"; };
+		6654B5EF1466FDA3002191C0 /* build.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build.make; sourceTree = "<group>"; };
+		6654B5F01466FDA3002191C0 /* C.includecache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = C.includecache; sourceTree = "<group>"; };
+		6654B5F11466FDA3002191C0 /* cmake_clean.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_clean.cmake; sourceTree = "<group>"; };
+		6654B5F21466FDA3002191C0 /* depend.internal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = depend.internal; sourceTree = "<group>"; };
+		6654B5F31466FDA3002191C0 /* depend.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = depend.make; sourceTree = "<group>"; };
+		6654B5F41466FDA3002191C0 /* DependInfo.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DependInfo.cmake; sourceTree = "<group>"; };
+		6654B5F51466FDA3002191C0 /* flags.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flags.make; sourceTree = "<group>"; };
+		6654B5F61466FDA3002191C0 /* link.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = link.txt; sourceTree = "<group>"; };
+		6654B5F71466FDA3002191C0 /* progress.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = progress.make; sourceTree = "<group>"; };
+		6654B5F91466FDA3002191C0 /* platform_utils.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = platform_utils.c.o; sourceTree = "<group>"; };
+		6654B5FA1466FDA3002191C0 /* utils.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = utils.c.o; sourceTree = "<group>"; };
+		6654B5FB1466FDA3002191C0 /* CMakeDirectoryInformation.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeDirectoryInformation.cmake; sourceTree = "<group>"; };
+		6654B5FC1466FDA3002191C0 /* progress.marks */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = progress.marks; sourceTree = "<group>"; };
+		6654B5FD1466FDA3002191C0 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		6654B6011466FDA3002191C0 /* platform_utils.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = platform_utils.o; sourceTree = "<group>"; };
+		6654B6031466FDA3002191C0 /* platform_utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = platform_utils.c; sourceTree = "<group>"; };
+		6654B6041466FDA3002191C0 /* utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utils.c; sourceTree = "<group>"; };
+		6654B6051466FDA3002191C0 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		6654B6061466FDA3002191C0 /* utils.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = utils.o; sourceTree = "<group>"; };
+		6654B651146709FE002191C0 /* librabbitmq-objc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "librabbitmq-objc.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6654B66814670D65002191C0 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		666AF82614665A4B00AA5767 /* librabbitmq-c.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "librabbitmq-c.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66A1ADE4145D0D1D007CE1AB /* asi-http-request-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "asi-http-request-Prefix.pch"; sourceTree = "<group>"; };
 		66A1ADE5145D0D1D007CE1AB /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		66A1ADE6145D0D1D007CE1AB /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
@@ -259,6 +456,106 @@
 		66A1AE1A145D0D1D007CE1AB /* ASIS3Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIS3Request.m; sourceTree = "<group>"; };
 		66A1AE1B145D0D1D007CE1AB /* ASIS3ServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIS3ServiceRequest.h; sourceTree = "<group>"; };
 		66A1AE1C145D0D1D007CE1AB /* ASIS3ServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIS3ServiceRequest.m; sourceTree = "<group>"; };
+		66B500001465D6DA00283639 /* amqp_socket.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_socket.o; sourceTree = "<group>"; };
+		66B500011465D6DA00283639 /* amqp_table.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_table.o; sourceTree = "<group>"; };
+		66B500021465D6DA00283639 /* amqp_url.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_url.o; sourceTree = "<group>"; };
+		66B500031465D6DA00283639 /* librabbitmq.0.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = librabbitmq.0.0.0.dylib; sourceTree = "<group>"; };
+		66B500041465D6DA00283639 /* librabbitmq.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = librabbitmq.0.dylib; sourceTree = "<group>"; };
+		66B500051465D6DA00283639 /* librabbitmq.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = librabbitmq.a; sourceTree = "<group>"; };
+		66B500061465D6DA00283639 /* librabbitmq.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = librabbitmq.dylib; sourceTree = "<group>"; };
+		66B500071465D6DA00283639 /* librabbitmq.la */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = librabbitmq.la; sourceTree = "<group>"; };
+		66B500081465D6DA00283639 /* librabbitmq.lai */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = librabbitmq.lai; sourceTree = "<group>"; };
+		66B500091465D6DA00283639 /* socket.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = socket.o; sourceTree = "<group>"; };
+		66B5000A1465D6DA00283639 /* amqp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amqp.h; sourceTree = "<group>"; };
+		66B5000B1465D6DA00283639 /* amqp_api.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = amqp_api.c; sourceTree = "<group>"; };
+		66B5000C1465D6DA00283639 /* amqp_api.lo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_api.lo; sourceTree = "<group>"; };
+		66B5000D1465D6DA00283639 /* amqp_api.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_api.o; sourceTree = "<group>"; };
+		66B5000E1465D6DA00283639 /* amqp_codegen.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = amqp_codegen.py; sourceTree = "<group>"; };
+		66B5000F1465D6DA00283639 /* amqp_codegen.pyc */ = {isa = PBXFileReference; lastKnownFileType = file; path = amqp_codegen.pyc; sourceTree = "<group>"; };
+		66B500101465D6DA00283639 /* amqp_connection.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = amqp_connection.c; sourceTree = "<group>"; };
+		66B500111465D6DA00283639 /* amqp_connection.lo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_connection.lo; sourceTree = "<group>"; };
+		66B500121465D6DA00283639 /* amqp_connection.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_connection.o; sourceTree = "<group>"; };
+		66B500131465D6DA00283639 /* amqp_framing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = amqp_framing.c; sourceTree = "<group>"; };
+		66B500141465D6DA00283639 /* amqp_framing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amqp_framing.h; sourceTree = "<group>"; };
+		66B500151465D6DA00283639 /* amqp_framing.lo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_framing.lo; sourceTree = "<group>"; };
+		66B500161465D6DA00283639 /* amqp_framing.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_framing.o; sourceTree = "<group>"; };
+		66B500171465D6DA00283639 /* amqp_mem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = amqp_mem.c; sourceTree = "<group>"; };
+		66B500181465D6DA00283639 /* amqp_mem.lo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_mem.lo; sourceTree = "<group>"; };
+		66B500191465D6DA00283639 /* amqp_mem.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_mem.o; sourceTree = "<group>"; };
+		66B5001A1465D6DA00283639 /* amqp_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amqp_private.h; sourceTree = "<group>"; };
+		66B5001B1465D6DA00283639 /* amqp_socket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = amqp_socket.c; sourceTree = "<group>"; };
+		66B5001C1465D6DA00283639 /* amqp_socket.lo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_socket.lo; sourceTree = "<group>"; };
+		66B5001D1465D6DA00283639 /* amqp_socket.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_socket.o; sourceTree = "<group>"; };
+		66B5001E1465D6DA00283639 /* amqp_table.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = amqp_table.c; sourceTree = "<group>"; };
+		66B5001F1465D6DA00283639 /* amqp_table.lo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_table.lo; sourceTree = "<group>"; };
+		66B500201465D6DA00283639 /* amqp_table.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_table.o; sourceTree = "<group>"; };
+		66B500211465D6DA00283639 /* amqp_url.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = amqp_url.c; sourceTree = "<group>"; };
+		66B500221465D6DA00283639 /* amqp_url.lo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_url.lo; sourceTree = "<group>"; };
+		66B500231465D6DA00283639 /* amqp_url.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_url.o; sourceTree = "<group>"; };
+		66B500241465D6DA00283639 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
+		66B500261465D6DA00283639 /* CMakeDirectoryInformation.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeDirectoryInformation.cmake; sourceTree = "<group>"; };
+		66B500271465D6DA00283639 /* progress.marks */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = progress.marks; sourceTree = "<group>"; };
+		66B500291465D6DA00283639 /* amqp_api.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_api.c.o; sourceTree = "<group>"; };
+		66B5002A1465D6DA00283639 /* amqp_connection.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_connection.c.o; sourceTree = "<group>"; };
+		66B5002B1465D6DA00283639 /* amqp_framing.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_framing.c.o; sourceTree = "<group>"; };
+		66B5002C1465D6DA00283639 /* amqp_mem.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_mem.c.o; sourceTree = "<group>"; };
+		66B5002D1465D6DA00283639 /* amqp_socket.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_socket.c.o; sourceTree = "<group>"; };
+		66B5002E1465D6DA00283639 /* amqp_table.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_table.c.o; sourceTree = "<group>"; };
+		66B5002F1465D6DA00283639 /* amqp_url.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_url.c.o; sourceTree = "<group>"; };
+		66B500301465D6DA00283639 /* build.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build.make; sourceTree = "<group>"; };
+		66B500311465D6DA00283639 /* C.includecache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = C.includecache; sourceTree = "<group>"; };
+		66B500321465D6DA00283639 /* cmake_clean.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_clean.cmake; sourceTree = "<group>"; };
+		66B500331465D6DA00283639 /* depend.internal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = depend.internal; sourceTree = "<group>"; };
+		66B500341465D6DA00283639 /* depend.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = depend.make; sourceTree = "<group>"; };
+		66B500351465D6DA00283639 /* DependInfo.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DependInfo.cmake; sourceTree = "<group>"; };
+		66B500361465D6DA00283639 /* flags.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flags.make; sourceTree = "<group>"; };
+		66B500371465D6DA00283639 /* link.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = link.txt; sourceTree = "<group>"; };
+		66B500381465D6DA00283639 /* progress.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = progress.make; sourceTree = "<group>"; };
+		66B5003A1465D6DA00283639 /* socket.c.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = socket.c.o; sourceTree = "<group>"; };
+		66B5003B1465D6DA00283639 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		66B5003C1465D6DA00283639 /* codegen.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = codegen.py; sourceTree = "<group>"; };
+		66B5003D1465D6DA00283639 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		66B5003E1465D6DA00283639 /* librabbitmq.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = librabbitmq.dylib; sourceTree = "<group>"; };
+		66B5003F1465D6DA00283639 /* librabbitmq.la */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = librabbitmq.la; sourceTree = "<group>"; };
+		66B500401465D6DA00283639 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		66B500411465D6DA00283639 /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		66B500421465D6DA00283639 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		66B500431465D6DA00283639 /* socket.lo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = socket.lo; sourceTree = "<group>"; };
+		66B500441465D6DA00283639 /* socket.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = socket.o; sourceTree = "<group>"; };
+		66B500461465D6DA00283639 /* socket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = socket.c; sourceTree = "<group>"; };
+		66B500471465D6DA00283639 /* socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
+		66B500491465D6DA00283639 /* socket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = socket.c; sourceTree = "<group>"; };
+		66B5004A1465D6DA00283639 /* socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
+		66B500931465E19100283639 /* AMQPChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMQPChannel.h; sourceTree = "<group>"; };
+		66B500941465E19100283639 /* AMQPChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMQPChannel.m; sourceTree = "<group>"; };
+		66B500951465E19100283639 /* AMQPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMQPConnection.h; sourceTree = "<group>"; };
+		66B500961465E19100283639 /* AMQPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMQPConnection.m; sourceTree = "<group>"; };
+		66B500971465E19100283639 /* AMQPConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMQPConsumer.h; sourceTree = "<group>"; };
+		66B500981465E19100283639 /* AMQPConsumer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMQPConsumer.m; sourceTree = "<group>"; };
+		66B500991465E19100283639 /* AMQPConsumerThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMQPConsumerThread.h; sourceTree = "<group>"; };
+		66B5009A1465E19100283639 /* AMQPConsumerThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMQPConsumerThread.m; sourceTree = "<group>"; };
+		66B5009B1465E19100283639 /* AMQPConsumerThreadDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMQPConsumerThreadDelegate.h; sourceTree = "<group>"; };
+		66B5009C1465E19100283639 /* AMQPExchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMQPExchange.h; sourceTree = "<group>"; };
+		66B5009D1465E19100283639 /* AMQPExchange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMQPExchange.m; sourceTree = "<group>"; };
+		66B5009E1465E19100283639 /* AMQPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMQPMessage.h; sourceTree = "<group>"; };
+		66B5009F1465E19100283639 /* AMQPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMQPMessage.m; sourceTree = "<group>"; };
+		66B500A01465E19100283639 /* AMQPObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMQPObject.h; sourceTree = "<group>"; };
+		66B500A11465E19100283639 /* AMQPObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMQPObject.m; sourceTree = "<group>"; };
+		66B500A21465E19100283639 /* AMQPQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMQPQueue.h; sourceTree = "<group>"; };
+		66B500A31465E19100283639 /* AMQPQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMQPQueue.m; sourceTree = "<group>"; };
+		66B500A41465E19100283639 /* AMQPWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMQPWrapper.h; sourceTree = "<group>"; };
+		66B5FFF31465D6DA00283639 /* amqp_api.Plo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_api.Plo; sourceTree = "<group>"; };
+		66B5FFF41465D6DA00283639 /* amqp_connection.Plo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_connection.Plo; sourceTree = "<group>"; };
+		66B5FFF51465D6DA00283639 /* amqp_framing.Plo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_framing.Plo; sourceTree = "<group>"; };
+		66B5FFF61465D6DA00283639 /* amqp_mem.Plo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_mem.Plo; sourceTree = "<group>"; };
+		66B5FFF71465D6DA00283639 /* amqp_socket.Plo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_socket.Plo; sourceTree = "<group>"; };
+		66B5FFF81465D6DA00283639 /* amqp_table.Plo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_table.Plo; sourceTree = "<group>"; };
+		66B5FFF91465D6DA00283639 /* amqp_url.Plo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amqp_url.Plo; sourceTree = "<group>"; };
+		66B5FFFA1465D6DA00283639 /* socket.Plo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = socket.Plo; sourceTree = "<group>"; };
+		66B5FFFC1465D6DA00283639 /* amqp_api.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_api.o; sourceTree = "<group>"; };
+		66B5FFFD1465D6DA00283639 /* amqp_connection.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_connection.o; sourceTree = "<group>"; };
+		66B5FFFE1465D6DA00283639 /* amqp_framing.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_framing.o; sourceTree = "<group>"; };
+		66B5FFFF1465D6DA00283639 /* amqp_mem.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_mem.o; sourceTree = "<group>"; };
 		66BE4107145F23340048807D /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		66BE410F145F24690048807D /* libjsonkit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libjsonkit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66BE411A145F25380048807D /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
@@ -271,9 +568,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				664D79FA146398F200E05B1A /* libstompclient.a in Frameworks */,
-				66BE411D145F25750048807D /* libjsonkit.a in Frameworks */,
 				66DB5762145D1035007C838C /* libasi-http-request.a in Frameworks */,
+				66BE411D145F25750048807D /* libjsonkit.a in Frameworks */,
+				664D79FA146398F200E05B1A /* libstompclient.a in Frameworks */,
+				666AF83A14665AD700AA5767 /* librabbitmq-c.a in Frameworks */,
+				6654B66414670A2B002191C0 /* librabbitmq-objc.a in Frameworks */,
 				6635122C145BB35B00FA6B2C /* libxml2.dylib in Frameworks */,
 				66351214145BB2BA00FA6B2C /* libz.dylib in Frameworks */,
 				66351221145BB30F00FA6B2C /* AssetsLibrary.framework in Frameworks */,
@@ -324,6 +623,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6654B64E146709FE002191C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6654B67214670F9E002191C0 /* UIKit.framework in Frameworks */,
+				6654B66914670D65002191C0 /* CoreFoundation.framework in Frameworks */,
+				6654B652146709FE002191C0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		666AF82314665A4B00AA5767 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				666AF83914665A9600AA5767 /* UIKit.framework in Frameworks */,
+				666AF82714665A4B00AA5767 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		66BE410C145F24690048807D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -354,6 +672,8 @@
 				66351232145BB4EF00FA6B2C /* libasi-http-request.a */,
 				66BE410F145F24690048807D /* libjsonkit.a */,
 				664D79EB1463987900E05B1A /* libstompclient.a */,
+				666AF82614665A4B00AA5767 /* librabbitmq-c.a */,
+				6654B651146709FE002191C0 /* librabbitmq-objc.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -364,6 +684,7 @@
 				6635122A145BB33700FA6B2C /* asi-http-request */,
 				66351218145BB30F00FA6B2C /* AssetsLibrary.framework */,
 				66351219145BB30F00FA6B2C /* AVFoundation.framework */,
+				6654B66814670D65002191C0 /* CoreFoundation.framework */,
 				6635121B145BB30F00FA6B2C /* CoreLocation.framework */,
 				6635121C145BB30F00FA6B2C /* CoreMotion.framework */,
 				6635121E145BB30F00FA6B2C /* OpenGLES.framework */,
@@ -500,9 +821,325 @@
 			path = "UDID-ios5";
 			sourceTree = "<group>";
 		};
+		6654B55C1466FDA3002191C0 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				6654B55D1466FDA3002191C0 /* .deps */,
+				6654B5681466FDA3002191C0 /* .libs */,
+				6654B5711466FDA3002191C0 /* amqp_bind */,
+				6654B5721466FDA3002191C0 /* amqp_bind.c */,
+				6654B5731466FDA3002191C0 /* amqp_bind.o */,
+				6654B5741466FDA3002191C0 /* amqp_consumer */,
+				6654B5751466FDA3002191C0 /* amqp_consumer.c */,
+				6654B5761466FDA3002191C0 /* amqp_consumer.o */,
+				6654B5771466FDA3002191C0 /* amqp_exchange_declare */,
+				6654B5781466FDA3002191C0 /* amqp_exchange_declare.c */,
+				6654B5791466FDA3002191C0 /* amqp_exchange_declare.o */,
+				6654B57A1466FDA3002191C0 /* amqp_listen */,
+				6654B57B1466FDA3002191C0 /* amqp_listen.c */,
+				6654B57C1466FDA3002191C0 /* amqp_listen.o */,
+				6654B57D1466FDA3002191C0 /* amqp_listenq */,
+				6654B57E1466FDA3002191C0 /* amqp_listenq.c */,
+				6654B57F1466FDA3002191C0 /* amqp_listenq.o */,
+				6654B5801466FDA3002191C0 /* amqp_producer */,
+				6654B5811466FDA3002191C0 /* amqp_producer.c */,
+				6654B5821466FDA3002191C0 /* amqp_producer.o */,
+				6654B5831466FDA3002191C0 /* amqp_sendstring */,
+				6654B5841466FDA3002191C0 /* amqp_sendstring.c */,
+				6654B5851466FDA3002191C0 /* amqp_sendstring.o */,
+				6654B5861466FDA3002191C0 /* amqp_unbind */,
+				6654B5871466FDA3002191C0 /* amqp_unbind.c */,
+				6654B5881466FDA3002191C0 /* amqp_unbind.o */,
+				6654B5891466FDA3002191C0 /* cmake_install.cmake */,
+				6654B58A1466FDA3002191C0 /* CMakeFiles */,
+				6654B5FD1466FDA3002191C0 /* CMakeLists.txt */,
+				6654B6011466FDA3002191C0 /* platform_utils.o */,
+				6654B6021466FDA3002191C0 /* unix */,
+				6654B6041466FDA3002191C0 /* utils.c */,
+				6654B6051466FDA3002191C0 /* utils.h */,
+				6654B6061466FDA3002191C0 /* utils.o */,
+			);
+			path = examples;
+			sourceTree = "<group>";
+		};
+		6654B55D1466FDA3002191C0 /* .deps */ = {
+			isa = PBXGroup;
+			children = (
+				6654B55E1466FDA3002191C0 /* amqp_bind.Po */,
+				6654B55F1466FDA3002191C0 /* amqp_consumer.Po */,
+				6654B5601466FDA3002191C0 /* amqp_exchange_declare.Po */,
+				6654B5611466FDA3002191C0 /* amqp_listen.Po */,
+				6654B5621466FDA3002191C0 /* amqp_listenq.Po */,
+				6654B5631466FDA3002191C0 /* amqp_producer.Po */,
+				6654B5641466FDA3002191C0 /* amqp_sendstring.Po */,
+				6654B5651466FDA3002191C0 /* amqp_unbind.Po */,
+				6654B5661466FDA3002191C0 /* platform_utils.Po */,
+				6654B5671466FDA3002191C0 /* utils.Po */,
+			);
+			path = .deps;
+			sourceTree = "<group>";
+		};
+		6654B5681466FDA3002191C0 /* .libs */ = {
+			isa = PBXGroup;
+			children = (
+				6654B5691466FDA3002191C0 /* amqp_bind */,
+				6654B56A1466FDA3002191C0 /* amqp_consumer */,
+				6654B56B1466FDA3002191C0 /* amqp_exchange_declare */,
+				6654B56C1466FDA3002191C0 /* amqp_listen */,
+				6654B56D1466FDA3002191C0 /* amqp_listenq */,
+				6654B56E1466FDA3002191C0 /* amqp_producer */,
+				6654B56F1466FDA3002191C0 /* amqp_sendstring */,
+				6654B5701466FDA3002191C0 /* amqp_unbind */,
+			);
+			path = .libs;
+			sourceTree = "<group>";
+		};
+		6654B58A1466FDA3002191C0 /* CMakeFiles */ = {
+			isa = PBXGroup;
+			children = (
+				6654B58B1466FDA3002191C0 /* amqp_bind.dir */,
+				6654B5991466FDA3002191C0 /* amqp_consumer.dir */,
+				6654B5A71466FDA3002191C0 /* amqp_exchange_declare.dir */,
+				6654B5B51466FDA3002191C0 /* amqp_listen.dir */,
+				6654B5C31466FDA3002191C0 /* amqp_listenq.dir */,
+				6654B5D11466FDA3002191C0 /* amqp_producer.dir */,
+				6654B5DF1466FDA3002191C0 /* amqp_sendstring.dir */,
+				6654B5ED1466FDA3002191C0 /* amqp_unbind.dir */,
+				6654B5FB1466FDA3002191C0 /* CMakeDirectoryInformation.cmake */,
+				6654B5FC1466FDA3002191C0 /* progress.marks */,
+			);
+			path = CMakeFiles;
+			sourceTree = "<group>";
+		};
+		6654B58B1466FDA3002191C0 /* amqp_bind.dir */ = {
+			isa = PBXGroup;
+			children = (
+				6654B58C1466FDA3002191C0 /* amqp_bind.c.o */,
+				6654B58D1466FDA3002191C0 /* build.make */,
+				6654B58E1466FDA3002191C0 /* C.includecache */,
+				6654B58F1466FDA3002191C0 /* cmake_clean.cmake */,
+				6654B5901466FDA3002191C0 /* depend.internal */,
+				6654B5911466FDA3002191C0 /* depend.make */,
+				6654B5921466FDA3002191C0 /* DependInfo.cmake */,
+				6654B5931466FDA3002191C0 /* flags.make */,
+				6654B5941466FDA3002191C0 /* link.txt */,
+				6654B5951466FDA3002191C0 /* progress.make */,
+				6654B5961466FDA3002191C0 /* unix */,
+				6654B5981466FDA3002191C0 /* utils.c.o */,
+			);
+			path = amqp_bind.dir;
+			sourceTree = "<group>";
+		};
+		6654B5961466FDA3002191C0 /* unix */ = {
+			isa = PBXGroup;
+			children = (
+				6654B5971466FDA3002191C0 /* platform_utils.c.o */,
+			);
+			path = unix;
+			sourceTree = "<group>";
+		};
+		6654B5991466FDA3002191C0 /* amqp_consumer.dir */ = {
+			isa = PBXGroup;
+			children = (
+				6654B59A1466FDA3002191C0 /* amqp_consumer.c.o */,
+				6654B59B1466FDA3002191C0 /* build.make */,
+				6654B59C1466FDA3002191C0 /* C.includecache */,
+				6654B59D1466FDA3002191C0 /* cmake_clean.cmake */,
+				6654B59E1466FDA3002191C0 /* depend.internal */,
+				6654B59F1466FDA3002191C0 /* depend.make */,
+				6654B5A01466FDA3002191C0 /* DependInfo.cmake */,
+				6654B5A11466FDA3002191C0 /* flags.make */,
+				6654B5A21466FDA3002191C0 /* link.txt */,
+				6654B5A31466FDA3002191C0 /* progress.make */,
+				6654B5A41466FDA3002191C0 /* unix */,
+				6654B5A61466FDA3002191C0 /* utils.c.o */,
+			);
+			path = amqp_consumer.dir;
+			sourceTree = "<group>";
+		};
+		6654B5A41466FDA3002191C0 /* unix */ = {
+			isa = PBXGroup;
+			children = (
+				6654B5A51466FDA3002191C0 /* platform_utils.c.o */,
+			);
+			path = unix;
+			sourceTree = "<group>";
+		};
+		6654B5A71466FDA3002191C0 /* amqp_exchange_declare.dir */ = {
+			isa = PBXGroup;
+			children = (
+				6654B5A81466FDA3002191C0 /* amqp_exchange_declare.c.o */,
+				6654B5A91466FDA3002191C0 /* build.make */,
+				6654B5AA1466FDA3002191C0 /* C.includecache */,
+				6654B5AB1466FDA3002191C0 /* cmake_clean.cmake */,
+				6654B5AC1466FDA3002191C0 /* depend.internal */,
+				6654B5AD1466FDA3002191C0 /* depend.make */,
+				6654B5AE1466FDA3002191C0 /* DependInfo.cmake */,
+				6654B5AF1466FDA3002191C0 /* flags.make */,
+				6654B5B01466FDA3002191C0 /* link.txt */,
+				6654B5B11466FDA3002191C0 /* progress.make */,
+				6654B5B21466FDA3002191C0 /* unix */,
+				6654B5B41466FDA3002191C0 /* utils.c.o */,
+			);
+			path = amqp_exchange_declare.dir;
+			sourceTree = "<group>";
+		};
+		6654B5B21466FDA3002191C0 /* unix */ = {
+			isa = PBXGroup;
+			children = (
+				6654B5B31466FDA3002191C0 /* platform_utils.c.o */,
+			);
+			path = unix;
+			sourceTree = "<group>";
+		};
+		6654B5B51466FDA3002191C0 /* amqp_listen.dir */ = {
+			isa = PBXGroup;
+			children = (
+				6654B5B61466FDA3002191C0 /* amqp_listen.c.o */,
+				6654B5B71466FDA3002191C0 /* build.make */,
+				6654B5B81466FDA3002191C0 /* C.includecache */,
+				6654B5B91466FDA3002191C0 /* cmake_clean.cmake */,
+				6654B5BA1466FDA3002191C0 /* depend.internal */,
+				6654B5BB1466FDA3002191C0 /* depend.make */,
+				6654B5BC1466FDA3002191C0 /* DependInfo.cmake */,
+				6654B5BD1466FDA3002191C0 /* flags.make */,
+				6654B5BE1466FDA3002191C0 /* link.txt */,
+				6654B5BF1466FDA3002191C0 /* progress.make */,
+				6654B5C01466FDA3002191C0 /* unix */,
+				6654B5C21466FDA3002191C0 /* utils.c.o */,
+			);
+			path = amqp_listen.dir;
+			sourceTree = "<group>";
+		};
+		6654B5C01466FDA3002191C0 /* unix */ = {
+			isa = PBXGroup;
+			children = (
+				6654B5C11466FDA3002191C0 /* platform_utils.c.o */,
+			);
+			path = unix;
+			sourceTree = "<group>";
+		};
+		6654B5C31466FDA3002191C0 /* amqp_listenq.dir */ = {
+			isa = PBXGroup;
+			children = (
+				6654B5C41466FDA3002191C0 /* amqp_listenq.c.o */,
+				6654B5C51466FDA3002191C0 /* build.make */,
+				6654B5C61466FDA3002191C0 /* C.includecache */,
+				6654B5C71466FDA3002191C0 /* cmake_clean.cmake */,
+				6654B5C81466FDA3002191C0 /* depend.internal */,
+				6654B5C91466FDA3002191C0 /* depend.make */,
+				6654B5CA1466FDA3002191C0 /* DependInfo.cmake */,
+				6654B5CB1466FDA3002191C0 /* flags.make */,
+				6654B5CC1466FDA3002191C0 /* link.txt */,
+				6654B5CD1466FDA3002191C0 /* progress.make */,
+				6654B5CE1466FDA3002191C0 /* unix */,
+				6654B5D01466FDA3002191C0 /* utils.c.o */,
+			);
+			path = amqp_listenq.dir;
+			sourceTree = "<group>";
+		};
+		6654B5CE1466FDA3002191C0 /* unix */ = {
+			isa = PBXGroup;
+			children = (
+				6654B5CF1466FDA3002191C0 /* platform_utils.c.o */,
+			);
+			path = unix;
+			sourceTree = "<group>";
+		};
+		6654B5D11466FDA3002191C0 /* amqp_producer.dir */ = {
+			isa = PBXGroup;
+			children = (
+				6654B5D21466FDA3002191C0 /* amqp_producer.c.o */,
+				6654B5D31466FDA3002191C0 /* build.make */,
+				6654B5D41466FDA3002191C0 /* C.includecache */,
+				6654B5D51466FDA3002191C0 /* cmake_clean.cmake */,
+				6654B5D61466FDA3002191C0 /* depend.internal */,
+				6654B5D71466FDA3002191C0 /* depend.make */,
+				6654B5D81466FDA3002191C0 /* DependInfo.cmake */,
+				6654B5D91466FDA3002191C0 /* flags.make */,
+				6654B5DA1466FDA3002191C0 /* link.txt */,
+				6654B5DB1466FDA3002191C0 /* progress.make */,
+				6654B5DC1466FDA3002191C0 /* unix */,
+				6654B5DE1466FDA3002191C0 /* utils.c.o */,
+			);
+			path = amqp_producer.dir;
+			sourceTree = "<group>";
+		};
+		6654B5DC1466FDA3002191C0 /* unix */ = {
+			isa = PBXGroup;
+			children = (
+				6654B5DD1466FDA3002191C0 /* platform_utils.c.o */,
+			);
+			path = unix;
+			sourceTree = "<group>";
+		};
+		6654B5DF1466FDA3002191C0 /* amqp_sendstring.dir */ = {
+			isa = PBXGroup;
+			children = (
+				6654B5E01466FDA3002191C0 /* amqp_sendstring.c.o */,
+				6654B5E11466FDA3002191C0 /* build.make */,
+				6654B5E21466FDA3002191C0 /* C.includecache */,
+				6654B5E31466FDA3002191C0 /* cmake_clean.cmake */,
+				6654B5E41466FDA3002191C0 /* depend.internal */,
+				6654B5E51466FDA3002191C0 /* depend.make */,
+				6654B5E61466FDA3002191C0 /* DependInfo.cmake */,
+				6654B5E71466FDA3002191C0 /* flags.make */,
+				6654B5E81466FDA3002191C0 /* link.txt */,
+				6654B5E91466FDA3002191C0 /* progress.make */,
+				6654B5EA1466FDA3002191C0 /* unix */,
+				6654B5EC1466FDA3002191C0 /* utils.c.o */,
+			);
+			path = amqp_sendstring.dir;
+			sourceTree = "<group>";
+		};
+		6654B5EA1466FDA3002191C0 /* unix */ = {
+			isa = PBXGroup;
+			children = (
+				6654B5EB1466FDA3002191C0 /* platform_utils.c.o */,
+			);
+			path = unix;
+			sourceTree = "<group>";
+		};
+		6654B5ED1466FDA3002191C0 /* amqp_unbind.dir */ = {
+			isa = PBXGroup;
+			children = (
+				6654B5EE1466FDA3002191C0 /* amqp_unbind.c.o */,
+				6654B5EF1466FDA3002191C0 /* build.make */,
+				6654B5F01466FDA3002191C0 /* C.includecache */,
+				6654B5F11466FDA3002191C0 /* cmake_clean.cmake */,
+				6654B5F21466FDA3002191C0 /* depend.internal */,
+				6654B5F31466FDA3002191C0 /* depend.make */,
+				6654B5F41466FDA3002191C0 /* DependInfo.cmake */,
+				6654B5F51466FDA3002191C0 /* flags.make */,
+				6654B5F61466FDA3002191C0 /* link.txt */,
+				6654B5F71466FDA3002191C0 /* progress.make */,
+				6654B5F81466FDA3002191C0 /* unix */,
+				6654B5FA1466FDA3002191C0 /* utils.c.o */,
+			);
+			path = amqp_unbind.dir;
+			sourceTree = "<group>";
+		};
+		6654B5F81466FDA3002191C0 /* unix */ = {
+			isa = PBXGroup;
+			children = (
+				6654B5F91466FDA3002191C0 /* platform_utils.c.o */,
+			);
+			path = unix;
+			sourceTree = "<group>";
+		};
+		6654B6021466FDA3002191C0 /* unix */ = {
+			isa = PBXGroup;
+			children = (
+				6654B6031466FDA3002191C0 /* platform_utils.c */,
+			);
+			path = unix;
+			sourceTree = "<group>";
+		};
 		66A1ADE2145D0D1D007CE1AB /* external */ = {
 			isa = PBXGroup;
 			children = (
+				66B500921465E19100283639 /* librabbitmq-objc */,
+				66B5FFF11465D6D900283639 /* librabbitmq-c */,
 				664D79DF14638C9500E05B1A /* stompclient */,
 				665243F01460C2C300131FE8 /* UDID-ios5 */,
 				66BE4105145F23340048807D /* JSONKit */,
@@ -610,6 +1247,178 @@
 			path = S3;
 			sourceTree = "<group>";
 		};
+		66B500251465D6DA00283639 /* CMakeFiles */ = {
+			isa = PBXGroup;
+			children = (
+				66B500261465D6DA00283639 /* CMakeDirectoryInformation.cmake */,
+				66B500271465D6DA00283639 /* progress.marks */,
+				66B500281465D6DA00283639 /* rabbitmq.dir */,
+			);
+			path = CMakeFiles;
+			sourceTree = "<group>";
+		};
+		66B500281465D6DA00283639 /* rabbitmq.dir */ = {
+			isa = PBXGroup;
+			children = (
+				66B500291465D6DA00283639 /* amqp_api.c.o */,
+				66B5002A1465D6DA00283639 /* amqp_connection.c.o */,
+				66B5002B1465D6DA00283639 /* amqp_framing.c.o */,
+				66B5002C1465D6DA00283639 /* amqp_mem.c.o */,
+				66B5002D1465D6DA00283639 /* amqp_socket.c.o */,
+				66B5002E1465D6DA00283639 /* amqp_table.c.o */,
+				66B5002F1465D6DA00283639 /* amqp_url.c.o */,
+				66B500301465D6DA00283639 /* build.make */,
+				66B500311465D6DA00283639 /* C.includecache */,
+				66B500321465D6DA00283639 /* cmake_clean.cmake */,
+				66B500331465D6DA00283639 /* depend.internal */,
+				66B500341465D6DA00283639 /* depend.make */,
+				66B500351465D6DA00283639 /* DependInfo.cmake */,
+				66B500361465D6DA00283639 /* flags.make */,
+				66B500371465D6DA00283639 /* link.txt */,
+				66B500381465D6DA00283639 /* progress.make */,
+				66B500391465D6DA00283639 /* unix */,
+			);
+			path = rabbitmq.dir;
+			sourceTree = "<group>";
+		};
+		66B500391465D6DA00283639 /* unix */ = {
+			isa = PBXGroup;
+			children = (
+				66B5003A1465D6DA00283639 /* socket.c.o */,
+			);
+			path = unix;
+			sourceTree = "<group>";
+		};
+		66B500451465D6DA00283639 /* unix */ = {
+			isa = PBXGroup;
+			children = (
+				66B500461465D6DA00283639 /* socket.c */,
+				66B500471465D6DA00283639 /* socket.h */,
+			);
+			path = unix;
+			sourceTree = "<group>";
+		};
+		66B500481465D6DA00283639 /* windows */ = {
+			isa = PBXGroup;
+			children = (
+				66B500491465D6DA00283639 /* socket.c */,
+				66B5004A1465D6DA00283639 /* socket.h */,
+			);
+			path = windows;
+			sourceTree = "<group>";
+		};
+		66B500921465E19100283639 /* librabbitmq-objc */ = {
+			isa = PBXGroup;
+			children = (
+				66B500931465E19100283639 /* AMQPChannel.h */,
+				66B500941465E19100283639 /* AMQPChannel.m */,
+				66B500951465E19100283639 /* AMQPConnection.h */,
+				66B500961465E19100283639 /* AMQPConnection.m */,
+				66B500971465E19100283639 /* AMQPConsumer.h */,
+				66B500981465E19100283639 /* AMQPConsumer.m */,
+				66B500991465E19100283639 /* AMQPConsumerThread.h */,
+				66B5009A1465E19100283639 /* AMQPConsumerThread.m */,
+				66B5009B1465E19100283639 /* AMQPConsumerThreadDelegate.h */,
+				66B5009C1465E19100283639 /* AMQPExchange.h */,
+				66B5009D1465E19100283639 /* AMQPExchange.m */,
+				66B5009E1465E19100283639 /* AMQPMessage.h */,
+				66B5009F1465E19100283639 /* AMQPMessage.m */,
+				66B500A01465E19100283639 /* AMQPObject.h */,
+				66B500A11465E19100283639 /* AMQPObject.m */,
+				66B500A21465E19100283639 /* AMQPQueue.h */,
+				66B500A31465E19100283639 /* AMQPQueue.m */,
+				66B500A41465E19100283639 /* AMQPWrapper.h */,
+			);
+			path = "librabbitmq-objc";
+			sourceTree = "<group>";
+		};
+		66B5FFF11465D6D900283639 /* librabbitmq-c */ = {
+			isa = PBXGroup;
+			children = (
+				6654B55C1466FDA3002191C0 /* examples */,
+				66B5FFF21465D6D900283639 /* .deps */,
+				66B5FFFB1465D6DA00283639 /* .libs */,
+				66B5000A1465D6DA00283639 /* amqp.h */,
+				66B5000B1465D6DA00283639 /* amqp_api.c */,
+				66B5000C1465D6DA00283639 /* amqp_api.lo */,
+				66B5000D1465D6DA00283639 /* amqp_api.o */,
+				66B5000E1465D6DA00283639 /* amqp_codegen.py */,
+				66B5000F1465D6DA00283639 /* amqp_codegen.pyc */,
+				66B500101465D6DA00283639 /* amqp_connection.c */,
+				66B500111465D6DA00283639 /* amqp_connection.lo */,
+				66B500121465D6DA00283639 /* amqp_connection.o */,
+				66B500131465D6DA00283639 /* amqp_framing.c */,
+				66B500141465D6DA00283639 /* amqp_framing.h */,
+				66B500151465D6DA00283639 /* amqp_framing.lo */,
+				66B500161465D6DA00283639 /* amqp_framing.o */,
+				66B500171465D6DA00283639 /* amqp_mem.c */,
+				66B500181465D6DA00283639 /* amqp_mem.lo */,
+				66B500191465D6DA00283639 /* amqp_mem.o */,
+				66B5001A1465D6DA00283639 /* amqp_private.h */,
+				66B5001B1465D6DA00283639 /* amqp_socket.c */,
+				66B5001C1465D6DA00283639 /* amqp_socket.lo */,
+				66B5001D1465D6DA00283639 /* amqp_socket.o */,
+				66B5001E1465D6DA00283639 /* amqp_table.c */,
+				66B5001F1465D6DA00283639 /* amqp_table.lo */,
+				66B500201465D6DA00283639 /* amqp_table.o */,
+				66B500211465D6DA00283639 /* amqp_url.c */,
+				66B500221465D6DA00283639 /* amqp_url.lo */,
+				66B500231465D6DA00283639 /* amqp_url.o */,
+				66B500241465D6DA00283639 /* cmake_install.cmake */,
+				66B500251465D6DA00283639 /* CMakeFiles */,
+				66B5003B1465D6DA00283639 /* CMakeLists.txt */,
+				66B5003C1465D6DA00283639 /* codegen.py */,
+				66B5003D1465D6DA00283639 /* config.h */,
+				66B5003E1465D6DA00283639 /* librabbitmq.dylib */,
+				66B5003F1465D6DA00283639 /* librabbitmq.la */,
+				66B500401465D6DA00283639 /* Makefile */,
+				66B500411465D6DA00283639 /* Makefile.am */,
+				66B500421465D6DA00283639 /* Makefile.in */,
+				66B500431465D6DA00283639 /* socket.lo */,
+				66B500441465D6DA00283639 /* socket.o */,
+				66B500451465D6DA00283639 /* unix */,
+				66B500481465D6DA00283639 /* windows */,
+			);
+			name = "librabbitmq-c";
+			path = librabbitmq;
+			sourceTree = "<group>";
+		};
+		66B5FFF21465D6D900283639 /* .deps */ = {
+			isa = PBXGroup;
+			children = (
+				66B5FFF31465D6DA00283639 /* amqp_api.Plo */,
+				66B5FFF41465D6DA00283639 /* amqp_connection.Plo */,
+				66B5FFF51465D6DA00283639 /* amqp_framing.Plo */,
+				66B5FFF61465D6DA00283639 /* amqp_mem.Plo */,
+				66B5FFF71465D6DA00283639 /* amqp_socket.Plo */,
+				66B5FFF81465D6DA00283639 /* amqp_table.Plo */,
+				66B5FFF91465D6DA00283639 /* amqp_url.Plo */,
+				66B5FFFA1465D6DA00283639 /* socket.Plo */,
+			);
+			path = .deps;
+			sourceTree = "<group>";
+		};
+		66B5FFFB1465D6DA00283639 /* .libs */ = {
+			isa = PBXGroup;
+			children = (
+				66B5FFFC1465D6DA00283639 /* amqp_api.o */,
+				66B5FFFD1465D6DA00283639 /* amqp_connection.o */,
+				66B5FFFE1465D6DA00283639 /* amqp_framing.o */,
+				66B5FFFF1465D6DA00283639 /* amqp_mem.o */,
+				66B500001465D6DA00283639 /* amqp_socket.o */,
+				66B500011465D6DA00283639 /* amqp_table.o */,
+				66B500021465D6DA00283639 /* amqp_url.o */,
+				66B500031465D6DA00283639 /* librabbitmq.0.0.0.dylib */,
+				66B500041465D6DA00283639 /* librabbitmq.0.dylib */,
+				66B500051465D6DA00283639 /* librabbitmq.a */,
+				66B500061465D6DA00283639 /* librabbitmq.dylib */,
+				66B500071465D6DA00283639 /* librabbitmq.la */,
+				66B500081465D6DA00283639 /* librabbitmq.lai */,
+				66B500091465D6DA00283639 /* socket.o */,
+			);
+			path = .libs;
+			sourceTree = "<group>";
+		};
 		66BE4105145F23340048807D /* JSONKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -655,8 +1464,6 @@
 				66A1AE4B145D0D1D007CE1AB /* ASIS3ObjectRequest.h in Headers */,
 				66A1AE4D145D0D1D007CE1AB /* ASIS3Request.h in Headers */,
 				66A1AE4F145D0D1D007CE1AB /* ASIS3ServiceRequest.h in Headers */,
-				66BE411B145F25380048807D /* JSONKit.h in Headers */,
-				66BE4122145F78FE0048807D /* APIUtil.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,6 +1471,23 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6654B64F146709FE002191C0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6654B67314670FD1002191C0 /* amqp_framing.h in Headers */,
+				6654B67114670F6B002191C0 /* amqp.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		666AF82414665A4B00AA5767 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6654B66714670AB9002191C0 /* amqp.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,6 +1512,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				6654B63A14670329002191C0 /* PBXTargetDependency */,
+				6654B66614670A3D002191C0 /* PBXTargetDependency */,
 				664D79F9146398DE00E05B1A /* PBXTargetDependency */,
 				6635123E145BB55000FA6B2C /* PBXTargetDependency */,
 				66BE411F145F257C0048807D /* PBXTargetDependency */,
@@ -751,6 +1577,41 @@
 			productReference = 664D79EB1463987900E05B1A /* libstompclient.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		6654B650146709FE002191C0 /* rabbitmq-objc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6654B659146709FE002191C0 /* Build configuration list for PBXNativeTarget "rabbitmq-objc" */;
+			buildPhases = (
+				6654B64D146709FE002191C0 /* Sources */,
+				6654B64E146709FE002191C0 /* Frameworks */,
+				6654B64F146709FE002191C0 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6654B67014670F44002191C0 /* PBXTargetDependency */,
+			);
+			name = "rabbitmq-objc";
+			productName = "rabbitmq-objc";
+			productReference = 6654B651146709FE002191C0 /* librabbitmq-objc.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		666AF82514665A4B00AA5767 /* rabbitmq-c */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 666AF82E14665A4B00AA5767 /* Build configuration list for PBXNativeTarget "rabbitmq-c" */;
+			buildPhases = (
+				666AF82214665A4B00AA5767 /* Sources */,
+				666AF82314665A4B00AA5767 /* Frameworks */,
+				666AF82414665A4B00AA5767 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "rabbitmq-c";
+			productName = "rabbitmq-c";
+			productReference = 666AF82614665A4B00AA5767 /* librabbitmq-c.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		66BE410E145F24690048807D /* jsonkit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66BE4117145F24690048807D /* Build configuration list for PBXNativeTarget "jsonkit" */;
@@ -791,6 +1652,8 @@
 				66351231145BB4EF00FA6B2C /* asi-http-request */,
 				66BE410E145F24690048807D /* jsonkit */,
 				664D79EA1463987900E05B1A /* stompclient */,
+				666AF82514665A4B00AA5767 /* rabbitmq-c */,
+				6654B650146709FE002191C0 /* rabbitmq-objc */,
 				663511C0145BAB1100FA6B2C /* aware-client-ios */,
 				663511EF145BAB1100FA6B2C /* aware-client-iosTests */,
 			);
@@ -903,6 +1766,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6654B64D146709FE002191C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6654B65C14670A17002191C0 /* AMQPChannel.m in Sources */,
+				6654B65D14670A17002191C0 /* AMQPConnection.m in Sources */,
+				6654B65E14670A17002191C0 /* AMQPConsumer.m in Sources */,
+				6654B65F14670A17002191C0 /* AMQPConsumerThread.m in Sources */,
+				6654B66014670A17002191C0 /* AMQPExchange.m in Sources */,
+				6654B66114670A17002191C0 /* AMQPMessage.m in Sources */,
+				6654B66214670A17002191C0 /* AMQPObject.m in Sources */,
+				6654B66314670A17002191C0 /* AMQPQueue.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		666AF82214665A4B00AA5767 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6654B643146704A5002191C0 /* platform_utils.c in Sources */,
+				6654B644146704A5002191C0 /* utils.c in Sources */,
+				666AF83114665A8D00AA5767 /* amqp_api.c in Sources */,
+				666AF83214665A8D00AA5767 /* amqp_connection.c in Sources */,
+				666AF83314665A8D00AA5767 /* amqp_framing.c in Sources */,
+				666AF83414665A8D00AA5767 /* amqp_mem.c in Sources */,
+				666AF83514665A8D00AA5767 /* amqp_socket.c in Sources */,
+				666AF83614665A8D00AA5767 /* amqp_table.c in Sources */,
+				666AF83714665A8D00AA5767 /* amqp_url.c in Sources */,
+				666AF83814665A8D00AA5767 /* socket.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		66BE410B145F24690048807D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -933,6 +1828,21 @@
 			isa = PBXTargetDependency;
 			target = 664D79EA1463987900E05B1A /* stompclient */;
 			targetProxy = 664D79F8146398DE00E05B1A /* PBXContainerItemProxy */;
+		};
+		6654B63A14670329002191C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 666AF82514665A4B00AA5767 /* rabbitmq-c */;
+			targetProxy = 6654B63914670329002191C0 /* PBXContainerItemProxy */;
+		};
+		6654B66614670A3D002191C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6654B650146709FE002191C0 /* rabbitmq-objc */;
+			targetProxy = 6654B66514670A3D002191C0 /* PBXContainerItemProxy */;
+		};
+		6654B67014670F44002191C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 666AF82514665A4B00AA5767 /* rabbitmq-c */;
+			targetProxy = 6654B66F14670F44002191C0 /* PBXContainerItemProxy */;
 		};
 		66BE411F145F257C0048807D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1032,6 +1942,10 @@
 				GCC_PREFIX_HEADER = "aware/aware-client-ios-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/external/**";
 				INFOPLIST_FILE = "aware/aware-client-ios-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/external/librabbitmq/lib\"",
+				);
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -1049,6 +1963,10 @@
 				GCC_PREFIX_HEADER = "aware/aware-client-ios-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/external/**";
 				INFOPLIST_FILE = "aware/aware-client-ios-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/external/librabbitmq/lib\"",
+				);
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -1166,6 +2084,72 @@
 			};
 			name = Release;
 		};
+		6654B65A146709FE002191C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/rabbitmq_objc.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = (
+					"($SRCROOT)/external/librabbitmq-objc/**",
+					"($SRCROOT)/external/librabbitmq/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Debug;
+		};
+		6654B65B146709FE002191C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/rabbitmq_objc.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = (
+					"($SRCROOT)/external/librabbitmq-objc/**",
+					"($SRCROOT)/external/librabbitmq/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Release;
+		};
+		666AF82F14665A4B00AA5767 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/rabbitmq_c.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = "($SRCROOT)/external/librabbitmq/**";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		666AF83014665A4B00AA5767 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/rabbitmq_c.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = "($SRCROOT)/external/librabbitmq/**";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		66BE4118145F24690048807D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1238,6 +2222,25 @@
 				664D79F51463987900E05B1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6654B659146709FE002191C0 /* Build configuration list for PBXNativeTarget "rabbitmq-objc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6654B65A146709FE002191C0 /* Debug */,
+				6654B65B146709FE002191C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		666AF82E14665A4B00AA5767 /* Build configuration list for PBXNativeTarget "rabbitmq-c" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				666AF82F14665A4B00AA5767 /* Debug */,
+				666AF83014665A4B00AA5767 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		66BE4117145F24690048807D /* Build configuration list for PBXNativeTarget "jsonkit" */ = {
 			isa = XCConfigurationList;
