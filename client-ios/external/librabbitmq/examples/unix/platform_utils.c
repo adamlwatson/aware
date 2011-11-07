@@ -44,14 +44,14 @@
 #include <sys/time.h>
 #include <unistd.h>
 
-uint64_t now_microseconds(void)
+static uint64_t now_microseconds(void)
 {
   struct timeval tv;
   gettimeofday(&tv, NULL);
   return (uint64_t) tv.tv_sec * 1000000 + (uint64_t) tv.tv_usec;
 }
 
-void microsleep(int usec)
+static void microsleep(int usec)
 {
   usleep(usec);
 }

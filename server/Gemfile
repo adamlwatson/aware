@@ -12,6 +12,7 @@ end
 
 
 #gem "bson", "~> 1.4.0"
+gem 'amqp'
 gem "rack-oauth2-server"
 gem 'em-http-request', '=1.0.0'
 gem 'em-mongo'

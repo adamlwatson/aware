@@ -22,5 +22,5 @@
 # import "AMQPQueue.h"
 # import "AMQPExchange.h"
 # import "AMQPConsumer.h"
-# import "AMQPConsumerThread.h"
+# import "AMQPConsumerOperation.h"
 # import "AMQPMessage.h"

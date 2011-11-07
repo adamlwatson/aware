@@ -6,15 +6,17 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "awareARViewController.h"
 #import "PlaceOfInterest.h"
 #import "ARView.h"
+
+#import "awareARViewController.h"
+
+#import "apiutil.h"
 #import "ASIHTTPRequest.h"
 #import "JSONKit.h"
-#import "apiutil.h"
 #import "NSString+MD5Addition.h"
 #import "UIDevice+IdentifierAddition.h"
-#import "CRVStompClient.h"
+
 #import "AMQPWrapper.h"
 
 #import <CoreLocation/CoreLocation.h>
@@ -22,9 +24,8 @@
 @implementation awareARViewController
 
 @synthesize placesOfInterest;
-@synthesize sendLocationTimer;
 @synthesize lastLocation;
-@synthesize stompClient;
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -50,7 +51,7 @@
             NSLog(@"error: %@", res);
             return; //TODO: retry and exponentially back off on failure
         } else {
-            NSLog(@"success: %@", resDict);
+            //NSLog(@"success: %@", resDict);
         }
         
         NSNumber *numPois = [resDict valueForKey:@"result_count"];
@@ -99,11 +100,8 @@
         ARView *arView = (ARView *)self.view;
         [arView setPlacesOfInterest:allPois];
         
-        // send my location every second to the server
-        //NSTimer *t = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(sendMyLocationToServer) userInfo:nil repeats:true];
-        //self.sendLocationTimer = t;
-        
-        //[self setupStompQueues];
+        NSLog(@"Setting up AMQP consumer...");
+        [self setupAMQPConsumer];
 
         
     }];
@@ -113,7 +111,6 @@
     }];
     
     [request startAsynchronous];
-    [self setupAMQPConsumer];
 
 }
 
@@ -172,81 +169,47 @@
 }
 
      
-#pragma mark - Stomp Queues
+#pragma mark - AMQP 0.9.2 Client
+
 #define kHostname   @"192.168.1.110"
 #define kUsername   @"guest"
 #define kPassword   @"guest"
 #define kQueueName  @"stream.one"
+#define kExchange   @"aware.fanout"
+
 //#define kQueueName  @"/amq/queue/stream.one"
 //#define kQueueName  @"/exchange/aware.fanout"
+@synthesize amqpConn, channel, queue, consumer, consumerOp, consumerOpq;
 
-     
-- (void) setupStompQueues
-{
-    NSLog(@"Setting up stomp client...");
-    CRVStompClient *s = [[CRVStompClient alloc] 
-                         initWithHost:kHostname 
-                         port:61613 
-                         login:kUsername
-                         passcode:kPassword
-                         delegate:self];
-    [s connect];
-    
-    
-    NSDictionary *headers = [NSDictionary dictionaryWithObjectsAndKeys:     
-                             @"client", @"ack", 
-                             @"true", @"activemq.dispatchAsync",
-                             @"1", @"activemq.prefetchSize", nil];
-    [s subscribeToDestination:kQueueName withHeader: headers];
-    
-    NSLog(@"connected to stomp service: %@", kQueueName);
-    
-    [self setStompClient: s];
-    
-}
-
-#pragma mark CRVStompClientDelegate
-- (void)stompClientDidConnect:(CRVStompClient *)stompService {
-    NSLog(@"stompServiceDidConnect");
-}
-
-- (void)stompClient:(CRVStompClient *)stompService messageReceived:(NSString *)body withHeader:(NSDictionary *)messageHeader {
-    NSLog(@"gotMessage body: %@, header: %@", body, messageHeader);
-    NSLog(@"Message ID: %@", [messageHeader valueForKey:@"message-id"]);
-    // If we have successfully received the message ackknowledge it.
-    [stompService ack: [messageHeader valueForKey:@"message-id"]];
-}
-
-
-@synthesize conn, channel, queue, consumer, thread;
-
-#pragma mark - AMQP Native Client
 - (void)setupAMQPConsumer
 {
     
-    conn = [[AMQPConnection alloc] init];
-    [conn connectToHost:@"192.168.1.110" onPort:5672];
-    [conn loginAsUser:kUsername withPassword:kPassword onVHost:@"/"];
+    amqpConn = [[AMQPConnection alloc] init];
+    [amqpConn connectToHost:@"192.168.1.110" onPort:5672];
+    [amqpConn loginAsUser:kUsername withPassword:kPassword onVHost:@"/"];
     
     channel = [[AMQPChannel alloc] init];
-    [channel openChannel:1 onConnection:conn];
+    [channel openChannel:1 onConnection:amqpConn];
     
-    queue = [[AMQPQueue alloc] initWithName:kQueueName onChannel:channel isPassive:true isExclusive:false isDurable:false getsAutoDeleted:true];
+    exchange = [[AMQPExchange alloc] initFanoutExchangeWithName:kExchange onChannel:channel isPassive:true isDurable:true getsAutoDeleted:true];
     
-    //create a threaded consumer
-    consumer = [[AMQPConsumer alloc] initForQueue:queue onChannel:channel useAcknowledgements:true isExclusive:false receiveLocalMessages:false];
+    queue = [[AMQPQueue alloc] initWithName:kQueueName onChannel:channel isPassive:true isExclusive:false isDurable:true getsAutoDeleted:true];
+    [queue bindToExchange:exchange withKey:kQueueName];
     
-    thread = [[AMQPConsumerThread alloc] initWithConsumer:consumer];
-    [thread setDelegate:self];
+    // create the consumer + op
+    consumer = [queue startConsumerWithAcknowledgements:true isExclusive:false receiveLocalMessages:true];
     
-    [NSThread detachNewThreadSelector:@selector(main) toTarget:thread withObject:nil];
-    [thread start];
+    consumerOp = [[AMQPConsumerOperation alloc] initWithConsumer:consumer];
+    [consumerOp setDelegate:self];
     
-    NSLog(@"%@", thread);
-    
+    // submit the op to the op queue
+    consumerOpq = [[NSOperationQueue alloc] init];
+    [consumerOpq setMaxConcurrentOperationCount:1];
+    [consumerOpq addOperation:consumerOp];
+        
 }
 
-- (void) amqpConsumerThreadReceivedNewMessage:(AMQPMessage*)msg
+- (void) amqpConsumerReceivedMessage:(AMQPMessage*)msg
 {
     NSLog(@"AMQP: %@", msg.body);
 }
@@ -265,14 +228,9 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-
-    [stompClient unsubscribeFromDestination: kQueueName];
-
-#ifdef DEBUG
-    NSLog(@"cancelling thread");
-#endif
-
-    [thread cancel];
+    
+    [consumerOp cancel];
+    [consumerOpq cancelAllOperations];
     
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -303,11 +261,6 @@
 	ARView *arView = (ARView *)self.view;
 	[arView stop];
     
-    if (self.sendLocationTimer != nil) {
-        [sendLocationTimer invalidate];
-        self.sendLocationTimer = nil;
-
-    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

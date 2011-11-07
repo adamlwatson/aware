@@ -1,5 +1,5 @@
 //
-//  AMQPConsumerThreadDelegate.h
+//  AMQPConsumerThread.m
 //  Objective-C wrapper for librabbitmq-c
 //
 //  Copyright 2009 Max Wolter. All rights reserved.
@@ -17,13 +17,47 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-//#import <Cocoa/Cocoa.h>
+#import "AMQPConsumerOperation.h"
 
-@class AMQPConsumerThread;
-@class AMQPMessage;
+#import "AMQPConsumer.h"
+#import "AMQPMessage.h"
 
-@protocol AMQPConsumerThreadDelegate
+@implementation AMQPConsumerOperation
 
-- (void)amqpConsumerThreadReceivedNewMessage:(AMQPMessage*)theMessage;
+@synthesize delegate;
+
+- (id)initWithConsumer:(AMQPConsumer *)theConsumer
+{
+	if(self = [super init])
+	{
+		consumer = [theConsumer retain];
+	}
+	
+	return self;
+}
+- (void)dealloc
+{
+	[consumer release];
+	
+	[super dealloc];
+}
+
+- (void)main
+{
+	NSAutoreleasePool *localPool;
+	
+	while(![self isCancelled])
+	{
+		localPool = [[NSAutoreleasePool alloc] init];
+		
+		AMQPMessage *message = [consumer pop];
+		if(message)
+		{
+			[delegate performSelectorOnMainThread:@selector(amqpConsumerReceivedMessage:) withObject:message waitUntilDone:NO];
+		}
+		
+		[localPool drain];
+	}
+}
 
 @end

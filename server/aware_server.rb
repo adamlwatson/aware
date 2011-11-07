@@ -15,6 +15,7 @@ require 'helpers/aware_server_error'
 
 # api classes
 require 'api/locations'
+require 'api/streaming'
 
 # models
 require 'app/models/mongoid/location'
@@ -39,6 +40,10 @@ class RackRoutes < Goliath::API
 
   get 'populate' do
     run Locations::Populate.new
+  end
+
+  get 'stream' do
+    run Stream::Get.new
   end
 
 #  get '/users/:user_id(.:format)', :user_id => /\d+/ do

@@ -1,5 +1,5 @@
 //
-//  AMQPConsumerThread.h
+//  AMQPConsumerThreadDelegate.h
 //  Objective-C wrapper for librabbitmq-c
 //
 //  Copyright 2009 Max Wolter. All rights reserved.
@@ -18,28 +18,12 @@
 //
 
 //#import <Cocoa/Cocoa.h>
-#import <UIKit/UIKit.h>
 
-# import "AMQPConsumerThreadDelegate.h"
-
-@class AMQPConnection;
-@class AMQPChannel;
-@class AMQPQueue;
-@class AMQPConsumer;
+@class AMQPConsumerOperation;
 @class AMQPMessage;
 
-@interface AMQPConsumerThread : NSThread
-{
-	AMQPConsumer *consumer;
-	
-	NSObject<AMQPConsumerThreadDelegate> *delegate;
-}
+@protocol AMQPConsumerOperationDelegate
 
-@property (assign) NSObject<AMQPConsumerThreadDelegate> *delegate;
-
-- (id)initWithConsumer:(AMQPConsumer*)theConsumer;
-- (void)dealloc;
-
-- (void)main;
+- (void)amqpConsumerReceivedMessage:(AMQPMessage*)theMessage;
 
 @end

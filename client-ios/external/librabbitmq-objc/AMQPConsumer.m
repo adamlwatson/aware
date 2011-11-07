@@ -134,7 +134,7 @@
             /* We might want to break here to stop processing */
             //break;
         }
-        NSLog(@"** acking message");
+        //NSLog(@"** acking message");
         amqp_basic_ack(channel.connection.internalConnection, 1, delivery->delivery_tag, 0);	
 
         message = [AMQPMessage messageFromBody:body withDeliveryProperties:delivery withMessageProperties:props receivedAt:[NSDate date]];

@@ -6,43 +6,47 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+//#import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "CRVStompClient.h"
+
 #import "AMQPWrapper.h"
 
-@class CRVStompClient;
-@protocol CRVStompClientDelegate;
-//CRVStompClientDelegate,
-@interface awareARViewController : UIViewController<AMQPConsumerThreadDelegate> {
-    @private
-    CRVStompClient *service;
+@interface awareARViewController : UIViewController<AMQPConsumerOperationDelegate>
+{
+    NSArray *placesOfInterest;
+    CLLocation *lastLocation;
+    
+    AMQPConnection *amqpConn;
+    AMQPChannel *channel;
+    AMQPQueue *queue;
+    AMQPExchange *exchange;
+    AMQPConsumer *consumer;
+    AMQPConsumerOperation *consumerOp;
+    NSOperationQueue *consumerOpq;
 }
 
 @property (nonatomic, strong) NSArray *placesOfInterest;
-@property (assign) NSTimer *sendLocationTimer;
+
 @property (nonatomic, strong) CLLocation *lastLocation;
 
-@property (nonatomic, strong) CRVStompClient *stompClient;
-
-@property (nonatomic, strong) AMQPConnection *conn;
+@property (nonatomic, strong) AMQPConnection *amqpConn;
 @property (nonatomic, strong) AMQPChannel *channel;
 @property (nonatomic, strong) AMQPQueue *queue;
+@property (nonatomic, strong) AMQPExchange *exchange;
 @property (nonatomic, strong) AMQPConsumer *consumer;
-@property (nonatomic, strong) AMQPConsumerThread *thread;
+@property (nonatomic, strong) AMQPConsumerOperation *consumerOp;
+@property (nonatomic, strong) NSOperationQueue *consumerOpq;
 
-//rest
+// op queues
+
+
+// rest api
 - (void) updateLocations;
 - (void) sendMyLocationToServer;
 
-//stomp client
-- (void) setupStompQueues;
-- (void) stompClientDidConnect:(CRVStompClient *)stompService;
-- (void) stompClient:(CRVStompClient *)stompService messageReceived:(NSString *)body withHeader:(NSDictionary *)messageHeader;
-
-//amqp c client
+// amqp c client
 - (void) setupAMQPConsumer;
-- (void) amqpConsumerThreadReceivedNewMessage:(AMQPMessage*)msg;
+- (void) amqpConsumerReceivedMessage:(AMQPMessage*)msg;
 
 
 

@@ -1,0 +1,78 @@
+Example Usage
+----------------------
+
+*** Fairly full featured setup for a queue consumer:
+
+- (void)setupAMQPConsumer
+{
+    
+    amqpConn = [[AMQPConnection alloc] init];
+    [amqpConn connectToHost:@"192.168.1.110" onPort:5672];
+    [amqpConn loginAsUser:kUsername withPassword:kPassword onVHost:@"/"];
+    
+    channel = [[AMQPChannel alloc] init];
+    [channel openChannel:1 onConnection:amqpConn];
+    
+    exchange = [[AMQPExchange alloc] initFanoutExchangeWithName:kExchange onChannel:channel isPassive:true isDurable:true getsAutoDeleted:true];
+    
+    queue = [[AMQPQueue alloc] initWithName:kQueueName onChannel:channel isPassive:true isExclusive:false isDurable:true getsAutoDeleted:true];
+    [queue bindToExchange:exchange withKey:kQueueName];
+   
+    consumer = [queue startConsumerWithAcknowledgements:true isExclusive:false receiveLocalMessages:true];
+    
+    consumeOp = [[AMQPConsumerOperation alloc] initWithConsumer:consumer];
+    [consumeOp setDelegate:self];
+    
+    consumerOpq = [[NSOperationQueue alloc] init];
+    
+    [consumerOpq setMaxConcurrentOperationCount:1];
+    [consumerOpq addOperation:consumeOp];
+    
+    //[thread setDelegate:self];
+    
+    //[NSThread detachNewThreadSelector:@selector(main) toTarget:thread withObject:nil];
+    //[thread start];
+    
+    NSLog(@"%@", consumeOp);
+    
+}
+
+- (void) amqpConsumerReceivedMessage:(AMQPMessage*)msg
+{
+    NSLog(@"AMQP: %@", msg.body);
+}
+
+
+*** Can also consume queues a little more simply:
+- (void)setupAMQPConsumer
+{
+    
+    amqpConn = [[AMQPConnection alloc] init];
+    [amqpConn connectToHost:@"192.168.1.110" onPort:5672];
+    [amqpConn loginAsUser:kUsername withPassword:kPassword onVHost:@"/"];
+    
+    channel = [[AMQPChannel alloc] init];
+    [channel openChannel:1 onConnection:amqpConn];
+    
+    queue = [[AMQPQueue alloc] initWithName:kQueueName onChannel:channel isPassive:true isExclusive:false isDurable:false getsAutoDeleted:true];
+    
+    //create a threaded consumer
+    consumer = [[AMQPConsumer alloc] initForQueue:queue onChannel:channel useAcknowledgements:true isExclusive:false receiveLocalMessages:false];
+    
+    consumeOp = [[AMQPConsumerOperation alloc] initWithConsumer:consumer];
+    [consumeOp setDelegate:self];
+    
+    consumerOpq = [[NSOperationQueue alloc] init];
+    
+    [consumerOpq setMaxConcurrentOperationCount:1];
+    [consumerOpq addOperation:consumeOp];
+    
+    NSLog(@"%@", consumeOp);
+    
+}
+
+- (void) amqpConsumerReceivedMessage:(AMQPMessage*)msg
+{
+    NSLog(@"AMQP: %@", msg.body);
+}
+
