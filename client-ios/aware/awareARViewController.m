@@ -11,13 +11,13 @@
 
 #import "awareARViewController.h"
 
-#import "apiutil.h"
+#import "APIUtil.h"
 #import "ASIHTTPRequest.h"
 #import "JSONKit.h"
 #import "NSString+MD5Addition.h"
 #import "UIDevice+IdentifierAddition.h"
-
 #import "AMQPWrapper.h"
+#import "MixpanelAPI.h"
 
 #import <CoreLocation/CoreLocation.h>
 
@@ -35,6 +35,22 @@
 
 - (void)updateLocations
 {
+    
+    NSString * version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    NSString * buildNo = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBuildNumber"];
+    NSString * buildDate = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBuildDate"];
+    
+    #ifdef DEBUG
+        NSLog(@"Application Version: %@, Build: %@, Date: %@", version, buildNo, buildDate);
+    #endif
+    
+    MixpanelAPI *mixpanel = [MixpanelAPI sharedAPI];
+    [mixpanel identifyUser:[[UIDevice currentDevice] uniqueDeviceIdentifier]];
+    //[mixpanel track:@"Launched App" properties:[NSDictionary dictionaryWithObjectsAndKeys:@"true", @"test", nil]];
+    //[mixpanel flush];
+    
+    NSLog(@"Mixpanel flush called...");
+    
     APIUtil *api = [APIUtil sharedInstance];
     __block __weak ASIHTTPRequest *request = [api createAPIRequestWithURI:@"/locations"];
     
@@ -179,7 +195,7 @@
 
 //#define kQueueName  @"/amq/queue/stream.one"
 //#define kQueueName  @"/exchange/aware.fanout"
-@synthesize amqpConn, channel, queue, consumer, consumerOp, consumerOpq;
+@synthesize amqpConn, channel, exchange, queue, consumer, consumerOp, consumerOpq;
 
 - (void)setupAMQPConsumer
 {

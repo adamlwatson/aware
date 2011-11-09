@@ -3,20 +3,6 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "__40-[awareARViewController updateLocations]_block_invoke_0:awareARViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "headers">
-            </PersistentString>
-            <PersistentString
-               value = "resp_code">
-            </PersistentString>
-            <PersistentString
-               value = "responseString">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "-[awareARViewController viewDidLoad]:awareARViewController.m">
          <PersistentStrings>
             <PersistentString
@@ -29,6 +15,14 @@
       </ContextState>
       <ContextState
          contextName = "-[ARView stopDeviceMotion]:ARView.m">
+      </ContextState>
+      <ContextState
+         contextName = "__40-[awareARViewController updateLocations]_block_invoke_079:awareARViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "error.userInfo">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "-[awareARViewController sendMyLocationToServer]:awareARViewController.m">
@@ -45,10 +39,24 @@
          contextName = "-[awareARViewController setupAMQPConsumer]:awareARViewController.m">
       </ContextState>
       <ContextState
-         contextName = "__40-[awareARViewController updateLocations]_block_invoke_079:awareARViewController.m">
+         contextName = "-[awareARViewController updateLocations]:awareARViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "error.userInfo">
+               value = "DEBUG_ENABLED">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__40-[awareARViewController updateLocations]_block_invoke_0:awareARViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "headers">
+            </PersistentString>
+            <PersistentString
+               value = "resp_code">
+            </PersistentString>
+            <PersistentString
+               value = "responseString">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

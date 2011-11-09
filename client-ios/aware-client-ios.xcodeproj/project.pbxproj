@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		660DDC6B1468DCFC0002383F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663511C5145BAB1100FA6B2C /* UIKit.framework */; };
+		660DDC721468F5610002383F /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 660DDC711468F5600002383F /* Constants.m */; };
 		663511D0145BAB1100FA6B2C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 663511CE145BAB1100FA6B2C /* InfoPlist.strings */; };
 		663511D2145BAB1100FA6B2C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 663511D1145BAB1100FA6B2C /* main.m */; };
 		663511D6145BAB1100FA6B2C /* awareAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 663511D5145BAB1100FA6B2C /* awareAppDelegate.m */; };
@@ -45,10 +47,6 @@
 		66351243145BB5B100FA6B2C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6635121A145BB30F00FA6B2C /* CFNetwork.framework */; };
 		66351244145BB5B100FA6B2C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6635121D145BB30F00FA6B2C /* MobileCoreServices.framework */; };
 		66351245145BB5B100FA6B2C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66351220145BB30F00FA6B2C /* SystemConfiguration.framework */; };
-		664D79EC1463987900E05B1A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663511C7145BAB1100FA6B2C /* Foundation.framework */; };
-		664D79F6146398C600E05B1A /* CRVStompClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 664D79E314638C9500E05B1A /* CRVStompClient.m */; };
-		664D79F7146398D400E05B1A /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 664D79E114638C9500E05B1A /* AsyncSocket.m */; };
-		664D79FA146398F200E05B1A /* libstompclient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 664D79EB1463987900E05B1A /* libstompclient.a */; };
 		665243ED14609D8F00131FE8 /* ObjectLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 665243EC14609D8F00131FE8 /* ObjectLocation.m */; };
 		6652442C1460C9B300131FE8 /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 665243F21460C2C300131FE8 /* NSString+MD5Addition.m */; };
 		6652442D1460C9B300131FE8 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 665243F41460C2C300131FE8 /* UIDevice+IdentifierAddition.m */; };
@@ -79,6 +77,7 @@
 		666AF83814665A8D00AA5767 /* socket.c in Sources */ = {isa = PBXBuildFile; fileRef = 66B500461465D6DA00283639 /* socket.c */; };
 		666AF83914665A9600AA5767 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663511C5145BAB1100FA6B2C /* UIKit.framework */; };
 		666AF83A14665AD700AA5767 /* librabbitmq-c.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 666AF82614665A4B00AA5767 /* librabbitmq-c.a */; };
+		667725121469091000B5D613 /* info-template.plist in Resources */ = {isa = PBXBuildFile; fileRef = 667725111469091000B5D613 /* info-template.plist */; };
 		66A1AE1D145D0D1D007CE1AB /* asi-http-request-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 66A1ADE4145D0D1D007CE1AB /* asi-http-request-Prefix.pch */; };
 		66A1AE1E145D0D1D007CE1AB /* ASIAuthenticationDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A1ADE5145D0D1D007CE1AB /* ASIAuthenticationDialog.h */; };
 		66A1AE1F145D0D1D007CE1AB /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1ADE6145D0D1D007CE1AB /* ASIAuthenticationDialog.m */; };
@@ -134,6 +133,14 @@
 		66B339CD14678FF900615E95 /* AMQPConsumerOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 66B339CA14678FF900615E95 /* AMQPConsumerOperation.h */; };
 		66B339CF14678FF900615E95 /* AMQPConsumerOperationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 66B339CC14678FF900615E95 /* AMQPConsumerOperationDelegate.h */; };
 		66B339D01467902C00615E95 /* AMQPConsumerOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B339CB14678FF900615E95 /* AMQPConsumerOperation.m */; };
+		66B339E71468DA6C00615E95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663511C7145BAB1100FA6B2C /* Foundation.framework */; };
+		66B339F11468DA9900615E95 /* MPCJSONDataSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B339D61468DA2500615E95 /* MPCJSONDataSerializer.m */; };
+		66B339F21468DA9900615E95 /* MPCJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B339D81468DA2500615E95 /* MPCJSONSerializer.m */; };
+		66B339F31468DA9900615E95 /* MPCSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B339DA1468DA2500615E95 /* MPCSerializedJSONData.m */; };
+		66B339F41468DA9900615E95 /* NSData+MPBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B339DD1468DA2500615E95 /* NSData+MPBase64.m */; };
+		66B339F51468DA9900615E95 /* MixpanelAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B339DF1468DA2500615E95 /* MixpanelAPI.m */; };
+		66B339F61468DA9900615E95 /* MixpanelEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B339E11468DA2500615E95 /* MixpanelEvent.m */; };
+		66B339F91468DAAD00615E95 /* libMPLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B339E61468DA6C00615E95 /* libMPLib.a */; };
 		66BBA466145D0652003B64C8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663511C9145BAB1100FA6B2C /* CoreGraphics.framework */; };
 		66BBA467145D0663003B64C8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663511C5145BAB1100FA6B2C /* UIKit.framework */; };
 		66BE4110145F24690048807D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663511C7145BAB1100FA6B2C /* Foundation.framework */; };
@@ -165,13 +172,6 @@
 			remoteGlobalIDString = 66351231145BB4EF00FA6B2C;
 			remoteInfo = "asi-http-request";
 		};
-		664D79F8146398DE00E05B1A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 663511B8145BAB1100FA6B2C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 664D79EA1463987900E05B1A;
-			remoteInfo = stompclient;
-		};
 		6654B63914670329002191C0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 663511B8145BAB1100FA6B2C /* Project object */;
@@ -193,6 +193,13 @@
 			remoteGlobalIDString = 666AF82514665A4B00AA5767;
 			remoteInfo = "rabbitmq-c";
 		};
+		66B339F71468DAA300615E95 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 663511B8145BAB1100FA6B2C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66B339E51468DA6C00615E95;
+			remoteInfo = MPLib;
+		};
 		66BE411E145F257C0048807D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 663511B8145BAB1100FA6B2C /* Project object */;
@@ -203,11 +210,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		660DDC701468F5600002383F /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		660DDC711468F5600002383F /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		663511C1145BAB1100FA6B2C /* aware-client-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "aware-client-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		663511C5145BAB1100FA6B2C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		663511C7145BAB1100FA6B2C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		663511C9145BAB1100FA6B2C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		663511CD145BAB1100FA6B2C /* aware-client-ios-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "aware-client-ios-Info.plist"; sourceTree = "<group>"; };
+		663511CD145BAB1100FA6B2C /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 		663511CF145BAB1100FA6B2C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		663511D1145BAB1100FA6B2C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		663511D3145BAB1100FA6B2C /* aware-client-ios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "aware-client-ios-Prefix.pch"; sourceTree = "<group>"; };
@@ -245,11 +254,6 @@
 		66351220145BB30F00FA6B2C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6635122B145BB35B00FA6B2C /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		66351232145BB4EF00FA6B2C /* libasi-http-request.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libasi-http-request.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		664D79E014638C9500E05B1A /* AsyncSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AsyncSocket.h; path = ../stompclient/AsyncSocket.h; sourceTree = "<group>"; };
-		664D79E114638C9500E05B1A /* AsyncSocket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AsyncSocket.m; path = ../stompclient/AsyncSocket.m; sourceTree = "<group>"; };
-		664D79E214638C9500E05B1A /* CRVStompClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CRVStompClient.h; path = ../stompclient/CRVStompClient.h; sourceTree = "<group>"; };
-		664D79E314638C9500E05B1A /* CRVStompClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CRVStompClient.m; path = ../stompclient/CRVStompClient.m; sourceTree = "<group>"; };
-		664D79EB1463987900E05B1A /* libstompclient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libstompclient.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		665243EB14609D8F00131FE8 /* ObjectLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectLocation.h; sourceTree = "<group>"; };
 		665243EC14609D8F00131FE8 /* ObjectLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectLocation.m; sourceTree = "<group>"; };
 		665243F11460C2C300131FE8 /* NSString+MD5Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5Addition.h"; sourceTree = "<group>"; };
@@ -406,6 +410,7 @@
 		6654B651146709FE002191C0 /* librabbitmq-objc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "librabbitmq-objc.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6654B66814670D65002191C0 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		666AF82614665A4B00AA5767 /* librabbitmq-c.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "librabbitmq-c.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		667725111469091000B5D613 /* info-template.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "info-template.plist"; sourceTree = "<group>"; };
 		66A1ADE4145D0D1D007CE1AB /* asi-http-request-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "asi-http-request-Prefix.pch"; sourceTree = "<group>"; };
 		66A1ADE5145D0D1D007CE1AB /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		66A1ADE6145D0D1D007CE1AB /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
@@ -462,6 +467,19 @@
 		66B339CB14678FF900615E95 /* AMQPConsumerOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMQPConsumerOperation.m; sourceTree = "<group>"; };
 		66B339CC14678FF900615E95 /* AMQPConsumerOperationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMQPConsumerOperationDelegate.h; sourceTree = "<group>"; };
 		66B339D11467A1BD00615E95 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		66B339D51468DA2500615E95 /* MPCJSONDataSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPCJSONDataSerializer.h; sourceTree = "<group>"; };
+		66B339D61468DA2500615E95 /* MPCJSONDataSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPCJSONDataSerializer.m; sourceTree = "<group>"; };
+		66B339D71468DA2500615E95 /* MPCJSONSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPCJSONSerializer.h; sourceTree = "<group>"; };
+		66B339D81468DA2500615E95 /* MPCJSONSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPCJSONSerializer.m; sourceTree = "<group>"; };
+		66B339D91468DA2500615E95 /* MPCSerializedJSONData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPCSerializedJSONData.h; sourceTree = "<group>"; };
+		66B339DA1468DA2500615E95 /* MPCSerializedJSONData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPCSerializedJSONData.m; sourceTree = "<group>"; };
+		66B339DC1468DA2500615E95 /* NSData+MPBase64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+MPBase64.h"; sourceTree = "<group>"; };
+		66B339DD1468DA2500615E95 /* NSData+MPBase64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+MPBase64.m"; sourceTree = "<group>"; };
+		66B339DE1468DA2500615E95 /* MixpanelAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixpanelAPI.h; sourceTree = "<group>"; };
+		66B339DF1468DA2500615E95 /* MixpanelAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MixpanelAPI.m; sourceTree = "<group>"; };
+		66B339E01468DA2500615E95 /* MixpanelEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixpanelEvent.h; sourceTree = "<group>"; };
+		66B339E11468DA2500615E95 /* MixpanelEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MixpanelEvent.m; sourceTree = "<group>"; };
+		66B339E61468DA6C00615E95 /* libMPLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMPLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66B500001465D6DA00283639 /* amqp_socket.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_socket.o; sourceTree = "<group>"; };
 		66B500011465D6DA00283639 /* amqp_table.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_table.o; sourceTree = "<group>"; };
 		66B500021465D6DA00283639 /* amqp_url.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = amqp_url.o; sourceTree = "<group>"; };
@@ -571,9 +589,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66B339F91468DAAD00615E95 /* libMPLib.a in Frameworks */,
 				66DB5762145D1035007C838C /* libasi-http-request.a in Frameworks */,
 				66BE411D145F25750048807D /* libjsonkit.a in Frameworks */,
-				664D79FA146398F200E05B1A /* libstompclient.a in Frameworks */,
 				666AF83A14665AD700AA5767 /* librabbitmq-c.a in Frameworks */,
 				6654B66414670A2B002191C0 /* librabbitmq-objc.a in Frameworks */,
 				6635122C145BB35B00FA6B2C /* libxml2.dylib in Frameworks */,
@@ -618,14 +636,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		664D79E81463987900E05B1A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				664D79EC1463987900E05B1A /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6654B64E146709FE002191C0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -642,6 +652,15 @@
 			files = (
 				666AF83914665A9600AA5767 /* UIKit.framework in Frameworks */,
 				666AF82714665A4B00AA5767 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66B339E31468DA6C00615E95 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				660DDC6B1468DCFC0002383F /* UIKit.framework in Frameworks */,
+				66B339E71468DA6C00615E95 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,9 +693,9 @@
 				663511F0145BAB1100FA6B2C /* aware-client-iosTests.octest */,
 				66351232145BB4EF00FA6B2C /* libasi-http-request.a */,
 				66BE410F145F24690048807D /* libjsonkit.a */,
-				664D79EB1463987900E05B1A /* libstompclient.a */,
 				666AF82614665A4B00AA5767 /* librabbitmq-c.a */,
 				6654B651146709FE002191C0 /* librabbitmq-objc.a */,
+				66B339E61468DA6C00615E95 /* libMPLib.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -706,6 +725,8 @@
 				665243EE1460A45B00131FE8 /* ARView */,
 				66BE4120145F78FE0048807D /* APIUtil.h */,
 				66BE4121145F78FE0048807D /* APIUtil.m */,
+				660DDC701468F5600002383F /* Constants.h */,
+				660DDC711468F5600002383F /* Constants.m */,
 				663512B7145BCB3900FA6B2C /* storyboards */,
 				66351208145BAB1F00FA6B2C /* resources */,
 				663511D4145BAB1100FA6B2C /* awareAppDelegate.h */,
@@ -723,7 +744,8 @@
 		663511CC145BAB1100FA6B2C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				663511CD145BAB1100FA6B2C /* aware-client-ios-Info.plist */,
+				667725111469091000B5D613 /* info-template.plist */,
+				663511CD145BAB1100FA6B2C /* info.plist */,
 				663511CE145BAB1100FA6B2C /* InfoPlist.strings */,
 				663511D1145BAB1100FA6B2C /* main.m */,
 				663511D3145BAB1100FA6B2C /* aware-client-ios-Prefix.pch */,
@@ -780,17 +802,6 @@
 				663511DA145BAB1100FA6B2C /* MainStoryboard_iPad.storyboard */,
 			);
 			name = storyboards;
-			sourceTree = "<group>";
-		};
-		664D79DF14638C9500E05B1A /* stompclient */ = {
-			isa = PBXGroup;
-			children = (
-				664D79E014638C9500E05B1A /* AsyncSocket.h */,
-				664D79E114638C9500E05B1A /* AsyncSocket.m */,
-				664D79E214638C9500E05B1A /* CRVStompClient.h */,
-				664D79E314638C9500E05B1A /* CRVStompClient.m */,
-			);
-			path = stompclient;
 			sourceTree = "<group>";
 		};
 		665243E914609D3200131FE8 /* apimodels */ = {
@@ -1141,9 +1152,9 @@
 		66A1ADE2145D0D1D007CE1AB /* external */ = {
 			isa = PBXGroup;
 			children = (
+				66B339D21468DA2500615E95 /* MPLib */,
 				66B500921465E19100283639 /* librabbitmq-objc */,
 				66B5FFF11465D6D900283639 /* librabbitmq-c */,
-				664D79DF14638C9500E05B1A /* stompclient */,
 				665243F01460C2C300131FE8 /* UDID-ios5 */,
 				66BE4105145F23340048807D /* JSONKit */,
 				66A1ADE3145D0D1D007CE1AB /* asi-http-request */,
@@ -1248,6 +1259,49 @@
 				66A1AE1C145D0D1D007CE1AB /* ASIS3ServiceRequest.m */,
 			);
 			path = S3;
+			sourceTree = "<group>";
+		};
+		66B339D21468DA2500615E95 /* MPLib */ = {
+			isa = PBXGroup;
+			children = (
+				66B339D31468DA2500615E95 /* lib */,
+				66B339DE1468DA2500615E95 /* MixpanelAPI.h */,
+				66B339DF1468DA2500615E95 /* MixpanelAPI.m */,
+				66B339E01468DA2500615E95 /* MixpanelEvent.h */,
+				66B339E11468DA2500615E95 /* MixpanelEvent.m */,
+			);
+			path = MPLib;
+			sourceTree = "<group>";
+		};
+		66B339D31468DA2500615E95 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				66B339D41468DA2500615E95 /* JSON */,
+				66B339DB1468DA2500615E95 /* NSData_Base64 */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		66B339D41468DA2500615E95 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				66B339D51468DA2500615E95 /* MPCJSONDataSerializer.h */,
+				66B339D61468DA2500615E95 /* MPCJSONDataSerializer.m */,
+				66B339D71468DA2500615E95 /* MPCJSONSerializer.h */,
+				66B339D81468DA2500615E95 /* MPCJSONSerializer.m */,
+				66B339D91468DA2500615E95 /* MPCSerializedJSONData.h */,
+				66B339DA1468DA2500615E95 /* MPCSerializedJSONData.m */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		66B339DB1468DA2500615E95 /* NSData_Base64 */ = {
+			isa = PBXGroup;
+			children = (
+				66B339DC1468DA2500615E95 /* NSData+MPBase64.h */,
+				66B339DD1468DA2500615E95 /* NSData+MPBase64.m */,
+			);
+			path = NSData_Base64;
 			sourceTree = "<group>";
 		};
 		66B500251465D6DA00283639 /* CMakeFiles */ = {
@@ -1473,13 +1527,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		664D79E91463987900E05B1A /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6654B64F146709FE002191C0 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1497,6 +1544,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		66B339E41468DA6C00615E95 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		66BE410D145F24690048807D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1511,6 +1565,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66351202145BAB1100FA6B2C /* Build configuration list for PBXNativeTarget "aware-client-ios" */;
 			buildPhases = (
+				660DDC731468FB2A0002383F /* ShellScript */,
 				663511BD145BAB1100FA6B2C /* Sources */,
 				663511BE145BAB1100FA6B2C /* Frameworks */,
 				663511BF145BAB1100FA6B2C /* Resources */,
@@ -1520,9 +1575,9 @@
 			dependencies = (
 				6654B63A14670329002191C0 /* PBXTargetDependency */,
 				6654B66614670A3D002191C0 /* PBXTargetDependency */,
-				664D79F9146398DE00E05B1A /* PBXTargetDependency */,
 				6635123E145BB55000FA6B2C /* PBXTargetDependency */,
 				66BE411F145F257C0048807D /* PBXTargetDependency */,
+				66B339F81468DAA300615E95 /* PBXTargetDependency */,
 			);
 			name = "aware-client-ios";
 			productName = aware;
@@ -1566,23 +1621,6 @@
 			productReference = 66351232145BB4EF00FA6B2C /* libasi-http-request.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		664D79EA1463987900E05B1A /* stompclient */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 664D79F31463987900E05B1A /* Build configuration list for PBXNativeTarget "stompclient" */;
-			buildPhases = (
-				664D79E71463987900E05B1A /* Sources */,
-				664D79E81463987900E05B1A /* Frameworks */,
-				664D79E91463987900E05B1A /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = stompclient;
-			productName = stompclient;
-			productReference = 664D79EB1463987900E05B1A /* libstompclient.a */;
-			productType = "com.apple.product-type.library.static";
-		};
 		6654B650146709FE002191C0 /* rabbitmq-objc */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6654B659146709FE002191C0 /* Build configuration list for PBXNativeTarget "rabbitmq-objc" */;
@@ -1616,6 +1654,23 @@
 			name = "rabbitmq-c";
 			productName = "rabbitmq-c";
 			productReference = 666AF82614665A4B00AA5767 /* librabbitmq-c.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		66B339E51468DA6C00615E95 /* MPLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66B339EE1468DA6C00615E95 /* Build configuration list for PBXNativeTarget "MPLib" */;
+			buildPhases = (
+				66B339E21468DA6C00615E95 /* Sources */,
+				66B339E31468DA6C00615E95 /* Frameworks */,
+				66B339E41468DA6C00615E95 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MPLib;
+			productName = MPLib;
+			productReference = 66B339E61468DA6C00615E95 /* libMPLib.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		66BE410E145F24690048807D /* jsonkit */ = {
@@ -1655,13 +1710,13 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				66351231145BB4EF00FA6B2C /* asi-http-request */,
-				66BE410E145F24690048807D /* jsonkit */,
-				664D79EA1463987900E05B1A /* stompclient */,
-				666AF82514665A4B00AA5767 /* rabbitmq-c */,
-				6654B650146709FE002191C0 /* rabbitmq-objc */,
 				663511C0145BAB1100FA6B2C /* aware-client-ios */,
 				663511EF145BAB1100FA6B2C /* aware-client-iosTests */,
+				66351231145BB4EF00FA6B2C /* asi-http-request */,
+				66BE410E145F24690048807D /* jsonkit */,
+				66B339E51468DA6C00615E95 /* MPLib */,
+				666AF82514665A4B00AA5767 /* rabbitmq-c */,
+				6654B650146709FE002191C0 /* rabbitmq-objc */,
 			);
 		};
 /* End PBXProject section */
@@ -1678,6 +1733,7 @@
 				663511E3145BAB1100FA6B2C /* first@2x.png in Resources */,
 				663511E8145BAB1100FA6B2C /* second.png in Resources */,
 				663511EA145BAB1100FA6B2C /* second@2x.png in Resources */,
+				667725121469091000B5D613 /* info-template.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1692,6 +1748,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		660DDC731468FB2A0002383F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\n# Auto Increment Version Script\n\nPROJECT_ROOT=$(pwd)\n\nTEMPLATE=\"$PROJECT_ROOT/aware/info-template.plist\"\nPLIST=\"$PROJECT_ROOT/aware/info.plist\"\n\nrm $PLIST\nsleep 1\n\nNUM=$(/usr/libexec/PlistBuddy -c \"Print CFBuildNumber\" $TEMPLATE)\nNUM=$(($NUM + 1))\n\n/usr/libexec/PlistBuddy -c \"Set :CFBuildNumber $NUM\" $TEMPLATE\n\nDATE=$(date)\n/usr/libexec/PlistBuddy -c \"Set :CFBuildDate $DATE\" $TEMPLATE\n\ncp $TEMPLATE $PLIST\n";
+		};
 		663511EE145BAB1100FA6B2C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1722,6 +1791,7 @@
 				66351211145BB0C900FA6B2C /* ARView.m in Sources */,
 				66351212145BB0C900FA6B2C /* PlaceOfInterest.m in Sources */,
 				665243ED14609D8F00131FE8 /* ObjectLocation.m in Sources */,
+				660DDC721468F5610002383F /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1763,15 +1833,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		664D79E71463987900E05B1A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				664D79F7146398D400E05B1A /* AsyncSocket.m in Sources */,
-				664D79F6146398C600E05B1A /* CRVStompClient.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6654B64D146709FE002191C0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1804,6 +1865,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		66B339E21468DA6C00615E95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66B339F11468DA9900615E95 /* MPCJSONDataSerializer.m in Sources */,
+				66B339F21468DA9900615E95 /* MPCJSONSerializer.m in Sources */,
+				66B339F31468DA9900615E95 /* MPCSerializedJSONData.m in Sources */,
+				66B339F41468DA9900615E95 /* NSData+MPBase64.m in Sources */,
+				66B339F51468DA9900615E95 /* MixpanelAPI.m in Sources */,
+				66B339F61468DA9900615E95 /* MixpanelEvent.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		66BE410B145F24690048807D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1830,11 +1904,6 @@
 			target = 66351231145BB4EF00FA6B2C /* asi-http-request */;
 			targetProxy = 6635123F145BB56D00FA6B2C /* PBXContainerItemProxy */;
 		};
-		664D79F9146398DE00E05B1A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 664D79EA1463987900E05B1A /* stompclient */;
-			targetProxy = 664D79F8146398DE00E05B1A /* PBXContainerItemProxy */;
-		};
 		6654B63A14670329002191C0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 666AF82514665A4B00AA5767 /* rabbitmq-c */;
@@ -1849,6 +1918,11 @@
 			isa = PBXTargetDependency;
 			target = 666AF82514665A4B00AA5767 /* rabbitmq-c */;
 			targetProxy = 6654B66F14670F44002191C0 /* PBXContainerItemProxy */;
+		};
+		66B339F81468DAA300615E95 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66B339E51468DA6C00615E95 /* MPLib */;
+			targetProxy = 66B339F71468DAA300615E95 /* PBXContainerItemProxy */;
 		};
 		66BE411F145F257C0048807D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1947,7 +2021,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "aware/aware-client-ios-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/external/**";
-				INFOPLIST_FILE = "aware/aware-client-ios-Info.plist";
+				INFOPLIST_FILE = aware/info.plist;
+				INFOPLIST_PREPROCESS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/external/librabbitmq/lib\"",
@@ -1957,6 +2033,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "aware-client-ios";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1968,7 +2045,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "aware/aware-client-ios-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/external/**";
-				INFOPLIST_FILE = "aware/aware-client-ios-Info.plist";
+				INFOPLIST_FILE = aware/info.plist;
+				INFOPLIST_PREPROCESS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/external/librabbitmq/lib\"",
@@ -1978,6 +2057,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "aware-client-ios";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -2064,32 +2144,6 @@
 			};
 			name = Release;
 		};
-		664D79F41463987900E05B1A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
-				DSTROOT = /tmp/stompclient.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$SRCROOT/external/stompclient/stompclient-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		664D79F51463987900E05B1A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
-				DSTROOT = /tmp/stompclient.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$SRCROOT/external/stompclient/stompclient-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 		6654B65A146709FE002191C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2150,6 +2204,32 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				HEADER_SEARCH_PATHS = "($SRCROOT)/external/librabbitmq/**";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		66B339EF1468DA6C00615E95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/MPLib.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		66B339F01468DA6C00615E95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/MPLib.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2221,15 +2301,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		664D79F31463987900E05B1A /* Build configuration list for PBXNativeTarget "stompclient" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				664D79F41463987900E05B1A /* Debug */,
-				664D79F51463987900E05B1A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		6654B659146709FE002191C0 /* Build configuration list for PBXNativeTarget "rabbitmq-objc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2244,6 +2315,15 @@
 			buildConfigurations = (
 				666AF82F14665A4B00AA5767 /* Debug */,
 				666AF83014665A4B00AA5767 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66B339EE1468DA6C00615E95 /* Build configuration list for PBXNativeTarget "MPLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66B339EF1468DA6C00615E95 /* Debug */,
+				66B339F01468DA6C00615E95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

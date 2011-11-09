@@ -9,6 +9,7 @@
 #import "awareAppDelegate.h"
 #import "awareARViewController.h"
 
+
 @implementation awareAppDelegate
 
 @synthesize window = _window;
@@ -16,6 +17,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //dev token - TODO: constantize this based on build type
+    mixpanel = [MixpanelAPI sharedAPIWithToken:(@"59c6249552fd4e59ae08f9e61d14f97b")];
+    
     return YES;
 }
 							

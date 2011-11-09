@@ -8,10 +8,13 @@
 
 
 #import <UIKit/UIKit.h>
+#import "MixpanelAPI.h"
 
 @class awareARViewController;
 
-@interface awareAppDelegate : NSObject <UIApplicationDelegate>
+@interface awareAppDelegate : NSObject <UIApplicationDelegate> {
+    MixpanelAPI *mixpanel;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

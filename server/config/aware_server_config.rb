@@ -7,14 +7,13 @@ require File.join(File.dirname(__FILE__), 'app/models/sql/sql_model_base')
 # shared config values
 config['api_version'] = 1
 
-config['db_connection_pool_size'] = 20
-config['mongo_connection_pool_size'] = 20
-config['memcache_connection_pool_size'] = 20
+config['db_connection_pool_size'] = 10
+config['mongo_connection_pool_size'] = 10
+config['memcache_connection_pool_size'] = 10
 
 #env.logger.info("requiring " +  Goliath.env.to_s)
 
 import(File.join(File.dirname(__FILE__), Goliath.env.to_s))
-
 
 environment :production do
 end

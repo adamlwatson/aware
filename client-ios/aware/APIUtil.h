@@ -8,9 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+
+
 @interface APIUtil : NSObject 
 
-@property (nonatomic, strong) NSString *urlPrefix;
+
+extern NSString const *kApiUrlPrefix;
+
 
 // methods
 + (id)sharedInstance;

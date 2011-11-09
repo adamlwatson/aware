@@ -11,6 +11,7 @@
 
 #import "AMQPWrapper.h"
 
+
 @interface awareARViewController : UIViewController<AMQPConsumerOperationDelegate>
 {
     NSArray *placesOfInterest;
