@@ -3,14 +3,6 @@ $:<< '../lib' << 'lib'
 
 require 'goliath'
 
-# This example assumes you have an AMQP server up and running with the
-# following config (using rabbit-mq as an example)
-#
-# rabbitmq-server start
-# rabbitmqctl add_vhost /test
-# rabbitmqctl add_user test test
-# rabbitmqctl set_permissions -p /test test ".*" ".*" ".*"
-
 class Streaming
 
   class Get < Goliath::API

@@ -1,13 +1,13 @@
-# for non-blocking direct sql db connections
-require 'mysql2/em_fiber'
-config['db'] = EM::Synchrony::ConnectionPool.new(:size => config['db_connection_pool_size']) do
-  ::Mysql2::EM::Fiber::Client.new(:host => '10.15.100.246',
-                                  :username => 'gserver_stage',
-                                  :password => 'zaCrudre6U',
-                                  :database => 'gserver_staging',
-                                  :socket => nil,
-                                  :reconnect => true)
-end
+###
+### AMQP connection
+###
+
+
+config['amqp'] = {
+  :host => 'localhost',
+  :user => 'guest',
+  :pass => 'guest'
+}
 
 #
 # memcached connection pool

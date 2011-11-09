@@ -1,30 +1,16 @@
 
-# for non-blocking direct sql db connections
-if config['use_sql_direct']
-  require 'mysql2/em_fiber'
-  config['db'] = EM::Synchrony::ConnectionPool.new(:size => config['db_connection_pool_size']) do
-    ::Mysql2::EM::Fiber::Client.new(:host => 'localhost',
-                                    :username => 'root',
-                                    :password => 'toor',
-                                    :database => 'gserver_test',
-                                    :socket => nil,
-                                    :reconnect => true)
-  end
+###
+### AMQP connection
+###
 
-else
-  require "em-synchrony/activerecord"
-  # for non-blocking (but synchronous) active record db connections
-  ActiveRecord::Base.establish_connection(:host => 'localhost',
-                                          :username => 'root',
-                                          :password => 'toor',
-                                          :database => 'gserver_test',
-                                          :reconnect => true,
-                                          :adapter => 'em_mysql2'
-                                          )
 
-  ActiveRecord::Base.connection_pool.instance_variable_set('@size', config['db_connection_pool_size'])
+config['amqp'] = {
+  :host => 'localhost',
+  :user => 'guest',
+  :pass => 'guest'
+}
 
-end
+
 #
 # memcached connection pool
 #
@@ -54,3 +40,4 @@ Mongoid.configure do |config|
   config.master = mongoid_conn.db('mobage_test')
 end
 #end
+

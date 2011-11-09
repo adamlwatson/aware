@@ -1,4 +1,4 @@
-require 'app/models/sql/sql_model_base'
+require 'models/sql/sql_model_base'
 
 class Location < SqlModelBase
 

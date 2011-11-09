@@ -1,4 +1,4 @@
-require 'app/models/mongo/mongo_model_base'
+require 'models/mongo/mongo_model_base'
 
 class Location < MongoModelBase
 

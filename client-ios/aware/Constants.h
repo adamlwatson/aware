@@ -6,4 +6,25 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
+
+//
+// General
+//
+
 extern BOOL const kDebug;
+
+
+
+//
+// AMQP
+//
+
+extern NSString * const kAMQPHostname;
+extern NSString * const kAMQPVirtualHostname;
+extern int        const kAMQPPortNumber;
+
+extern NSString * const kAMQPUsername;
+extern NSString * const kAMQPPassword;
+extern NSString * const kAMQPEntityNameSystemIn;
+extern NSString * const kAMQPEntityNameSystemFanout;
+

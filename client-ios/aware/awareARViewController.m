@@ -187,12 +187,6 @@
      
 #pragma mark - AMQP 0.9.2 Client
 
-#define kHostname   @"192.168.1.110"
-#define kUsername   @"guest"
-#define kPassword   @"guest"
-#define kQueueName  @"stream.one"
-#define kExchange   @"aware.fanout"
-
 //#define kQueueName  @"/amq/queue/stream.one"
 //#define kQueueName  @"/exchange/aware.fanout"
 @synthesize amqpConn, channel, exchange, queue, consumer, consumerOp, consumerOpq;
@@ -201,16 +195,24 @@
 {
     
     amqpConn = [[AMQPConnection alloc] init];
-    [amqpConn connectToHost:@"192.168.1.110" onPort:5672];
-    [amqpConn loginAsUser:kUsername withPassword:kPassword onVHost:@"/"];
+    [amqpConn connectToHost:kAMQPHostname onPort:kAMQPPortNumber];
+    [amqpConn loginAsUser:kAMQPUsername withPassword:kAMQPPassword onVHost:kAMQPVirtualHostname];
     
     channel = [[AMQPChannel alloc] init];
     [channel openChannel:1 onConnection:amqpConn];
     
-    exchange = [[AMQPExchange alloc] initFanoutExchangeWithName:kExchange onChannel:channel isPassive:true isDurable:true getsAutoDeleted:true];
+    // create a reference to the server-created system-in exchange
+    //exchange = [[AMQPExchange alloc] initFanoutExchangeWithName:kAMQPEntityNameSystemIn onChannel:channel isPassive:true isDurable:true getsAutoDeleted:true];
     
-    queue = [[AMQPQueue alloc] initWithName:kQueueName onChannel:channel isPassive:true isExclusive:false isDurable:true getsAutoDeleted:true];
-    [queue bindToExchange:exchange withKey:kQueueName];
+    // create a ref to the server-created system broadcast exchange
+    exchange = [[AMQPExchange alloc] initFanoutExchangeWithName:kAMQPEntityNameSystemFanout onChannel:channel isPassive:true isDurable:true getsAutoDeleted:false];
+    NSLog(@"exchange: %@", exchange);
+    
+    // create client consumer queue and bind to system broadcast exchange
+    NSString *queueName = [NSString stringWithFormat:@"%@.%@", kAMQPEntityNameSystemFanout, [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]];
+    queue = [[AMQPQueue alloc] initWithName:queueName onChannel:channel isPassive:false isExclusive:false isDurable:false getsAutoDeleted:true];
+    NSLog(@"queue: %@", queue);
+    [queue bindToExchange:exchange withKey:queueName];
     
     // create the consumer + op
     consumer = [queue startConsumerWithAcknowledgements:true isExclusive:false receiveLocalMessages:true];

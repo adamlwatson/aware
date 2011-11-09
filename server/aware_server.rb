@@ -18,7 +18,7 @@ require 'api/locations'
 require 'api/streaming'
 
 # models
-require 'app/models/mongoid/location'
+require 'models/mongoid/location'
 
 class RackRoutes < Goliath::API
 
