@@ -36,12 +36,12 @@
 
 @property (readonly) amqp_bytes_t internalQueue;
 
-- (id)initWithName:(NSString*)theName onChannel:(AMQPChannel*)theChannel isPassive:(BOOL)passive isExclusive:(BOOL)exclusive isDurable:(BOOL)durable getsAutoDeleted:(BOOL)autoDelete;
+- (id)initWithName:(NSString*)theName onChannel:(AMQPChannel*)theChannel isPassive:(BOOL)passive isExclusive:(BOOL)exclusive isDurable:(BOOL)durable autoDelete:(BOOL)autoDelete;
 - (void)dealloc;
 
 - (void)bindToExchange:(AMQPExchange*)theExchange withKey:(NSString*)bindingKey;
 - (void)unbindFromExchange:(AMQPExchange*)theExchange withKey:(NSString*)bindingKey;
 
-- (AMQPConsumer*)startConsumerWithAcknowledgements:(BOOL)ack isExclusive:(BOOL)exclusive receiveLocalMessages:(BOOL)local;
+- (AMQPConsumer*)startConsumerWithAcks:(BOOL)ack isExclusive:(BOOL)exclusive receiveLocal:(BOOL)local;
 
 @end

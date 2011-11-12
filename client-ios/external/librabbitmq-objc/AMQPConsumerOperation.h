@@ -37,6 +37,7 @@
 
 @property (assign) NSObject<AMQPConsumerOperationDelegate> *delegate;
 
+
 - (id)initWithConsumer:(AMQPConsumer*)theConsumer;
 - (void)dealloc;
 - (void)main;

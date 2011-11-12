@@ -25,6 +25,7 @@ extern int        const kAMQPPortNumber;
 
 extern NSString * const kAMQPUsername;
 extern NSString * const kAMQPPassword;
-extern NSString * const kAMQPEntityNameSystemIn;
+extern NSString * const kAMQPEntityNameSystemComm;
 extern NSString * const kAMQPEntityNameSystemFanout;
 
+extern NSString * const kApiUrlPrefix;

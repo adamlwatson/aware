@@ -26,7 +26,7 @@
 
 @synthesize delegate;
 
-- (id)initWithConsumer:(AMQPConsumer *)theConsumer
+- (id)initWithConsumer:(AMQPConsumer *)theConsumer 
 {
 	if(self = [super init])
 	{
@@ -53,7 +53,10 @@
 		AMQPMessage *message = [consumer pop];
 		if(message)
 		{
-			[delegate performSelectorOnMainThread:@selector(amqpConsumerReceivedMessage:) withObject:message waitUntilDone:NO];
+            if (delegate) {
+                [delegate performSelectorOnMainThread:@selector(amqpMessageHandler:) withObject:message waitUntilDone:NO];
+            }
+			
 		}
 		
 		[localPool drain];

@@ -24,6 +24,6 @@
 
 @protocol AMQPConsumerOperationDelegate
 
-- (void)amqpConsumerReceivedMessage:(AMQPMessage*)theMessage;
+- (void)amqpMessageHandler:(AMQPMessage*)theMessage;
 
 @end

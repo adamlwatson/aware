@@ -11,11 +11,6 @@
 
 
 //class constants
-#ifdef DEBUG
-    NSString const *kApiUrlPrefix = @"https://adam-15:8000";
-#else
-    NSString const *kApiUrlPrefix = @"https://some.prod.server5:8000";
-#endif
 
 //singleton shared instance
 static APIUtil *sharedInstance;
@@ -33,7 +28,8 @@ static APIUtil *sharedInstance;
     return sharedInstance;
 }
 
-- (id)init {
+- (id)init
+{
     if (self = [super init]) {
 
     }
@@ -42,7 +38,8 @@ static APIUtil *sharedInstance;
 
 
 #pragma mark Utility Methods
-- (id)createAPIRequestWithURI:(NSString *)uri {
+- (id)createAPIRequestWithURI:(NSString *)uri
+{
     
     NSString *apiUrl =[NSString stringWithFormat:@"%@%@", kApiUrlPrefix, uri]; 
     NSURL *url = [NSURL URLWithString:apiUrl];
@@ -50,11 +47,12 @@ static APIUtil *sharedInstance;
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     
     #ifdef DEBUG
-        NSLog(@"** Disabling secure certificate validation in debug mode");
+        DLog(@"** Disabling secure certificate validation in debug mode");
         [request setValidatesSecureCertificate:NO];
     #endif
 
     return request;
 }
+
 
 @end

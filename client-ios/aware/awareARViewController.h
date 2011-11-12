@@ -7,6 +7,7 @@
 //
 
 //#import <UIKit/UIKit.h>
+
 #import <CoreLocation/CoreLocation.h>
 
 #import "AMQPWrapper.h"
@@ -18,27 +19,37 @@
     CLLocation *lastLocation;
     
     AMQPConnection *amqpConn;
-    AMQPChannel *channel;
-    AMQPQueue *queue;
-    AMQPExchange *exchange;
-    AMQPConsumer *consumer;
-    AMQPConsumerOperation *consumerOp;
-    NSOperationQueue *consumerOpq;
+    AMQPChannel *amqpGlobalChannel;
+    
+    AMQPExchange *exchSysFanout;
+    AMQPQueue *queueSysFanout;
+    NSOperationQueue *opqSysFanout;
+    
+    AMQPExchange *exchSysComm;
+    AMQPQueue *queueSysComm;
+    NSOperationQueue *opqSysComm;
+    
 }
 
 @property (nonatomic, strong) NSArray *placesOfInterest;
-
 @property (nonatomic, strong) CLLocation *lastLocation;
 
-@property (nonatomic, strong) AMQPConnection *amqpConn;
-@property (nonatomic, strong) AMQPChannel *channel;
-@property (nonatomic, strong) AMQPQueue *queue;
-@property (nonatomic, strong) AMQPExchange *exchange;
-@property (nonatomic, strong) AMQPConsumer *consumer;
-@property (nonatomic, strong) AMQPConsumerOperation *consumerOp;
-@property (nonatomic, strong) NSOperationQueue *consumerOpq;
 
-// op queues
+// amqp entities + nsop queues
+
+@property (nonatomic, strong) AMQPConnection *amqpConn;
+@property (nonatomic, strong) AMQPChannel *amqpGlobalChannel;
+
+@property (nonatomic, strong) AMQPExchange *exchSysFanout;
+@property (nonatomic, strong) AMQPQueue *queueSysFanout;
+@property (nonatomic, strong) NSOperationQueue *opqSysFanout;
+
+
+@property (nonatomic, strong) AMQPExchange *exchSysComm;
+@property (nonatomic, strong) AMQPQueue *queueSysComm;
+@property (nonatomic, strong) NSOperationQueue *opqSysComm;
+
+
 
 
 // rest api
@@ -46,9 +57,13 @@
 - (void) sendMyLocationToServer;
 
 // amqp c client
-- (void) setupAMQPConsumer;
-- (void) amqpConsumerReceivedMessage:(AMQPMessage*)msg;
+- (void) setupAMQP;
+- (void) createConsumerForAMQPQueue: (AMQPQueue *) amqpQueue andAddToOpQueue:
+(NSOperationQueue *) opQueue;
 
+- (void) queueSysFanoutReceiveHandler:(AMQPMessage*)msg;
+
+- (void) queueSysCommReceiveHandler:(AMQPMessage*)msg;
 
 
 @end

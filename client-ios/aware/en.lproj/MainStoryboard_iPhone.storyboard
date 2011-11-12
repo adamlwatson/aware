@@ -17,7 +17,7 @@
                     <tabBarItem key="tabBarItem" title="AR View" image="first" id="7"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="635" y="180"/>
+            <point key="canvasLocation" x="811" y="581"/>
         </scene>
         <scene sceneID="13">
             <objects>
@@ -31,7 +31,7 @@
                     <tabBarItem key="tabBarItem" title="Profile" image="second" id="6"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1133" y="186"/>
+            <point key="canvasLocation" x="811" y="-32"/>
         </scene>
         <scene sceneID="15">
             <objects>
@@ -49,24 +49,13 @@
                     </connections>
                 </tabBarController>
             </objects>
-            <point key="canvasLocation" x="132" y="180"/>
+            <point key="canvasLocation" x="146" y="186"/>
         </scene>
     </scenes>
     <resources>
         <image name="first" width="16" height="16"/>
         <image name="second" width="16" height="16"/>
     </resources>
-    <classes>
-        <class className="ARView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ARView.h"/>
-        </class>
-        <class className="awareARViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/awareARViewController.h"/>
-        </class>
-        <class className="awareSecondViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/awareSecondViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

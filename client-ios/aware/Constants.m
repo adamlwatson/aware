@@ -19,7 +19,8 @@
     NSString * const kAMQPVirtualHostname =         @"/";
     int        const kAMQPPortNumber =              5672;
     
-    NSString * const kAMQPEntityNameSystemIn =      @"aware.system.in";
+    NSString * const kAMQPEntityNameSystemComm =      @"aware.system.comm";
     NSString * const kAMQPEntityNameSystemFanout =  @"aware.system.fanout";
+    NSString * const kApiUrlPrefix = kDebug ? @"https://adam-15:8000" : @"https://some.prod.server5:8000";
 
 

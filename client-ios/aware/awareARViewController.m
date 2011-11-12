@@ -6,6 +6,8 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
+
+
 #import "PlaceOfInterest.h"
 #import "ARView.h"
 
@@ -40,16 +42,15 @@
     NSString * buildNo = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBuildNumber"];
     NSString * buildDate = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBuildDate"];
     
-    #ifdef DEBUG
-        NSLog(@"Application Version: %@, Build: %@, Date: %@", version, buildNo, buildDate);
-    #endif
+    DLog(@"Application Version: %@, Build: %@, Date: %@", version, buildNo, buildDate);
+
     
     MixpanelAPI *mixpanel = [MixpanelAPI sharedAPI];
     [mixpanel identifyUser:[[UIDevice currentDevice] uniqueDeviceIdentifier]];
     //[mixpanel track:@"Launched App" properties:[NSDictionary dictionaryWithObjectsAndKeys:@"true", @"test", nil]];
     //[mixpanel flush];
     
-    NSLog(@"Mixpanel flush called...");
+    DLog(@"Mixpanel flush called...");
     
     APIUtil *api = [APIUtil sharedInstance];
     __block __weak ASIHTTPRequest *request = [api createAPIRequestWithURI:@"/locations"];
@@ -64,10 +65,10 @@
         NSDictionary *resDict = [responseString objectFromJSONString];
         if ([resDict objectForKey:@"success"] == false) {
             NSArray *res = [resDict objectForKey:@"error"];
-            NSLog(@"error: %@", res);
+            DLog(@"error: %@", res);
             return; //TODO: retry and exponentially back off on failure
         } else {
-            //NSLog(@"success: %@", resDict);
+            //DLog(@"success: %@", resDict);
         }
         
         NSNumber *numPois = [resDict valueForKey:@"result_count"];
@@ -102,28 +103,28 @@
                 
                 PlaceOfInterest *poi = [PlaceOfInterest placeOfInterestWithView:label at:coord];
                 [allPois insertObject:poi atIndex:i];
-            }
+            }		
         }
         
         //NSArray *result = [allPois copy];
         //return result;
         
-        NSLog(@"** Device UDID: %@", [[UIDevice currentDevice] uniqueDeviceIdentifier] );
-        NSLog(@"** Global Device UDID: %@", [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier] );
+        DLog(@"** Device UDID: %@", [[UIDevice currentDevice] uniqueDeviceIdentifier] );
+        DLog(@"** Global Device UDID: %@", [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier] );
         
-        NSLog(@"Setting places of interest...");
+        DLog(@"Setting places of interest...");
         
         ARView *arView = (ARView *)self.view;
         [arView setPlacesOfInterest:allPois];
         
-        NSLog(@"Setting up AMQP consumer...");
-        [self setupAMQPConsumer];
+        DLog(@"Setting up AMQP consumer...");
+        [self setupAMQP];
 
         
     }];
     [request setFailedBlock:^{
         NSError *error = [request error];
-        NSLog(@"an error occurred while calling the REST api... %@", error);
+        DLog(@"an error occurred while calling the REST api... %@", error);
     }];
     
     [request startAsynchronous];
@@ -135,9 +136,9 @@
 {
     ARView *arView = (ARView *)self.view;
     CLLocation *loc = [arView userLocation];
-    //NSLog(@"loc nil? %s", (loc == nil) ? "true" : "false");
-    //NSLog(@"lat diff = %s", (loc.coordinate.latitude != self.lastLocation.coordinate.latitude) ? "true" : "false");
-    //NSLog(@"long diff = %s", (loc.coordinate.longitude != self.lastLocation.coordinate.longitude) ? "true" : "false");
+    //DLog(@"loc nil? %s", (loc == nil) ? "true" : "false");
+    //DLog(@"lat diff = %s", (loc.coordinate.latitude != self.lastLocation.coordinate.latitude) ? "true" : "false");
+    //DLog(@"long diff = %s", (loc.coordinate.longitude != self.lastLocation.coordinate.longitude) ? "true" : "false");
     
     if ((loc != nil) &&
         (
@@ -145,7 +146,7 @@
          (loc.coordinate.longitude != self.lastLocation.coordinate.longitude) )
         ) {
         
-        NSLog(@"uploading location change: %@", loc);
+        DLog(@"uploading location change: %@", loc);
         self.lastLocation = [loc copy];
     
         APIUtil *api = [APIUtil sharedInstance];
@@ -163,10 +164,10 @@
             NSDictionary *resDict = [responseString objectFromJSONString];
             if ([resDict objectForKey:@"success"] == false) {
                 NSArray *err = [resDict objectForKey:@"error"];
-                NSLog(@"error: %@", err);
+                DLog(@"error: %@", err);
                 return; //TODO: retry and exponentially back off on failure
             } else {
-                //NSLog(@"success: %@", resDict);
+                //DLog(@"success: %@", resDict);
             }
             
             //NSNumber *numResults = [resDict valueForKey:@"result_count"];
@@ -177,7 +178,7 @@
     
         [request setFailedBlock:^{
             NSError *error = [request error];
-            NSLog(@"an error occurred while calling the REST api... %@", error);
+            DLog(@"an error occurred while calling the REST api... %@", error);
         }];
 
         [request startAsynchronous];
@@ -187,49 +188,87 @@
      
 #pragma mark - AMQP 0.9.2 Client
 
-//#define kQueueName  @"/amq/queue/stream.one"
-//#define kQueueName  @"/exchange/aware.fanout"
-@synthesize amqpConn, channel, exchange, queue, consumer, consumerOp, consumerOpq;
+@synthesize amqpConn, amqpGlobalChannel;
+@synthesize exchSysFanout, queueSysFanout, opqSysFanout;
+@synthesize exchSysComm, queueSysComm, opqSysComm;
 
-- (void)setupAMQPConsumer
+- (void)setupAMQP
 {
     
     amqpConn = [[AMQPConnection alloc] init];
     [amqpConn connectToHost:kAMQPHostname onPort:kAMQPPortNumber];
     [amqpConn loginAsUser:kAMQPUsername withPassword:kAMQPPassword onVHost:kAMQPVirtualHostname];
     
-    channel = [[AMQPChannel alloc] init];
-    [channel openChannel:1 onConnection:amqpConn];
+    amqpGlobalChannel = [[AMQPChannel alloc] init];
+    [amqpGlobalChannel openChannel:1 onConnection:amqpConn];
     
-    // create a reference to the server-created system-in exchange
-    //exchange = [[AMQPExchange alloc] initFanoutExchangeWithName:kAMQPEntityNameSystemIn onChannel:channel isPassive:true isDurable:true getsAutoDeleted:true];
+    // create a reference to the server-created system-communication exchange
+    exchSysComm = [[AMQPExchange alloc] initFanoutExchangeWithName:kAMQPEntityNameSystemComm onChannel:amqpGlobalChannel isPassive:true isDurable:true getsAutoDeleted:false];
+    
+    //create a sys-comm queue and bind to the sys-comm exchange
+    NSString *qnameSysComm = [NSString stringWithFormat:@"%@.%@", kAMQPEntityNameSystemComm, [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]];
+    queueSysComm = [[AMQPQueue alloc] initWithName:qnameSysComm onChannel:amqpGlobalChannel isPassive:false isExclusive:true isDurable:false autoDelete:true];
+    [queueSysComm bindToExchange:exchSysComm withKey:qnameSysComm];
+    
+    // create the nsop for consuming system comm messages (replies)
+    opqSysComm = [[NSOperationQueue alloc] init];
+    [opqSysComm setMaxConcurrentOperationCount:-1];
+    [self createConsumerForAMQPQueue:queueSysComm andAddToOpQueue:opqSysComm];
+    
     
     // create a ref to the server-created system broadcast exchange
-    exchange = [[AMQPExchange alloc] initFanoutExchangeWithName:kAMQPEntityNameSystemFanout onChannel:channel isPassive:true isDurable:true getsAutoDeleted:false];
-    NSLog(@"exchange: %@", exchange);
+    exchSysFanout = [[AMQPExchange alloc] initFanoutExchangeWithName:kAMQPEntityNameSystemFanout onChannel:amqpGlobalChannel isPassive:true isDurable:true getsAutoDeleted:false];
     
-    // create client consumer queue and bind to system broadcast exchange
-    NSString *queueName = [NSString stringWithFormat:@"%@.%@", kAMQPEntityNameSystemFanout, [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]];
-    queue = [[AMQPQueue alloc] initWithName:queueName onChannel:channel isPassive:false isExclusive:false isDurable:false getsAutoDeleted:true];
-    NSLog(@"queue: %@", queue);
-    [queue bindToExchange:exchange withKey:queueName];
+    // create client queue and bind to system broadcast exchange
+    NSString *qnameSysFanout  = [NSString stringWithFormat:@"%@.%@", kAMQPEntityNameSystemFanout, [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]];
     
-    // create the consumer + op
-    consumer = [queue startConsumerWithAcknowledgements:true isExclusive:false receiveLocalMessages:true];
+    queueSysFanout = [[AMQPQueue alloc] initWithName:qnameSysFanout onChannel:amqpGlobalChannel isPassive:false isExclusive:false isDurable:false autoDelete:true];
+    [queueSysFanout bindToExchange:exchSysFanout withKey:qnameSysFanout];
+
+    // create the nsop for consuming system broadcast messages
+    opqSysFanout = [[NSOperationQueue alloc] init];
+    [opqSysFanout setMaxConcurrentOperationCount:-1];
+    [self createConsumerForAMQPQueue:queueSysFanout andAddToOpQueue:opqSysFanout];
+     
     
-    consumerOp = [[AMQPConsumerOperation alloc] initWithConsumer:consumer];
-    [consumerOp setDelegate:self];
     
-    // submit the op to the op queue
-    consumerOpq = [[NSOperationQueue alloc] init];
-    [consumerOpq setMaxConcurrentOperationCount:1];
-    [consumerOpq addOperation:consumerOp];
-        
+    DLog(@"AMQP init is complete. %@", queueSysFanout);
 }
 
-- (void) amqpConsumerReceivedMessage:(AMQPMessage*)msg
+
+- (void) createConsumerForAMQPQueue: (AMQPQueue *) amqpQueue andAddToOpQueue:
+ (NSOperationQueue *) opQueue
 {
-    NSLog(@"AMQP: %@", msg.body);
+    
+    // create the consumer + op
+    AMQPConsumer *c = [amqpQueue startConsumerWithAcks:true isExclusive:false receiveLocal:true];
+    
+    AMQPConsumerOperation *op = [[AMQPConsumerOperation alloc] initWithConsumer:c];
+    [op setDelegate:self];
+    //[op setQueuePriority:NSOperationQueuePriorityVeryLow];
+    [op setQueuePriority:NSOperationQueuePriorityNormal];
+    
+    // submit the op to the op queue
+    [opQueue addOperation:op];
+    
+}
+
+
+- (void) amqpMessageHandler:(AMQPMessage*)msg
+{
+    
+    if ([msg.exchangeName isEqualToString:kAMQPEntityNameSystemComm])
+    {
+        DLog(@"SysComm!");        
+    }
+        
+    else if ([msg.exchangeName isEqualToString:kAMQPEntityNameSystemFanout])
+    {
+        DLog(@"Broadcast!");
+    }         
+    
+    DLog(@"(%@) %@", msg.exchangeName, msg.body);
+    
 }
 
 
@@ -247,8 +286,27 @@
 {
     [super viewDidUnload];
     
-    [consumerOp cancel];
-    [consumerOpq cancelAllOperations];
+    [opqSysFanout cancelAllOperations];
+    [opqSysComm cancelAllOperations];
+    
+    
+    DLog(@"in awareARViewController::viewDidUnload");
+    self.placesOfInterest = nil;
+    self.lastLocation = nil;
+    
+    
+    // amqp entities + nsop queues
+    
+    self.amqpConn = nil;
+    self.amqpGlobalChannel = nil;
+    
+    self.exchSysFanout = nil;
+    self.queueSysFanout = nil;
+    self.opqSysFanout = nil;
+    
+    self.exchSysComm = nil;
+    self.queueSysComm = nil;
+    self.opqSysComm = nil;
     
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

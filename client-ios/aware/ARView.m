@@ -241,7 +241,7 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
 	motionManager.showsDeviceMovementDisplay = YES;
 
 	//TODO: Make this a dynamic value
-	motionManager.deviceMotionUpdateInterval = 1.0 / 60.0;
+	motionManager.deviceMotionUpdateInterval = 1.0 / 30.0;
 	
 	// New in iOS 5.0: Attitude that is referenced to true north
 	[motionManager startDeviceMotionUpdatesUsingReferenceFrame:CMAttitudeReferenceFrameXTrueNorthZVertical];

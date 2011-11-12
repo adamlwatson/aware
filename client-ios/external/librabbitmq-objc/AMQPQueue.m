@@ -30,7 +30,7 @@
 
 @synthesize internalQueue = queueName;
 
-- (id)initWithName:(NSString*)theName onChannel:(AMQPChannel*)theChannel isPassive:(BOOL)passive isExclusive:(BOOL)exclusive isDurable:(BOOL)durable getsAutoDeleted:(BOOL)autoDelete
+- (id)initWithName:(NSString*)theName onChannel:(AMQPChannel*)theChannel isPassive:(BOOL)passive isExclusive:(BOOL)exclusive isDurable:(BOOL)durable autoDelete:(BOOL)autoDelete
 {
 	if(self = [super init])
 	{
@@ -65,7 +65,7 @@
 	[channel.connection checkLastOperation:@"Failed to unbind queue from exchange"];
 }
 
-- (AMQPConsumer*)startConsumerWithAcknowledgements:(BOOL)ack isExclusive:(BOOL)exclusive receiveLocalMessages:(BOOL)local
+- (AMQPConsumer*)startConsumerWithAcks:(BOOL)ack isExclusive:(BOOL)exclusive receiveLocal:(BOOL)local
 {
 	AMQPConsumer *consumer = [[AMQPConsumer alloc] initForQueue:self onChannel:channel useAcknowledgements:ack isExclusive:exclusive receiveLocalMessages:local];
 	
