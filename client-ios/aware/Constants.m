@@ -23,4 +23,4 @@
     NSString * const kAMQPEntityNameSystemFanout =  @"aware.system.fanout";
     NSString * const kApiUrlPrefix = kDebug ? @"https://adam-15:8000" : @"https://some.prod.server5:8000";
 
-
+    NSString * const kMixpanelAPIToken = kDebug ? @"59c6249552fd4e59ae08f9e61d14f97b" : @"prodtoken";

@@ -6,6 +6,8 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import "Util.h"
+
 #import "APIUtil.h"
 #import "ASIHTTPRequest.h"
 

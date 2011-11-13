@@ -29,3 +29,5 @@ extern NSString * const kAMQPEntityNameSystemComm;
 extern NSString * const kAMQPEntityNameSystemFanout;
 
 extern NSString * const kApiUrlPrefix;
+
+extern NSString * const kMixpanelAPIToken;

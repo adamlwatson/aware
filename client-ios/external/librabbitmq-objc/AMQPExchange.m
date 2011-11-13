@@ -55,6 +55,15 @@
 {
 	return [self initExchangeOfType:@"topic" withName:theName onChannel:theChannel isPassive:passive isDurable:durable getsAutoDeleted:autoDelete];
 }
+
+- (void)delete:(BOOL)ifUnused
+{
+    amqp_exchange_delete(channel.connection.internalConnection, channel.internalChannel, exchange, ifUnused);
+    [channel.connection checkLastOperation:@"Failed to delete exchange"];
+}
+
+
+
 - (void)dealloc
 {
 	amqp_bytes_free(exchange);

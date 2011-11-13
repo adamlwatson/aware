@@ -14,6 +14,8 @@
 #import "awareARViewController.h"
 
 #import "APIUtil.h"
+#import "Util.h"
+
 #import "ASIHTTPRequest.h"
 #import "JSONKit.h"
 #import "NSString+MD5Addition.h"
@@ -117,8 +119,6 @@
         ARView *arView = (ARView *)self.view;
         [arView setPlacesOfInterest:allPois];
         
-        DLog(@"Setting up AMQP consumer...");
-        [self setupAMQP];
 
         
     }];
@@ -186,90 +186,6 @@
 }
 
      
-#pragma mark - AMQP 0.9.2 Client
-
-@synthesize amqpConn, amqpGlobalChannel;
-@synthesize exchSysFanout, queueSysFanout, opqSysFanout;
-@synthesize exchSysComm, queueSysComm, opqSysComm;
-
-- (void)setupAMQP
-{
-    
-    amqpConn = [[AMQPConnection alloc] init];
-    [amqpConn connectToHost:kAMQPHostname onPort:kAMQPPortNumber];
-    [amqpConn loginAsUser:kAMQPUsername withPassword:kAMQPPassword onVHost:kAMQPVirtualHostname];
-    
-    amqpGlobalChannel = [[AMQPChannel alloc] init];
-    [amqpGlobalChannel openChannel:1 onConnection:amqpConn];
-    
-    // create a reference to the server-created system-communication exchange
-    exchSysComm = [[AMQPExchange alloc] initFanoutExchangeWithName:kAMQPEntityNameSystemComm onChannel:amqpGlobalChannel isPassive:true isDurable:true getsAutoDeleted:false];
-    
-    //create a sys-comm queue and bind to the sys-comm exchange
-    NSString *qnameSysComm = [NSString stringWithFormat:@"%@.%@", kAMQPEntityNameSystemComm, [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]];
-    queueSysComm = [[AMQPQueue alloc] initWithName:qnameSysComm onChannel:amqpGlobalChannel isPassive:false isExclusive:true isDurable:false autoDelete:true];
-    [queueSysComm bindToExchange:exchSysComm withKey:qnameSysComm];
-    
-    // create the nsop for consuming system comm messages (replies)
-    opqSysComm = [[NSOperationQueue alloc] init];
-    [opqSysComm setMaxConcurrentOperationCount:-1];
-    [self createConsumerForAMQPQueue:queueSysComm andAddToOpQueue:opqSysComm];
-    
-    
-    // create a ref to the server-created system broadcast exchange
-    exchSysFanout = [[AMQPExchange alloc] initFanoutExchangeWithName:kAMQPEntityNameSystemFanout onChannel:amqpGlobalChannel isPassive:true isDurable:true getsAutoDeleted:false];
-    
-    // create client queue and bind to system broadcast exchange
-    NSString *qnameSysFanout  = [NSString stringWithFormat:@"%@.%@", kAMQPEntityNameSystemFanout, [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]];
-    
-    queueSysFanout = [[AMQPQueue alloc] initWithName:qnameSysFanout onChannel:amqpGlobalChannel isPassive:false isExclusive:false isDurable:false autoDelete:true];
-    [queueSysFanout bindToExchange:exchSysFanout withKey:qnameSysFanout];
-
-    // create the nsop for consuming system broadcast messages
-    opqSysFanout = [[NSOperationQueue alloc] init];
-    [opqSysFanout setMaxConcurrentOperationCount:-1];
-    [self createConsumerForAMQPQueue:queueSysFanout andAddToOpQueue:opqSysFanout];
-     
-    
-    
-    DLog(@"AMQP init is complete. %@", queueSysFanout);
-}
-
-
-- (void) createConsumerForAMQPQueue: (AMQPQueue *) amqpQueue andAddToOpQueue:
- (NSOperationQueue *) opQueue
-{
-    
-    // create the consumer + op
-    AMQPConsumer *c = [amqpQueue startConsumerWithAcks:true isExclusive:false receiveLocal:true];
-    
-    AMQPConsumerOperation *op = [[AMQPConsumerOperation alloc] initWithConsumer:c];
-    [op setDelegate:self];
-    //[op setQueuePriority:NSOperationQueuePriorityVeryLow];
-    [op setQueuePriority:NSOperationQueuePriorityNormal];
-    
-    // submit the op to the op queue
-    [opQueue addOperation:op];
-    
-}
-
-
-- (void) amqpMessageHandler:(AMQPMessage*)msg
-{
-    
-    if ([msg.exchangeName isEqualToString:kAMQPEntityNameSystemComm])
-    {
-        DLog(@"SysComm!");        
-    }
-        
-    else if ([msg.exchangeName isEqualToString:kAMQPEntityNameSystemFanout])
-    {
-        DLog(@"Broadcast!");
-    }         
-    
-    DLog(@"(%@) %@", msg.exchangeName, msg.body);
-    
-}
 
 
 
@@ -277,6 +193,7 @@
 
 - (void)viewDidLoad
 {
+    DLog(@"awareARViewController::viewDidLoad()");
 	[super viewDidLoad];
     [self updateLocations];
     
@@ -284,58 +201,56 @@
 
 - (void)viewDidUnload
 {
-    [super viewDidUnload];
-    
-    [opqSysFanout cancelAllOperations];
-    [opqSysComm cancelAllOperations];
-    
     
     DLog(@"in awareARViewController::viewDidUnload");
+    [super viewDidUnload];
+    
+
     self.placesOfInterest = nil;
     self.lastLocation = nil;
     
-    
-    // amqp entities + nsop queues
-    
-    self.amqpConn = nil;
-    self.amqpGlobalChannel = nil;
-    
-    self.exchSysFanout = nil;
-    self.queueSysFanout = nil;
-    self.opqSysFanout = nil;
-    
-    self.exchSysComm = nil;
-    self.queueSysComm = nil;
-    self.opqSysComm = nil;
-    
+        
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    DLog(@"awareARViewController::viewWillAppear()");
+    
     ARView *arView = (ARView *)self.view;
 	[arView start];
+    
+    [super viewWillAppear:animated];
     
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    DLog(@"awareARViewController::viewDidAppear()");
+
     [super viewDidAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    DLog(@"awareARViewController::viewWillDisappear()");
+
 	[super viewWillDisappear:animated];
     
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    DLog(@"awareARViewController::viewDidDisappear()");
 	[super viewDidDisappear:animated];
 	ARView *arView = (ARView *)self.view;
 	[arView stop];
+
+    //[opqSysFanout setSuspended:true];
+    //[opqSysComm setSuspended:true];
+    
+    DLog(@"awareARViewController stopped.");
     
 }
 
