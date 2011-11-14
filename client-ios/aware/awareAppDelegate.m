@@ -28,12 +28,13 @@
 {
     //dev token - TODO: constantize this based on build type
     mixpanel = [MixpanelAPI sharedAPIWithToken:(kMixpanelAPIToken)];
-
+    
 
     
     return YES;
 }
-							
+	
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     /*

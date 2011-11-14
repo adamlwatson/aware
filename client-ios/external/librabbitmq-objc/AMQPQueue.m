@@ -78,7 +78,7 @@
 }
 
 // delete unconditionally
-- (void)delete
+- (void)deleteQueue
 {
     [self deleteIfUnused:false ifEmpty:false];
 }

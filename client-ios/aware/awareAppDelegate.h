@@ -24,6 +24,4 @@
 
 @property (strong, nonatomic) AMQPComm *amqp;
 
-
-
 @end

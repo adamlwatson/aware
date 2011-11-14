@@ -39,7 +39,7 @@
 - (id)initFanoutExchangeWithName:(NSString*)theName onChannel:(AMQPChannel*)theChannel isPassive:(BOOL)passive isDurable:(BOOL)durable getsAutoDeleted:(BOOL)autoDelete;
 - (id)initTopicExchangeWithName:(NSString*)theName onChannel:(AMQPChannel*)theChannel isPassive:(BOOL)passive isDurable:(BOOL)durable getsAutoDeleted:(BOOL)autoDelete;
 
-- (void)delete:(BOOL)ifUnused;
+- (void)deleteExchange:(BOOL)ifUnused;
 
 
 - (void)dealloc;

@@ -44,7 +44,7 @@
 
 - (void)deleteIfUnused: (BOOL)ifUnused ifEmpty:(BOOL)ifEmpty;
 
-- (void)delete;
+- (void)deleteQueue;
 
 - (AMQPConsumer*)startConsumerWithAcks:(BOOL)ack isExclusive:(BOOL)exclusive receiveLocal:(BOOL)local;
 

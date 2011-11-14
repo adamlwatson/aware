@@ -42,6 +42,11 @@
 	[super dealloc];
 }
 
+- (BOOL)isConcurrent
+{
+    return YES;
+}
+
 - (void)main
 {
 	NSAutoreleasePool *localPool;
@@ -54,7 +59,9 @@
 		if(message)
 		{
             if (delegate) {
+                
                 [delegate performSelectorOnMainThread:@selector(amqpMessageHandler:) withObject:message waitUntilDone:NO];
+                
             }
 			
 		}

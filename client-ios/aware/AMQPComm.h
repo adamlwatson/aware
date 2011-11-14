@@ -11,8 +11,12 @@
 #import "AMQPWrapper.h"
 
 @interface AMQPComm : NSObject <AMQPConsumerOperationDelegate> {
-    AMQPConnection *amqpConn;
-    AMQPChannel *amqpGlobalChannel;
+    NSOperationQueue *sharedQueue;
+    
+    AMQPConnection *amqpConn1;
+    AMQPChannel *amqpChannel1;
+    AMQPConnection *amqpConn2;
+    AMQPChannel *amqpChannel2;
     
     AMQPExchange *exchSysFanout;
     AMQPQueue *queueSysFanout;
@@ -24,8 +28,14 @@
 }
 // amqp entities + nsop queues
 
-@property (nonatomic, strong) AMQPConnection *amqpConn;
-@property (nonatomic, strong) AMQPChannel *amqpGlobalChannel;
+@property (nonatomic, strong) NSOperationQueue *sharedQueue;
+
+@property (nonatomic, strong) AMQPConnection *amqpConn1;
+@property (nonatomic, strong) AMQPChannel *amqpChannel1;
+
+@property (nonatomic, strong) AMQPConnection *amqpConn2;
+@property (nonatomic, strong) AMQPChannel *amqpChannel2;
+
 
 @property (nonatomic, strong) AMQPExchange *exchSysFanout;
 @property (nonatomic, strong) AMQPQueue *queueSysFanout;
@@ -40,7 +50,7 @@
 
 
 // amqp c client
-- (void) setupAMQPConnection;
+- (void) connect;
 - (void) setupAMQPSysComm;
 - (void) setupAMQPSysFanout;
 

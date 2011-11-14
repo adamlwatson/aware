@@ -17,6 +17,7 @@
 #import "Util.h"
 
 #import "ASIHTTPRequest.h"
+
 #import "JSONKit.h"
 #import "NSString+MD5Addition.h"
 #import "UIDevice+IdentifierAddition.h"
@@ -29,7 +30,7 @@
 
 @synthesize placesOfInterest;
 @synthesize lastLocation;
-
+//@synthesize amqp;
 
 - (void)didReceiveMemoryWarning
 {
@@ -46,7 +47,7 @@
     
     DLog(@"Application Version: %@, Build: %@, Date: %@", version, buildNo, buildDate);
 
-    
+
     MixpanelAPI *mixpanel = [MixpanelAPI sharedAPI];
     [mixpanel identifyUser:[[UIDevice currentDevice] uniqueDeviceIdentifier]];
     //[mixpanel track:@"Launched App" properties:[NSDictionary dictionaryWithObjectsAndKeys:@"true", @"test", nil]];
@@ -118,9 +119,7 @@
         
         ARView *arView = (ARView *)self.view;
         [arView setPlacesOfInterest:allPois];
-        
 
-        
     }];
     [request setFailedBlock:^{
         NSError *error = [request error];
@@ -188,15 +187,25 @@
      
 
 
+@synthesize amqp;
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     DLog(@"awareARViewController::viewDidLoad()");
-	[super viewDidLoad];
-    [self updateLocations];
     
+    [super viewDidLoad];
+
+    [self updateLocations];
+
+    DLog(@"amqp init...");
+
+    amqp = [AMQPComm sharedInstance];
+    //[amqp connect];
+    [amqp setupAMQPSysComm]; 
+    [amqp setupAMQPSysFanout];
+
 }
 
 - (void)viewDidUnload

@@ -11,16 +11,19 @@
 #import <CoreLocation/CoreLocation.h>
 
 #import "AMQPWrapper.h"
+#import "AMQPComm.h"
 
 
 @interface awareARViewController : UIViewController
 {
     NSArray *placesOfInterest;
     CLLocation *lastLocation;
+    AMQPComm *amqp;
 }
 
 @property (nonatomic, strong) NSArray *placesOfInterest;
 @property (nonatomic, strong) CLLocation *lastLocation;
+@property (strong, nonatomic) AMQPComm *amqp;
 
 
 

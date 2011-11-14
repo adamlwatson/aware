@@ -32,8 +32,6 @@ static AMQPComm *sharedInstance;
 {
     if (self = [super init]) {
         
-        [self setupAMQPConnection];
-        
     }
     return self;
 }
@@ -41,13 +39,15 @@ static AMQPComm *sharedInstance;
 
 #pragma mark - AMQP 0.9.2 Client
 
-@synthesize amqpConn, amqpGlobalChannel;
+@synthesize sharedQueue;
+@synthesize amqpConn1, amqpChannel1;
+@synthesize amqpConn2, amqpChannel2;
 @synthesize exchSysFanout, queueSysFanout, opqSysFanout;
 @synthesize exchSysComm, queueSysComm, opqSysComm;
 
-- (void)setupAMQPConnection
+- (void)connect
 {
-    
+/*    
     amqpConn = [[AMQPConnection alloc] init];
     [amqpConn connectToHost:kAMQPHostname onPort:kAMQPPortNumber];
     [amqpConn loginAsUser:kAMQPUsername withPassword:kAMQPPassword onVHost:kAMQPVirtualHostname];
@@ -55,25 +55,38 @@ static AMQPComm *sharedInstance;
     amqpGlobalChannel = [[AMQPChannel alloc] init];
     [amqpGlobalChannel openChannel:1 onConnection:amqpConn];
     
+    sharedQueue = [[NSOperationQueue alloc] init];
+    [sharedQueue setMaxConcurrentOperationCount:4];
     
     DLog(@"AMQP connection established. %@", amqpConn);
-}
+*/
+ }
 
 
 - (void) setupAMQPSysComm
 {
+    amqpConn1 = [[AMQPConnection alloc] init];
+    [amqpConn1 connectToHost:kAMQPHostname onPort:kAMQPPortNumber];
+    [amqpConn1 loginAsUser:kAMQPUsername withPassword:kAMQPPassword onVHost:kAMQPVirtualHostname];
+    
+    amqpChannel1 = [[AMQPChannel alloc] init];
+    [amqpChannel1 openChannel:1 onConnection:amqpConn1];
+        
+    DLog(@"AMQP connection 1 established. %@", amqpConn1);
+
+    
     // create a reference to the server-created system-communication exchange
-    exchSysComm = [[AMQPExchange alloc] initFanoutExchangeWithName:kAMQPEntityNameSystemComm onChannel:amqpGlobalChannel isPassive:true isDurable:true getsAutoDeleted:false];
+    exchSysComm = [[AMQPExchange alloc] initFanoutExchangeWithName:kAMQPEntityNameSystemComm onChannel:amqpChannel1 isPassive:true isDurable:true getsAutoDeleted:false];
     
     //create a sys-comm queue and bind to the sys-comm exchange
     NSString *qnameSysComm = [NSString stringWithFormat:@"%@.%@", kAMQPEntityNameSystemComm, [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]];
     
-    queueSysComm = [[AMQPQueue alloc] initWithName:qnameSysComm onChannel:amqpGlobalChannel isPassive:false isExclusive:true isDurable:false autoDelete:true];
+    queueSysComm = [[AMQPQueue alloc] initWithName:qnameSysComm onChannel:amqpChannel1 isPassive:false isExclusive:true isDurable:false autoDelete:true];
     [queueSysComm bindToExchange:exchSysComm withKey:qnameSysComm];
     
     // create the nsop for consuming system comm messages (replies)
     opqSysComm = [[NSOperationQueue alloc] init];
-    [opqSysComm setMaxConcurrentOperationCount:-1];
+    [opqSysComm setMaxConcurrentOperationCount:1];
     [sharedInstance createConsumerForAMQPQueue:queueSysComm andAddToOpQueue:opqSysComm];
     
     DLog(@"AMQP SysComm queue and consumer instanciated. %@", queueSysComm);
@@ -82,28 +95,34 @@ static AMQPComm *sharedInstance;
 
 - (void) setupAMQPSysFanout
 {
-    DLog(@"1");
-    DLog(@"AMQP channel: %@", amqpGlobalChannel);
+    amqpConn2 = [[AMQPConnection alloc] init];
+    [amqpConn2 connectToHost:kAMQPHostname onPort:kAMQPPortNumber];
+    [amqpConn2 loginAsUser:kAMQPUsername withPassword:kAMQPPassword onVHost:kAMQPVirtualHostname];
     
+    amqpChannel2 = [[AMQPChannel alloc] init];
+    [amqpChannel2 openChannel:1 onConnection:amqpConn2];
+    
+    DLog(@"AMQP connection 2 established. %@", amqpConn2);
+
+
     // create a ref to the server-created system broadcast exchange
-    exchSysFanout = [[AMQPExchange alloc] initFanoutExchangeWithName:kAMQPEntityNameSystemFanout onChannel:amqpGlobalChannel isPassive:true isDurable:true getsAutoDeleted:false];
-    DLog(@"2");
+    exchSysFanout = [[AMQPExchange alloc] initFanoutExchangeWithName:kAMQPEntityNameSystemFanout onChannel:amqpChannel2 isPassive:true isDurable:true getsAutoDeleted:false];
+
     // create client queue and bind to system broadcast exchange
     NSString *qnameSysFanout  = [NSString stringWithFormat:@"%@.%@", kAMQPEntityNameSystemFanout, [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]];
     
-    DLog(@"3");
-    queueSysFanout = [[AMQPQueue alloc] initWithName:qnameSysFanout onChannel:amqpGlobalChannel isPassive:false isExclusive:false isDurable:false autoDelete:true];
+    queueSysFanout = [[AMQPQueue alloc] initWithName:qnameSysFanout onChannel:amqpChannel2 isPassive:false isExclusive:false isDurable:false autoDelete:true];
     [queueSysFanout bindToExchange:exchSysFanout withKey:qnameSysFanout];
-    DLog(@"4");
     
     // create the nsop for consuming system broadcast messages
     opqSysFanout = [[NSOperationQueue alloc] init];
-    [opqSysFanout setMaxConcurrentOperationCount:-1];
+    [opqSysFanout setMaxConcurrentOperationCount:1];
     [sharedInstance createConsumerForAMQPQueue:queueSysFanout andAddToOpQueue:opqSysFanout];
     
     DLog(@"AMQP SysFanout queue and consumer instanciated. %@", queueSysFanout);    
     
 }
+
 
 
 - (void)teardownAMQP
@@ -113,9 +132,9 @@ static AMQPComm *sharedInstance;
     //[queueSysFanout dealloc];
     //[queueSysComm dealloc];
     
-    amqpConn = [[AMQPConnection alloc] init];
+    //amqpConn = [[AMQPConnection alloc] init];
     
-    amqpGlobalChannel = [[AMQPChannel alloc] init];
+    //amqpGlobalChannel = [[AMQPChannel alloc] init];
     
     // create a reference to the server-created system-communication exchange
     exchSysComm = [AMQPExchange alloc] ;
@@ -157,7 +176,6 @@ static AMQPComm *sharedInstance;
     
     // submit the op to the op queue
     [opQueue addOperation:op];
-    
 }
 
 
