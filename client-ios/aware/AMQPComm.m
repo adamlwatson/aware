@@ -74,7 +74,7 @@ static AMQPComm *sharedInstance;
     // create the nsop for consuming system comm messages (replies)
     opqSysComm = [[NSOperationQueue alloc] init];
     [opqSysComm setMaxConcurrentOperationCount:-1];
-    [self createConsumerForAMQPQueue:queueSysComm andAddToOpQueue:opqSysComm];
+    [sharedInstance createConsumerForAMQPQueue:queueSysComm andAddToOpQueue:opqSysComm];
     
     DLog(@"AMQP SysComm queue and consumer instanciated. %@", queueSysComm);
 }
@@ -83,14 +83,15 @@ static AMQPComm *sharedInstance;
 - (void) setupAMQPSysFanout
 {
     DLog(@"1");
+    DLog(@"AMQP channel: %@", amqpGlobalChannel);
+    
     // create a ref to the server-created system broadcast exchange
     exchSysFanout = [[AMQPExchange alloc] initFanoutExchangeWithName:kAMQPEntityNameSystemFanout onChannel:amqpGlobalChannel isPassive:true isDurable:true getsAutoDeleted:false];
     DLog(@"2");
-    
     // create client queue and bind to system broadcast exchange
     NSString *qnameSysFanout  = [NSString stringWithFormat:@"%@.%@", kAMQPEntityNameSystemFanout, [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]];
-    DLog(@"3");
     
+    DLog(@"3");
     queueSysFanout = [[AMQPQueue alloc] initWithName:qnameSysFanout onChannel:amqpGlobalChannel isPassive:false isExclusive:false isDurable:false autoDelete:true];
     [queueSysFanout bindToExchange:exchSysFanout withKey:qnameSysFanout];
     DLog(@"4");
@@ -98,33 +99,9 @@ static AMQPComm *sharedInstance;
     // create the nsop for consuming system broadcast messages
     opqSysFanout = [[NSOperationQueue alloc] init];
     [opqSysFanout setMaxConcurrentOperationCount:-1];
-    [self createConsumerForAMQPQueue:queueSysFanout andAddToOpQueue:opqSysFanout];
+    [sharedInstance createConsumerForAMQPQueue:queueSysFanout andAddToOpQueue:opqSysFanout];
     
-    DLog(@"AMQP SysFanout queue and consumer instanciated. %@", queueSysFanout);
-
-    
-    
-    
-    
-    // create a reference to the server-created system-communication exchange
-    exchSysComm = [[AMQPExchange alloc] initFanoutExchangeWithName:kAMQPEntityNameSystemComm onChannel:amqpGlobalChannel isPassive:true isDurable:true getsAutoDeleted:false];
-    
-    //create a sys-comm queue and bind to the sys-comm exchange
-    NSString *qnameSysComm = [NSString stringWithFormat:@"%@.%@", kAMQPEntityNameSystemComm, [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]];
-    
-    queueSysComm = [[AMQPQueue alloc] initWithName:qnameSysComm onChannel:amqpGlobalChannel isPassive:false isExclusive:true isDurable:false autoDelete:true];
-    [queueSysComm bindToExchange:exchSysComm withKey:qnameSysComm];
-    
-    // create the nsop for consuming system comm messages (replies)
-    opqSysComm = [[NSOperationQueue alloc] init];
-    [opqSysComm setMaxConcurrentOperationCount:-1];
-    [self createConsumerForAMQPQueue:queueSysComm andAddToOpQueue:opqSysComm];
-    
-    DLog(@"AMQP SysComm queue and consumer instanciated. %@", queueSysComm);
-    
-    
-    
-    
+    DLog(@"AMQP SysFanout queue and consumer instanciated. %@", queueSysFanout);    
     
 }
 
@@ -157,7 +134,7 @@ static AMQPComm *sharedInstance;
     opqSysFanout = [[NSOperationQueue alloc] init];
     
     
-    [self createConsumerForAMQPQueue:queueSysFanout andAddToOpQueue:opqSysFanout];
+    [sharedInstance createConsumerForAMQPQueue:queueSysFanout andAddToOpQueue:opqSysFanout];
     
     
     

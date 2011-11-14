@@ -29,13 +29,7 @@
     //dev token - TODO: constantize this based on build type
     mixpanel = [MixpanelAPI sharedAPIWithToken:(kMixpanelAPIToken)];
 
-    DLog(@"Setting up AMQP connection...");
-    amqp = [AMQPComm sharedInstance];
-    
-    //[self setupAMQPConnection]; 
-    
-    [amqp setupAMQPSysFanout];
-    [amqp setupAMQPSysComm];
+
     
     return YES;
 }

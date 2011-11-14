@@ -17,8 +17,6 @@
 {
     NSArray *placesOfInterest;
     CLLocation *lastLocation;
-    
-    
 }
 
 @property (nonatomic, strong) NSArray *placesOfInterest;
