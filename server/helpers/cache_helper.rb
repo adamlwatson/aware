@@ -25,11 +25,14 @@ module CacheHelper
         ttl = DEFAULT_EXPIRE_TIME
       end
       get_result = memcache.get(key: key)
+
       case get_result[:status]
 
         when Memcached::Errors::NO_ERROR
           # parse return value from cache into a hash and return it
+
           hash = Yajl::Parser.new.parse(get_result[:value])
+
           return_val(hash, get_result[:status], nil)
 
         when Memcached::Errors::KEY_NOT_FOUND

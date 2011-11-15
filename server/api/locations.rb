@@ -1,4 +1,5 @@
 require 'goliath'
+require 'models/mongo/location.rb'
 
 class Locations
 
@@ -11,9 +12,14 @@ class Locations
 
       #resp = MongoidTest.count(conditions: {foo: /blah*/})
       loc = Location.new
-      resp = loc.find({})
+      #resp = loc.find({})
+      #resp = loc.all
+
       #resp = loc.find({:label => /.*/})
       #resp = loc.find_by_label("Golden Gate Park")
+
+      resp = loc.near
+      puts resp
 
       [200, {}, resp]
     end
@@ -25,22 +31,21 @@ class Locations
 
     def response(env)
 
-      l1 = Location.new( label: 'Golden Gate Park' )
-      #l1.current_location = [:lat =>  37.7690400, :lng => -122.4835193] #
-      l1.location = [37.7690400, -122.4835193] #
+      #l1 = Location.new( label: 'Golden Gate Park' )
+      #l1.location = [37.7690400, -122.4835193] #
 
-      l2 = Location.new( label: 'Balboa Park SD' )
-      #l2.current_location = [:lat =>  32.7343822, :lng => -117.1441227] #
-      l2.location = [32.7343822, -117.1441227] #
+      #l2 = Location.new( label: 'Balboa Park SD' )
+      #l2.location = [32.7343822, -117.1441227] #
 
-      l3 = Location.new( label: 'AT&T Park' )
-      #l2.current_location = [:lat =>  32.7343822, :lng => -117.1441227] #
-      l3.location = [37.77859, -122.38898] #
+      #l3 = Location.new( label: 'AT&T Park' )
+      #l3.location = [37.77859, -122.38898] #
 
+      #l1.save
+      #l2.save
+      #l3.save
 
-      l1.save
-      l2.save
-      l3.save
+      loc = Location.new
+      loc.populate
 
       [200, {}, []]
     end

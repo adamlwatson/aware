@@ -1,4 +1,5 @@
 require 'helpers/cache_helper'
+require 'em-mongo'
 
 class MongoModelBase
   include CacheHelper
@@ -30,7 +31,14 @@ class MongoModelBase
     @@config['env']
   end
 
+  # convenience method for one-off query methods in the model
+  def custom_query_with_cache(qry, cache_key_name, id, ttl = nil)
+    rows = query_with_cache(qry, cache_key_name, id, ttl = nil)
+    prepare_result rows[:value]
+  end
+
   def query_with_cache(qry, cache_key_name, id, ttl = nil)
+    #puts "gen key: #{gen_cache_key(cache_key_name, id)}"
     read_cached(gen_cache_key(cache_key_name, id), ttl) do
       arr = []
       #puts "query: #{qry}"

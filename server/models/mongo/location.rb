@@ -7,6 +7,9 @@ class Location < MongoModelBase
     @cache_key_version = "A"
     @coll = db.collection("locations")
     @fields = []
+
+    # following will only create if the index doesn't already exist
+    @coll.create_index([['location', EM::Mongo::GEO2D]], :min => -500, :max => 500)
   end
 
   def all
@@ -14,12 +17,18 @@ class Location < MongoModelBase
   end
 
   def find(qry)
-
-    rows = query_with_cache(qry, "FIND", qry.to_s) # can also pass ttl as 4th param
-
+    result = custom_query_with_cache(qry, "FIND", qry.to_s) # can also pass ttl as 4th param
   end
 
+  def near
+    @coll.find( { :location => { "$near" => [39.76904, -122.4835193], "$maxDistance" => 1 } }, { :limit => 1 } )
+  end
 
+  def populate
+    insert_resp = @coll.safe_insert({ :label => "Close to Golden Gate Park", :location => [37.7869, -122.4867] } )
+    insert_resp.callback { puts('Insert was successful') }
+    insert_resp.errback { |err|  puts('An error occurred during insert: #{err}') }
+  end
 
   def test
 
