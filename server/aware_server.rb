@@ -3,8 +3,6 @@ $:<< './' << File.dirname(__FILE__)
 # common libs
 require 'goliath'
 require 'yajl'
-require 'mongoid'
-require 'rack-oauth2-server'
 require 'ruby-debug'
 
 # helpers and middleware
@@ -18,7 +16,7 @@ require 'api/locations'
 require 'api/streaming'
 
 # models
-require 'models/mongoid/location'
+require 'models/mongo/location'
 
 class RackRoutes < Goliath::API
 

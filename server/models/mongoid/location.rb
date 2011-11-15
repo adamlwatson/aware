@@ -1,4 +1,4 @@
-class Location
+class LocationMongoid
   include Mongoid::Document
 
   field :label, type: String # general text label

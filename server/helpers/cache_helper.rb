@@ -42,11 +42,13 @@ module CacheHelper
         else
           # Memcached::Errors::DISCONNECTED, etc
           # return uncached hash value...
+          puts "Warning: uncached result is being used because a memcache GET error occurred."
           result = yield
           return_val(result, get_result[:status], nil)
       end
 
     else
+      puts "Warning: uncached result is being used because memcache is unusable."
       # return uncached hash value
       result = yield
       return_val(result, nil, nil)
@@ -65,16 +67,15 @@ module CacheHelper
     args.each do |arg|
       key += CACHE_KEY_DELIM + arg.to_s.upcase
     end
-    #puts "memcache key: #{key}"
+    #puts "** using memcache key: #{key}"
     key
   end
 
   private
+
 
   def return_val(value, get_code, set_code)
     {:value => value, :get_code => get_code, :set_code => set_code}
   end
 
 end
-
-

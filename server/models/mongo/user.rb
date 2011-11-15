@@ -1,6 +1,6 @@
 require 'models/mongo/mongo_model_base'
 
-class Location < MongoModelBase
+class User < MongoModelBase
 
 
   def initialize

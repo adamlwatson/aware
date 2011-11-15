@@ -10,9 +10,10 @@ class Locations
     def response(env)
 
       #resp = MongoidTest.count(conditions: {foo: /blah*/})
-      resp = Location.all({})
-      #resp = Location.where(label: "Golden Gate Park")
-      #resp = Location.last(conditions: {foo: /blah*/})
+      loc = Location.new
+      resp = loc.find({})
+      #resp = loc.find({:label => /.*/})
+      #resp = loc.find_by_label("Golden Gate Park")
 
       [200, {}, resp]
     end

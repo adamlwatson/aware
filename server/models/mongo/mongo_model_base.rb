@@ -5,12 +5,13 @@ class MongoModelBase
 
   @@mongo = nil
 
+  def self.config=(config)
+      @@config = config
+      self.set_db_pool(config['mongo'])
+    end
+
   def self.set_db_pool(pool)
     @@mongo = pool
-  end
-
-  def self.config=(config)
-    @@config = config
   end
 
   def config
@@ -29,17 +30,12 @@ class MongoModelBase
     @@config['env']
   end
 
-  def fields=(fields)
-    unless fields.is_a?Array
-      raise("SqlModelBase::fields= must be passed an Array of field names as Strings.")
-    end
-    @fields = fields.sort
-  end
-
   def query_with_cache(qry, cache_key_name, id, ttl = nil)
-    read_cached(gen_cache_key(cache_key_name, id, ttl)) do
+    read_cached(gen_cache_key(cache_key_name, id), ttl) do
       arr = []
-      db.query(qry).each do |row|
+      #puts "query: #{qry}"
+      @coll.find(qry).each do |row|
+        puts row
         arr.push(row)
       end
       arr
@@ -84,6 +80,7 @@ class MongoModelBase
   # args[0] should be the value of the key being queried in the where clause
   # args[1] (optional) should be the ttl of the resulting memcache object that is possibly created
   def method_missing(key, *args)
+    puts "method missing: #{key} #{args}"
     keyname = nil
     case key.to_s
       when /^find_by_([_a-zA-Z]\w*)$/
@@ -93,7 +90,7 @@ class MongoModelBase
         return
     end
     val = args[0]
-    qry = "SELECT * from #{@table} where #{keyname} = #{val}"
+    qry =  {keyname.to_sym => val}
 
     if ( (args.count > 1) && (args.is_a?(Numeric)) )
       ttl = args[1]

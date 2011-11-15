@@ -1,6 +1,6 @@
 require 'models/sql/sql_model_base'
 
-class Location < SqlModelBase
+class User < SqlModelBase
 
   #attr_accessor :id, :gamertag, :email, :phone_number, :url, :motto, :description, :badge_id
   #              :crypted_password, :salt, :created_at, :updated_at, :activation_code, :activated_at
