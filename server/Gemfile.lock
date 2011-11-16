@@ -1,6 +1,12 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    activemodel (3.1.1)
+      activesupport (= 3.1.1)
+      builder (~> 3.0.0)
+      i18n (~> 0.6)
+    activesupport (3.1.1)
+      multi_json (~> 1.0)
     addressable (2.2.6)
     amq-client (0.8.6)
       amq-protocol (>= 0.8.4)
@@ -15,6 +21,7 @@ GEM
       rack (~> 1.1)
     bson (1.4.0)
     bson_ext (1.4.0)
+    builder (3.0.0)
     capistrano (2.9.0)
       highline
       net-scp (>= 1.0.0)
@@ -55,11 +62,16 @@ GEM
     http_router (0.9.7)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
+    i18n (0.6.0)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
     log4r (1.1.9)
     mongo (1.4.0)
       bson (= 1.4.0)
+    mongoid (2.3.3)
+      activemodel (~> 3.1)
+      mongo (~> 1.3)
+      tzinfo (~> 0.3.22)
     multi_json (1.0.3)
     mysql2 (0.2.17)
     net-scp (1.0.4)
@@ -106,6 +118,7 @@ GEM
       rack-protection (~> 1.1, >= 1.1.2)
       tilt (~> 1.3, >= 1.3.3)
     tilt (1.3.3)
+    tzinfo (0.3.31)
     url_mount (0.2.1)
       rack
     yajl-ruby (1.1.0)
@@ -122,6 +135,7 @@ DEPENDENCIES
   em-synchrony (= 1.0.0)
   eventmachine (= 1.0.0.beta.3)
   goliath
+  mongoid
   mysql2 (~> 0.2.13)
   rack
   rack-oauth2-server

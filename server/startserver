@@ -8,4 +8,5 @@ fi
 
 echo "starting server: $ENV"
 
-ruby ./aware_server.rb -s -v -c ./config/aware_server_config.rb -p 8000 -e $ENV
+ruby ./aware_server.rb -s -v -c ./config/aware_server_config.rb -l ./logs/$ENV.log -p 8000 -e $ENV
+

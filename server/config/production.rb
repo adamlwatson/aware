@@ -4,11 +4,16 @@
 ###
 
 
-config['amqp'] = {
+amqp_login = {
   :host => 'localhost',
   :user => 'guest',
   :pass => 'guest'
 }
+
+config['amqp_conn'] = AMQP.connect(amqp_login)
+config['amqp_channel'] = AMQP::Channel.new(config['amqp_conn'])
+
+
 
 #
 # memcached connection pool
@@ -16,27 +21,45 @@ config['amqp'] = {
 
 require 'em-synchrony/em-remcached'
 
+
 config['memcache'] = EM::Synchrony::ConnectionPool.new(size:config['memcache_connection_pool_size']) do
-  conn = Memcached.connect %w(10.1.202.120:11211, 10.1.202.121:11211, 10.1.202.122:11211, 10.1.202.123:11211, 10.1.202.124:11211, 10.1.202.125:11211, 10.1.202.126:11211, 10.1.202.127:11211, 10.1.202.128:11211, 10.1.202.129:11211)
+  begin
+    conn = Memcached.connect %w(localhost:11211)
+  rescue Exception=>err
+    abort "An error occurred while creating the memcache client connection pool: #{err}"
+  end
 end
 
 
-# mongo db connection
+###
+### mongo db direct connection
+###
+
 require 'em-synchrony/em-mongo'
-require 'mongoid'
+
 
 config['mongo'] = EM::Synchrony::ConnectionPool.new(size:config['mongo_connection_pool_size']) do
-  conn = EM::Mongo::Connection.new('', 27017, 1, {:reconnect_in => 1})
-  conn.db('mobage_development')
+  begin
+    conn = EM::Mongo::Connection.new('localhost', 27017, 1, {:reconnect_in => 1})
+    conn.db('aware_development')
+  rescue Exception=>err
+    abort "An error occurred while creating the mongo client connection pool: #{err}"
+  end
 end
 
 
-# mongoid setup...  all access is synchronous
 
-#config['mongoid'] = EM::Synchrony::ConnectionPool.new(size:config['mongo_connection_pool_size']) do
-mongoid_conn = Mongo::Connection.new '', 27017, :pool_size => config['mongo_connection_pool_size']
-Mongoid.configure do |config|
-  config.master = mongoid_conn.db('mobage_development')
+# mongoid setup - all access is synchronous
+
+require 'mongoid'
+
+begin
+  mongoid_conn = Mongo::Connection.new 'localhost', 27017, :pool_size => config['mongo_connection_pool_size']
+  Mongoid.configure do |config|
+    config.master = mongoid_conn.db('aware_development')
+  end
+rescue Exception=>err
+  abort "An error occurred while creating the mongoid client connection pool: #{err}"
 end
-#end
+
 
