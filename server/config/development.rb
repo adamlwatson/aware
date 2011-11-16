@@ -21,7 +21,6 @@ config['amqp_channel'] = AMQP::Channel.new(config['amqp_conn'])
 
 require 'em-synchrony/em-remcached'
 
-
 config['memcache'] = EM::Synchrony::ConnectionPool.new(size:config['memcache_connection_pool_size']) do
   begin
     conn = Memcached.connect %w(localhost:11211)
@@ -37,7 +36,6 @@ end
 
 require 'em-synchrony/em-mongo'
 
-
 config['mongo'] = EM::Synchrony::ConnectionPool.new(size:config['mongo_connection_pool_size']) do
   begin
     conn = EM::Mongo::Connection.new('localhost', 27017, 1, {:reconnect_in => 1})
@@ -47,14 +45,18 @@ config['mongo'] = EM::Synchrony::ConnectionPool.new(size:config['mongo_connectio
   end
 end
 
-=begin
 
 
 # mongoid setup - all access is synchronous
-mongoid_conn = Mongo::Connection.new 'localhost', 27017, :pool_size => config['mongo_connection_pool_size']
-Mongoid.configure do |config|
-  config.master = mongoid_conn.db('aware_development')
-end
 
-=end
+require 'mongoid'
+
+begin
+  mongoid_conn = Mongo::Connection.new 'localhost', 27017, :pool_size => config['mongo_connection_pool_size']
+  Mongoid.configure do |config|
+    config.master = mongoid_conn.db('aware_development')
+  end
+rescue Exception=>err
+  abort "An error occurred while creating the mongoid client connection pool: #{err}"
+end
 

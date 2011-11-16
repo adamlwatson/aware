@@ -1,5 +1,5 @@
 require 'goliath'
-require 'models/mongo/location.rb'
+require 'models/mongoid/location.rb'
 
 class Locations
 
@@ -10,16 +10,22 @@ class Locations
 
     def response(env)
 
+      # mongoid
+      resp =  Location.any_of({label:"Golden Gate Park"})
+
+      puts(resp.to_s)
       #resp = MongoidTest.count(conditions: {foo: /blah*/})
-      loc = Location.new
+
+      # mongo
+      #loc = Location.new
       #resp = loc.find({})
       #resp = loc.all
 
       #resp = loc.find({:label => /.*/})
       #resp = loc.find_by_label("Golden Gate Park")
 
-      resp = loc.near
-      puts resp
+
+      #puts resp
 
       [200, {}, resp]
     end
