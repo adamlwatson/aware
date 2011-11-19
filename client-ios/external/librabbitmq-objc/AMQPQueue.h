@@ -42,6 +42,10 @@
 - (void)bindToExchange:(AMQPExchange*)theExchange withKey:(NSString*)bindingKey;
 - (void)unbindFromExchange:(AMQPExchange*)theExchange withKey:(NSString*)bindingKey;
 
+- (void)deleteIfUnused: (BOOL)ifUnused ifEmpty:(BOOL)ifEmpty;
+
+- (void)deleteQueue;
+
 - (AMQPConsumer*)startConsumerWithAcks:(BOOL)ack isExclusive:(BOOL)exclusive receiveLocal:(BOOL)local;
 
 @end

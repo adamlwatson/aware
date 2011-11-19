@@ -6,23 +6,35 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import "Util.h"
+#import "Constants.h"
+
 #import "awareAppDelegate.h"
 #import "awareARViewController.h"
 
+#import "NSString+MD5Addition.h"
+#import "UIDevice+IdentifierAddition.h"
+#import "AMQPWrapper.h"
 
 @implementation awareAppDelegate
 
 @synthesize window = _window;
 //@synthesize viewController = _viewController;
 
+@synthesize amqp;
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //dev token - TODO: constantize this based on build type
-    mixpanel = [MixpanelAPI sharedAPIWithToken:(@"59c6249552fd4e59ae08f9e61d14f97b")];
+    mixpanel = [MixpanelAPI sharedAPIWithToken:(kMixpanelAPIToken)];
+    
+
     
     return YES;
 }
-							
+	
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     /*
@@ -60,6 +72,11 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+    
 }
+
+
+
+
 
 @end

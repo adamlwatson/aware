@@ -11,9 +11,8 @@ class Locations
     def response(env)
 
       # mongoid
-      resp =  Location.any_of({label:"Golden Gate Park"})
-
-      puts(resp.to_s)
+      #resp =  Location.any_of({label:"Golden Gate Park"})
+       resp = Location.all
       #resp = MongoidTest.count(conditions: {foo: /blah*/})
 
       # mongo

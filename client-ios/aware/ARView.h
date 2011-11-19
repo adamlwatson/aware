@@ -51,9 +51,11 @@
 
 
 @interface ARView : UIView  <CLLocationManagerDelegate> {
+
 }
 
 @property (nonatomic, strong) NSArray *placesOfInterest;
+
 
 - (void)start;
 - (void)stop;

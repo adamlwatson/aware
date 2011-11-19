@@ -1,0 +1,32 @@
+AWARE amqp messages
+--------------------
+All messages have the following string-based keys:
+"msg_type" 	: unique id that identifies the message type being sent
+"udid"		: client udid. 'SERVERxxx' = emitted from server
+
+Current msg_type types:
+
+
+CONNECT
+- Sent from client to server to register when connecting to the amqp server
+
+{"msg_type":"connect","udid":"7695c9cf9d4c6acfcda3a298068178ea"}
+
+
+
+DISCONNECT
+- Sent from client to server to indicate client is disconnecting from the amqp server
+
+{"msg_type":"disconnect","udid":"7695c9cf9d4c6acfcda3a298068178ea"}
+
+
+
+LOCATION_UPDATE
+-Sent from client to server to indicate current lat/long
+
+{"msg_type":"location_update","udid":"7695c9cf9d4c6acfcda3a298068178ea","latitude":"37.757958","longitude":"-122.445580"} 
+
+HEARTBEAT
+- Send from server to fanout exchange once every n seconds
+
+{"msg_type":"heartbeat","udid":"SERVER-xxx","timestamp": } 

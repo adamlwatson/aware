@@ -38,6 +38,7 @@
 		[theChannel.connection checkLastOperation:@"Failed to declare exchange"];
 		
 		exchange = amqp_bytes_malloc_dup(amqp_cstring_bytes([theName UTF8String]));
+        
 		channel = [theChannel retain];
 	}
 	
@@ -55,6 +56,15 @@
 {
 	return [self initExchangeOfType:@"topic" withName:theName onChannel:theChannel isPassive:passive isDurable:durable getsAutoDeleted:autoDelete];
 }
+
+- (void)deleteExchange:(BOOL)ifUnused
+{
+    amqp_exchange_delete(channel.connection.internalConnection, channel.internalChannel, exchange, ifUnused);
+    [channel.connection checkLastOperation:@"Failed to delete exchange"];
+}
+
+
+
 - (void)dealloc
 {
 	amqp_bytes_free(exchange);

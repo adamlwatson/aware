@@ -65,6 +65,24 @@
 	[channel.connection checkLastOperation:@"Failed to unbind queue from exchange"];
 }
 
+- (void)purge
+{
+    amqp_queue_purge(channel.connection.internalConnection, channel.internalChannel, queueName);
+	[channel.connection checkLastOperation:@"Failed to purge queue"];
+}
+
+- (void)deleteIfUnused: (BOOL)ifUnused ifEmpty:(BOOL)ifEmpty
+{
+    amqp_queue_delete(channel.connection.internalConnection, channel.internalChannel, queueName, ifUnused, ifEmpty);
+	[channel.connection checkLastOperation:@"Failed to delete queue"];
+}
+
+// delete unconditionally
+- (void)deleteQueue
+{
+    [self deleteIfUnused:false ifEmpty:false];
+}
+
 - (AMQPConsumer*)startConsumerWithAcks:(BOOL)ack isExclusive:(BOOL)exclusive receiveLocal:(BOOL)local
 {
 	AMQPConsumer *consumer = [[AMQPConsumer alloc] initForQueue:self onChannel:channel useAcknowledgements:ack isExclusive:exclusive receiveLocalMessages:local];

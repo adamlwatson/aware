@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		660DDC6B1468DCFC0002383F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663511C5145BAB1100FA6B2C /* UIKit.framework */; };
 		660DDC721468F5610002383F /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 660DDC711468F5600002383F /* Constants.m */; };
+		6627DFA6147056C000D0FA70 /* AMQPComm.m in Sources */ = {isa = PBXBuildFile; fileRef = 6627DFA5147056C000D0FA70 /* AMQPComm.m */; };
+		6627DFAA147057F600D0FA70 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 6627DFA9147057F600D0FA70 /* Util.m */; };
 		663511D0145BAB1100FA6B2C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 663511CE145BAB1100FA6B2C /* InfoPlist.strings */; };
 		663511D2145BAB1100FA6B2C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 663511D1145BAB1100FA6B2C /* main.m */; };
 		663511D6145BAB1100FA6B2C /* awareAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 663511D5145BAB1100FA6B2C /* awareAppDelegate.m */; };
@@ -212,6 +214,10 @@
 /* Begin PBXFileReference section */
 		660DDC701468F5600002383F /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		660DDC711468F5600002383F /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		6627DFA4147056C000D0FA70 /* AMQPComm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMQPComm.h; sourceTree = "<group>"; };
+		6627DFA5147056C000D0FA70 /* AMQPComm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMQPComm.m; sourceTree = "<group>"; };
+		6627DFA8147057F600D0FA70 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		6627DFA9147057F600D0FA70 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
 		663511C1145BAB1100FA6B2C /* aware-client-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "aware-client-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		663511C5145BAB1100FA6B2C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		663511C7145BAB1100FA6B2C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -722,6 +728,8 @@
 		663511CB145BAB1100FA6B2C /* aware */ = {
 			isa = PBXGroup;
 			children = (
+				6627DFA4147056C000D0FA70 /* AMQPComm.h */,
+				6627DFA5147056C000D0FA70 /* AMQPComm.m */,
 				665243EE1460A45B00131FE8 /* ARView */,
 				66BE4120145F78FE0048807D /* APIUtil.h */,
 				66BE4121145F78FE0048807D /* APIUtil.m */,
@@ -735,6 +743,8 @@
 				663511DE145BAB1100FA6B2C /* awareARViewController.m */,
 				663511E4145BAB1100FA6B2C /* awareSecondViewController.h */,
 				663511E5145BAB1100FA6B2C /* awareSecondViewController.m */,
+				6627DFA8147057F600D0FA70 /* Util.h */,
+				6627DFA9147057F600D0FA70 /* Util.m */,
 				663511CC145BAB1100FA6B2C /* Supporting Files */,
 				665243E914609D3200131FE8 /* apimodels */,
 			);
@@ -1792,6 +1802,8 @@
 				66351212145BB0C900FA6B2C /* PlaceOfInterest.m in Sources */,
 				665243ED14609D8F00131FE8 /* ObjectLocation.m in Sources */,
 				660DDC721468F5610002383F /* Constants.m in Sources */,
+				6627DFA6147056C000D0FA70 /* AMQPComm.m in Sources */,
+				6627DFAA147057F600D0FA70 /* Util.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

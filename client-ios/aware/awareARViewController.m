@@ -14,7 +14,10 @@
 #import "awareARViewController.h"
 
 #import "APIUtil.h"
+#import "Util.h"
+
 #import "ASIHTTPRequest.h"
+
 #import "JSONKit.h"
 #import "NSString+MD5Addition.h"
 #import "UIDevice+IdentifierAddition.h"
@@ -23,10 +26,13 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+
 @implementation awareARViewController
 
 @synthesize placesOfInterest;
 @synthesize lastLocation;
+@synthesize sendLocationTimer;
+@synthesize amqp;
 
 
 - (void)didReceiveMemoryWarning
@@ -38,19 +44,6 @@
 - (void)updateLocations
 {
     
-    NSString * version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-    NSString * buildNo = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBuildNumber"];
-    NSString * buildDate = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBuildDate"];
-    
-    DLog(@"Application Version: %@, Build: %@, Date: %@", version, buildNo, buildDate);
-
-    
-    MixpanelAPI *mixpanel = [MixpanelAPI sharedAPI];
-    [mixpanel identifyUser:[[UIDevice currentDevice] uniqueDeviceIdentifier]];
-    //[mixpanel track:@"Launched App" properties:[NSDictionary dictionaryWithObjectsAndKeys:@"true", @"test", nil]];
-    //[mixpanel flush];
-    
-    DLog(@"Mixpanel flush called...");
     
     APIUtil *api = [APIUtil sharedInstance];
     __block __weak ASIHTTPRequest *request = [api createAPIRequestWithURI:@"/locations"];
@@ -116,11 +109,7 @@
         
         ARView *arView = (ARView *)self.view;
         [arView setPlacesOfInterest:allPois];
-        
-        DLog(@"Setting up AMQP consumer...");
-        [self setupAMQP];
 
-        
     }];
     [request setFailedBlock:^{
         NSError *error = [request error];
@@ -134,11 +123,87 @@
 
 - (void) sendMyLocationToServer
 {
+    
     ARView *arView = (ARView *)self.view;
     CLLocation *loc = [arView userLocation];
-    //DLog(@"loc nil? %s", (loc == nil) ? "true" : "false");
-    //DLog(@"lat diff = %s", (loc.coordinate.latitude != self.lastLocation.coordinate.latitude) ? "true" : "false");
-    //DLog(@"long diff = %s", (loc.coordinate.longitude != self.lastLocation.coordinate.longitude) ? "true" : "false");
+    
+    if ((loc != nil) && (loc != lastLocation) &&
+        (
+         (loc.coordinate.latitude != self.lastLocation.coordinate.latitude ) ||
+         (loc.coordinate.longitude != self.lastLocation.coordinate.longitude)))
+        {
+            self.lastLocation = [loc copy];
+            [self sendLocationMessageToServer: loc];
+        }
+}
+
+
+-(void) sendConnectMessageToServer
+{
+    NSMutableDictionary *msg = [[NSMutableDictionary alloc] init];
+    [msg setValue:@"connect" forKey:@"msg_type"];
+    [self sendMessageToServer: msg];
+}
+
+-(void) sendDisconnectMessageToServer
+{
+    NSMutableDictionary *msg = [[NSMutableDictionary alloc] init];
+    [msg setValue:@"disconnect" forKey:@"msg_type"];
+    [self sendMessageToServer: msg];
+    
+}
+
+-(void) sendLocationMessageToServer:(CLLocation *)loc
+{
+    
+    NSString *lat = [NSString stringWithFormat:@"%f", loc.coordinate.latitude];
+    NSString *lon = [NSString stringWithFormat:@"%f", loc.coordinate.longitude];
+    
+    NSMutableDictionary *msg = [[NSMutableDictionary alloc] init];
+    
+    [msg setValue:@"location_update" forKey:@"message_type"];
+    [msg setValue:lat forKey:@"latitude"];
+    [msg setValue:lon forKey:@"longitude"];
+    
+    [self sendMessageToServer: msg];
+}
+
+
+//convience method since we don't want to send with a routing key most of the time
+-(void) sendMessageToServer:(NSDictionary *)dict
+{
+    [self sendMessageToServer:dict withRoutingKey:false];
+}
+
+- (void) sendMessageToServer:(NSDictionary *)dict withRoutingKey:(BOOL)withKey
+{
+    //APIUtil *api = [APIUtil sharedInstance];
+    amqp = [AMQPComm sharedInstance];
+    AMQPExchange *exch = [amqp exchSysComm];
+    
+    //set udid as routing key if requested.
+    NSString *routingKey = withKey ? [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier] : @"";
+    
+    NSMutableDictionary *msg = [[NSMutableDictionary alloc] init];
+    [msg setValue:[[UIDevice currentDevice] uniqueGlobalDeviceIdentifier] forKey:@"udid"];
+    [msg addEntriesFromDictionary: dict];
+    
+    [exch publishMessage:[msg JSONString] usingRoutingKey:routingKey];
+    
+    DLog(@"[amqp] sent: %@ ",[msg JSONString]);
+    
+    
+}
+    
+
+/*
+- (void) sendMyLocationToServer
+{
+    ARView *arView = (ARView *)self.view;
+    CLLocation *loc = [arView userLocation];
+    DLog(@"loc nil? %s", (loc == nil) ? "true" : "false");
+    DLog(@"lat diff = %s", (loc.coordinate.latitude != self.lastLocation.coordinate.latitude) ? "true" : "false");
+    DLog(@"long diff = %s", (loc.coordinate.longitude != self.lastLocation.coordinate.longitude) ? "true" : "false");
     
     if ((loc != nil) &&
         (
@@ -146,10 +211,11 @@
          (loc.coordinate.longitude != self.lastLocation.coordinate.longitude) )
         ) {
         
-        DLog(@"uploading location change: %@", loc);
+        DLog(@"sending location change: %@", loc);
         self.lastLocation = [loc copy];
     
         APIUtil *api = [APIUtil sharedInstance];
+        
         NSString *uri = [NSString stringWithFormat:@"/sendlocation/%f/%f", loc.coordinate.latitude, loc.coordinate.longitude ];
         
         __block __weak ASIHTTPRequest *request = [api createAPIRequestWithURI:uri];
@@ -185,91 +251,8 @@
     }
 }
 
-     
-#pragma mark - AMQP 0.9.2 Client
+*/
 
-@synthesize amqpConn, amqpGlobalChannel;
-@synthesize exchSysFanout, queueSysFanout, opqSysFanout;
-@synthesize exchSysComm, queueSysComm, opqSysComm;
-
-- (void)setupAMQP
-{
-    
-    amqpConn = [[AMQPConnection alloc] init];
-    [amqpConn connectToHost:kAMQPHostname onPort:kAMQPPortNumber];
-    [amqpConn loginAsUser:kAMQPUsername withPassword:kAMQPPassword onVHost:kAMQPVirtualHostname];
-    
-    amqpGlobalChannel = [[AMQPChannel alloc] init];
-    [amqpGlobalChannel openChannel:1 onConnection:amqpConn];
-    
-    // create a reference to the server-created system-communication exchange
-    exchSysComm = [[AMQPExchange alloc] initFanoutExchangeWithName:kAMQPEntityNameSystemComm onChannel:amqpGlobalChannel isPassive:true isDurable:true getsAutoDeleted:false];
-    
-    //create a sys-comm queue and bind to the sys-comm exchange
-    NSString *qnameSysComm = [NSString stringWithFormat:@"%@.%@", kAMQPEntityNameSystemComm, [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]];
-    queueSysComm = [[AMQPQueue alloc] initWithName:qnameSysComm onChannel:amqpGlobalChannel isPassive:false isExclusive:true isDurable:false autoDelete:true];
-    [queueSysComm bindToExchange:exchSysComm withKey:qnameSysComm];
-    
-    // create the nsop for consuming system comm messages (replies)
-    opqSysComm = [[NSOperationQueue alloc] init];
-    [opqSysComm setMaxConcurrentOperationCount:-1];
-    [self createConsumerForAMQPQueue:queueSysComm andAddToOpQueue:opqSysComm];
-    
-    
-    // create a ref to the server-created system broadcast exchange
-    exchSysFanout = [[AMQPExchange alloc] initFanoutExchangeWithName:kAMQPEntityNameSystemFanout onChannel:amqpGlobalChannel isPassive:true isDurable:true getsAutoDeleted:false];
-    
-    // create client queue and bind to system broadcast exchange
-    NSString *qnameSysFanout  = [NSString stringWithFormat:@"%@.%@", kAMQPEntityNameSystemFanout, [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]];
-    
-    queueSysFanout = [[AMQPQueue alloc] initWithName:qnameSysFanout onChannel:amqpGlobalChannel isPassive:false isExclusive:false isDurable:false autoDelete:true];
-    [queueSysFanout bindToExchange:exchSysFanout withKey:qnameSysFanout];
-
-    // create the nsop for consuming system broadcast messages
-    opqSysFanout = [[NSOperationQueue alloc] init];
-    [opqSysFanout setMaxConcurrentOperationCount:-1];
-    [self createConsumerForAMQPQueue:queueSysFanout andAddToOpQueue:opqSysFanout];
-     
-    
-    
-    DLog(@"AMQP init is complete. %@", queueSysFanout);
-}
-
-
-- (void) createConsumerForAMQPQueue: (AMQPQueue *) amqpQueue andAddToOpQueue:
- (NSOperationQueue *) opQueue
-{
-    
-    // create the consumer + op
-    AMQPConsumer *c = [amqpQueue startConsumerWithAcks:true isExclusive:false receiveLocal:true];
-    
-    AMQPConsumerOperation *op = [[AMQPConsumerOperation alloc] initWithConsumer:c];
-    [op setDelegate:self];
-    //[op setQueuePriority:NSOperationQueuePriorityVeryLow];
-    [op setQueuePriority:NSOperationQueuePriorityNormal];
-    
-    // submit the op to the op queue
-    [opQueue addOperation:op];
-    
-}
-
-
-- (void) amqpMessageHandler:(AMQPMessage*)msg
-{
-    
-    if ([msg.exchangeName isEqualToString:kAMQPEntityNameSystemComm])
-    {
-        DLog(@"SysComm!");        
-    }
-        
-    else if ([msg.exchangeName isEqualToString:kAMQPEntityNameSystemFanout])
-    {
-        DLog(@"Broadcast!");
-    }         
-    
-    DLog(@"(%@) %@", msg.exchangeName, msg.body);
-    
-}
 
 
 
@@ -277,66 +260,120 @@
 
 - (void)viewDidLoad
 {
-	[super viewDidLoad];
+    DLog(@"awareARViewController::viewDidLoad()");
+    [super viewDidLoad];
+
+    
+    NSString * version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    NSString * buildNo = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBuildNumber"];
+    NSString * buildDate = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBuildDate"];
+    
+    DLog(@"Application Version: %@, Build: %@, Date: %@", version, buildNo, buildDate);
+    
+    
+    MixpanelAPI *mixpanel = [MixpanelAPI sharedAPI];
+    [mixpanel identifyUser:[[UIDevice currentDevice] uniqueDeviceIdentifier]];
+    //[mixpanel track:@"Launched App" properties:[NSDictionary dictionaryWithObjectsAndKeys:@"true", @"test", nil]];
+    //[mixpanel flush];
+
+    
     [self updateLocations];
     
+    
+    amqp = [AMQPComm sharedInstance];
+    //[amqp connect];
+    [amqp setupAMQPSysComm]; 
+    [amqp setupAMQPSysFanout];
+    
+    [self sendConnectMessageToServer];
+    
+    // send my location to the server periodically
+    NSTimer *t = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(sendMyLocationToServer) userInfo:nil repeats:true];
+    self.sendLocationTimer = t;
+    
+    /*
+     DLog(@"Registering as observer: %@", self.view);
+     ARView *arView = (ARView *)self.view;
+     [self addObserver:arView forKeyPath:@"location" options:0 context:NULL];
+     */
+
+    ARView *arView = (ARView *)self.view;
+	[arView start];
+
 }
+
+/*
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    DLog(@"#### In observeValueForKeyPath!");
+    
+    if ([keyPath isEqual:@"location"]) {
+        
+        DLog(@"#### Got keypath change from location manager!");
+        CLLocation *loc = [object valueForKey:@"location"];
+        DLog(@"Location: %@", loc); 
+        
+    }
+}
+*/
+
 
 - (void)viewDidUnload
 {
-    [super viewDidUnload];
-    
-    [opqSysFanout cancelAllOperations];
-    [opqSysComm cancelAllOperations];
-    
     
     DLog(@"in awareARViewController::viewDidUnload");
+    [super viewDidUnload];
+    
+    
+    [self sendDisconnectMessageToServer];
+    amqp = [AMQPComm sharedInstance];
+    [amqp teardownAMQP];
+    
+    [self.sendLocationTimer invalidate];
+ 
+    
+    
     self.placesOfInterest = nil;
     self.lastLocation = nil;
     
-    
-    // amqp entities + nsop queues
-    
-    self.amqpConn = nil;
-    self.amqpGlobalChannel = nil;
-    
-    self.exchSysFanout = nil;
-    self.queueSysFanout = nil;
-    self.opqSysFanout = nil;
-    
-    self.exchSysComm = nil;
-    self.queueSysComm = nil;
-    self.opqSysComm = nil;
-    
+        
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    DLog(@"awareARViewController::viewWillAppear()");
     [super viewWillAppear:animated];
-    ARView *arView = (ARView *)self.view;
-	[arView start];
+
+    
+    
     
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    DLog(@"awareARViewController::viewDidAppear()");
     [super viewDidAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    DLog(@"awareARViewController::viewWillDisappear()");
 	[super viewWillDisappear:animated];
     
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    DLog(@"awareARViewController::viewDidDisappear()");
 	[super viewDidDisappear:animated];
-	ARView *arView = (ARView *)self.view;
-	[arView stop];
-    
+	
+    //TODO: properly setup/teardown ar view and server connection when view focus changes
+    //ARView *arView = (ARView *)self.view;
+	//[arView stop];
+
+           
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

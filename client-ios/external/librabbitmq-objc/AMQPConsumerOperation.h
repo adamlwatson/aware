@@ -41,5 +41,6 @@
 - (id)initWithConsumer:(AMQPConsumer*)theConsumer;
 - (void)dealloc;
 - (void)main;
+- (BOOL)isConcurrent;
 
 @end

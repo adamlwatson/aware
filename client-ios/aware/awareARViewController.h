@@ -11,44 +11,21 @@
 #import <CoreLocation/CoreLocation.h>
 
 #import "AMQPWrapper.h"
+#import "AMQPComm.h"
 
 
-@interface awareARViewController : UIViewController<AMQPConsumerOperationDelegate>
+@interface awareARViewController : UIViewController
 {
     NSArray *placesOfInterest;
     CLLocation *lastLocation;
-    
-    AMQPConnection *amqpConn;
-    AMQPChannel *amqpGlobalChannel;
-    
-    AMQPExchange *exchSysFanout;
-    AMQPQueue *queueSysFanout;
-    NSOperationQueue *opqSysFanout;
-    
-    AMQPExchange *exchSysComm;
-    AMQPQueue *queueSysComm;
-    NSOperationQueue *opqSysComm;
-    
+    AMQPComm *amqp;
+    NSTimer *sendLocationTimer;
 }
 
 @property (nonatomic, strong) NSArray *placesOfInterest;
 @property (nonatomic, strong) CLLocation *lastLocation;
-
-
-// amqp entities + nsop queues
-
-@property (nonatomic, strong) AMQPConnection *amqpConn;
-@property (nonatomic, strong) AMQPChannel *amqpGlobalChannel;
-
-@property (nonatomic, strong) AMQPExchange *exchSysFanout;
-@property (nonatomic, strong) AMQPQueue *queueSysFanout;
-@property (nonatomic, strong) NSOperationQueue *opqSysFanout;
-
-
-@property (nonatomic, strong) AMQPExchange *exchSysComm;
-@property (nonatomic, strong) AMQPQueue *queueSysComm;
-@property (nonatomic, strong) NSOperationQueue *opqSysComm;
-
+@property (strong, nonatomic) AMQPComm *amqp;
+@property (strong, nonatomic) NSTimer *sendLocationTimer;
 
 
 
@@ -56,15 +33,11 @@
 - (void) updateLocations;
 - (void) sendMyLocationToServer;
 
-// amqp c client
-- (void) setupAMQP;
-- (void) createConsumerForAMQPQueue: (AMQPQueue *) amqpQueue andAddToOpQueue:
-(NSOperationQueue *) opQueue;
+- (void) sendMessageToServer:(NSDictionary *)dict;
+- (void) sendMessageToServer:(NSDictionary *)dict withRoutingKey:(BOOL)withKey;
+- (void) sendLocationMessageToServer:(CLLocation *)loc;
 
-- (void) queueSysFanoutReceiveHandler:(AMQPMessage*)msg;
-
-- (void) queueSysCommReceiveHandler:(AMQPMessage*)msg;
-
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
 
 @end
 

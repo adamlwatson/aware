@@ -118,6 +118,7 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
 - (void)onDisplayLink:(id)sender;
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation;
 
+
 @end
 
 
@@ -125,7 +126,6 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
 #pragma mark ARView implementation
 
 @implementation ARView
-
 
 @dynamic placesOfInterest;
 
@@ -216,7 +216,7 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
 - (void)startLocation
 {
     #ifdef DEBUG
-        NSLog(@"Staring location services...");
+        NSLog(@"Starting location services...");
     #endif
 	locationManager = [[CLLocationManager alloc] init];
 	locationManager.delegate = self;
@@ -233,7 +233,7 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
 - (void)startDeviceMotion
 {
     #ifdef DEBUG
-        NSLog(@"Staring device motion services...");
+        NSLog(@"Starting device motion services...");
     #endif
 	motionManager = [[CMMotionManager alloc] init];
 	
@@ -241,7 +241,7 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
 	motionManager.showsDeviceMovementDisplay = YES;
 
 	//TODO: Make this a dynamic value
-	motionManager.deviceMotionUpdateInterval = 1.0 / 30.0;
+	motionManager.deviceMotionUpdateInterval = 1.0 / 60.0;
 	
 	// New in iOS 5.0: Attitude that is referenced to true north
 	[motionManager startDeviceMotionUpdatesUsingReferenceFrame:CMAttitudeReferenceFrameXTrueNorthZVertical];
@@ -378,9 +378,8 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    #ifdef DEBUG
-        NSLog(@"Setting location instance var");
-    #endif
+    NSLog(@"Location Manager update.");
+    
     location = newLocation;
 	if (placesOfInterest != nil) {
 		[self updatePlacesOfInterestCoordinates];
