@@ -78,6 +78,7 @@
 	}
 	
 	close(socketFD);
+    
 }
 
 - (void)checkLastOperation:(NSString*)context

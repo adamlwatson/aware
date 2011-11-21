@@ -86,10 +86,12 @@ end
 ##
 
 def handle_connect_client msg
+  # send back list of users nearby so client can subscribe to their location update queues
 
 end
 
 def handle_disconnect_client msg
+  # notify connected clients and drop
 
 end
 

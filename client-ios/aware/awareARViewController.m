@@ -120,12 +120,15 @@
 
 }
 
+#pragma mark -
+#pragma mark Location Updates + Timer
 
 - (void) sendMyLocationToServer
 {
     
     ARView *arView = (ARView *)self.view;
     CLLocation *loc = [arView userLocation];
+    amqp = [AMQPComm sharedInstance];
     
     if ((loc != nil) && (loc != lastLocation) &&
         (
@@ -133,125 +136,43 @@
          (loc.coordinate.longitude != self.lastLocation.coordinate.longitude)))
         {
             self.lastLocation = [loc copy];
-            [self sendLocationMessageToServer: loc];
+            [amqp sendLocationMessageToServer: loc];
         }
 }
 
-
--(void) sendConnectMessageToServer
+- (void) startSendingLocationUpdates
 {
-    NSMutableDictionary *msg = [[NSMutableDictionary alloc] init];
-    [msg setValue:@"connect" forKey:@"msg_type"];
-    [self sendMessageToServer: msg];
+    DLog(@"Start sending location updates");
+    // send my location to the server periodically
+    NSTimer *t = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(sendMyLocationToServer) userInfo:nil repeats:true];
+    self.sendLocationTimer = t;
 }
 
--(void) sendDisconnectMessageToServer
+- (void) stopSendingLocationUpdates
 {
-    NSMutableDictionary *msg = [[NSMutableDictionary alloc] init];
-    [msg setValue:@"disconnect" forKey:@"msg_type"];
-    [self sendMessageToServer: msg];
-    
-}
-
--(void) sendLocationMessageToServer:(CLLocation *)loc
-{
-    
-    NSString *lat = [NSString stringWithFormat:@"%f", loc.coordinate.latitude];
-    NSString *lon = [NSString stringWithFormat:@"%f", loc.coordinate.longitude];
-    
-    NSMutableDictionary *msg = [[NSMutableDictionary alloc] init];
-    
-    [msg setValue:@"location_update" forKey:@"message_type"];
-    [msg setValue:lat forKey:@"latitude"];
-    [msg setValue:lon forKey:@"longitude"];
-    
-    [self sendMessageToServer: msg];
+    DLog(@"Stop sending location updates");
+    [self.sendLocationTimer invalidate];
 }
 
 
-//convience method since we don't want to send with a routing key most of the time
--(void) sendMessageToServer:(NSDictionary *)dict
-{
-    [self sendMessageToServer:dict withRoutingKey:false];
-}
 
-- (void) sendMessageToServer:(NSDictionary *)dict withRoutingKey:(BOOL)withKey
-{
-    //APIUtil *api = [APIUtil sharedInstance];
-    amqp = [AMQPComm sharedInstance];
-    AMQPExchange *exch = [amqp exchSysComm];
-    
-    //set udid as routing key if requested.
-    NSString *routingKey = withKey ? [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier] : @"";
-    
-    NSMutableDictionary *msg = [[NSMutableDictionary alloc] init];
-    [msg setValue:[[UIDevice currentDevice] uniqueGlobalDeviceIdentifier] forKey:@"udid"];
-    [msg addEntriesFromDictionary: dict];
-    
-    [exch publishMessage:[msg JSONString] usingRoutingKey:routingKey];
-    
-    DLog(@"[amqp] sent: %@ ",[msg JSONString]);
-    
-    
-}
-    
+#pragma mark -
+#pragma mark AR View Start/Stop
 
-/*
-- (void) sendMyLocationToServer
+
+- (void) startARViewUpdates
 {
+    DLog(@"Starting ARView screen updates");
     ARView *arView = (ARView *)self.view;
-    CLLocation *loc = [arView userLocation];
-    DLog(@"loc nil? %s", (loc == nil) ? "true" : "false");
-    DLog(@"lat diff = %s", (loc.coordinate.latitude != self.lastLocation.coordinate.latitude) ? "true" : "false");
-    DLog(@"long diff = %s", (loc.coordinate.longitude != self.lastLocation.coordinate.longitude) ? "true" : "false");
-    
-    if ((loc != nil) &&
-        (
-         (loc.coordinate.latitude != self.lastLocation.coordinate.latitude ) ||
-         (loc.coordinate.longitude != self.lastLocation.coordinate.longitude) )
-        ) {
-        
-        DLog(@"sending location change: %@", loc);
-        self.lastLocation = [loc copy];
-    
-        APIUtil *api = [APIUtil sharedInstance];
-        
-        NSString *uri = [NSString stringWithFormat:@"/sendlocation/%f/%f", loc.coordinate.latitude, loc.coordinate.longitude ];
-        
-        __block __weak ASIHTTPRequest *request = [api createAPIRequestWithURI:uri];
-
-        [request setCompletionBlock:^{
-            
-            NSString *responseString = [request responseString];
-            //NSDictionary *headers = [request responseHeaders];
-            //int respCode = [request responseStatusCode];
-            //NSData *responseData = [request responseData];
-            
-            NSDictionary *resDict = [responseString objectFromJSONString];
-            if ([resDict objectForKey:@"success"] == false) {
-                NSArray *err = [resDict objectForKey:@"error"];
-                DLog(@"error: %@", err);
-                return; //TODO: retry and exponentially back off on failure
-            } else {
-                //DLog(@"success: %@", resDict);
-            }
-            
-            //NSNumber *numResults = [resDict valueForKey:@"result_count"];
-            //NSArray *resultArr = [resDict objectForKey:@"result"];
-            
-        
-        }];
-    
-        [request setFailedBlock:^{
-            NSError *error = [request error];
-            DLog(@"an error occurred while calling the REST api... %@", error);
-        }];
-
-        [request startAsynchronous];
-    }
+	[arView start];
 }
 
-*/
+- (void) stopARViewUpdates
+{
+    DLog(@"Stopping ARView screen updates");
+    ARView *arView = (ARView *)self.view;
+    [arView stop];
+}
 
 
 
@@ -276,46 +197,20 @@
     //[mixpanel track:@"Launched App" properties:[NSDictionary dictionaryWithObjectsAndKeys:@"true", @"test", nil]];
     //[mixpanel flush];
 
-    
     [self updateLocations];
-    
-    
-    amqp = [AMQPComm sharedInstance];
-    //[amqp connect];
-    [amqp setupAMQPSysComm]; 
-    [amqp setupAMQPSysFanout];
-    
-    [self sendConnectMessageToServer];
-    
-    // send my location to the server periodically
-    NSTimer *t = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(sendMyLocationToServer) userInfo:nil repeats:true];
-    self.sendLocationTimer = t;
-    
-    /*
-     DLog(@"Registering as observer: %@", self.view);
-     ARView *arView = (ARView *)self.view;
-     [self addObserver:arView forKeyPath:@"location" options:0 context:NULL];
-     */
 
-    ARView *arView = (ARView *)self.view;
-	[arView start];
+    // register for start/stop location updates messages
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startSendingLocationUpdates) name:@"start_sending_location_updates" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopSendingLocationUpdates) name:@"stop_sending_location_updates" object:nil];
 
+    // register for start/stop AR View messages
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startARViewUpdates) name:@"start_ar_view_updates" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopARViewUpdates) name:@"stop_ar_view_updates" object:nil];
+    
+    
+    //location and screen updates for ARView are started via nsnotification messages from app delegate
+    //[self startARViewUpdates];
 }
-
-/*
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    DLog(@"#### In observeValueForKeyPath!");
-    
-    if ([keyPath isEqual:@"location"]) {
-        
-        DLog(@"#### Got keypath change from location manager!");
-        CLLocation *loc = [object valueForKey:@"location"];
-        DLog(@"Location: %@", loc); 
-        
-    }
-}
-*/
 
 
 - (void)viewDidUnload
@@ -323,16 +218,7 @@
     
     DLog(@"in awareARViewController::viewDidUnload");
     [super viewDidUnload];
-    
-    
-    [self sendDisconnectMessageToServer];
-    amqp = [AMQPComm sharedInstance];
-    [amqp teardownAMQP];
-    
-    [self.sendLocationTimer invalidate];
- 
-    
-    
+        
     self.placesOfInterest = nil;
     self.lastLocation = nil;
     
@@ -341,21 +227,23 @@
     // e.g. self.myOutlet = nil;
 }
 
+
 - (void)viewWillAppear:(BOOL)animated
 {
     DLog(@"awareARViewController::viewWillAppear()");
     [super viewWillAppear:animated];
 
-    
-    
-    
 }
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
     DLog(@"awareARViewController::viewDidAppear()");
     [super viewDidAppear:animated];
+
+    //[self startSendingLocationUpdates];    
 }
+
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -368,11 +256,6 @@
 {
     DLog(@"awareARViewController::viewDidDisappear()");
 	[super viewDidDisappear:animated];
-	
-    //TODO: properly setup/teardown ar view and server connection when view focus changes
-    //ARView *arView = (ARView *)self.view;
-	//[arView stop];
-
            
 }
 

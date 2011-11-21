@@ -7,10 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
+
 
 #import "AMQPWrapper.h"
 
 @interface AMQPComm : NSObject <AMQPConsumerOperationDelegate> {
+    BOOL connected;
+    
     NSOperationQueue *sharedQueue;
     
     AMQPConnection *amqpConn1;
@@ -28,6 +32,7 @@
 }
 // amqp entities + nsop queues
 
+@property (nonatomic) BOOL connected;
 @property (nonatomic, strong) NSOperationQueue *sharedQueue;
 
 @property (nonatomic, strong) AMQPConnection *amqpConn1;
@@ -53,12 +58,17 @@
 - (void) connect;
 - (void) setupAMQPSysComm;
 - (void) setupAMQPSysFanout;
+- (BOOL) isConnected;
 
 - (void) teardownAMQP;
 - (void) createConsumerForAMQPQueue: (AMQPQueue *) amqpQueue andAddToOpQueue:(NSOperationQueue *) opQueue;
 
-- (void) amqpMessageHandler:(AMQPMessage*)msg;
 
+- (void) sendConnectMessageToServer;
+- (void) sendDisconnectMessageToServer;
+- (void) sendLocationMessageToServer:(CLLocation *)loc;
+- (void) sendMessageToServer:(NSDictionary *)dict;
+- (void) sendMessageToServer:(NSDictionary *)dict withRoutingKey:(BOOL)withKey;
 
 
 

@@ -33,10 +33,11 @@
 - (void) updateLocations;
 - (void) sendMyLocationToServer;
 
-- (void) sendMessageToServer:(NSDictionary *)dict;
-- (void) sendMessageToServer:(NSDictionary *)dict withRoutingKey:(BOOL)withKey;
-- (void) sendLocationMessageToServer:(CLLocation *)loc;
+- (void) startSendingLocationUpdates;
+- (void) stopSendingLocationUpdates;
 
+- (void) startARViewUpdates;
+- (void) stopARViewUpdates;
 //- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
 
 @end
