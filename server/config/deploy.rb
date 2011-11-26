@@ -23,8 +23,7 @@ set :use_sudo, true
 set :deploy_to, "/var/apps/#{application}"
 set :user, "deploy"
 
-before :deploy, :copy_to_level_up
-
+after "deploy:update_code", "deploy:copy_to_level_up"
 #after :deploy, :tag_deployment
 
 namespace :deploy do
@@ -49,14 +48,14 @@ namespace :deploy do
 
 end
 
-
-
-desc "Copy code application to level up"
-task :copy_to_level_up do
-  desc "level up release_path: #{release_path}"
-  #run "mv -R #{release_path}/ ....." #rewrite it with your conditions
+namespace :deploy do
+  desc "Copy code application to level up"
+  task :copy_to_level_up do
+    puts "level up release_path: #{release_path}"
+    desc "level up release_path: #{release_path}"
+    #run "mv -R #{release_path}/ ....." #rewrite it with your conditions
+  end
 end
-
 
 desc "Tag deployments"
 task :tag_deployment do
