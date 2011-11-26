@@ -1,1 +1,0 @@
-/usr/bin/gcc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/amqp_unbind.dir/amqp_unbind.c.o CMakeFiles/amqp_unbind.dir/utils.c.o CMakeFiles/amqp_unbind.dir/unix/platform_utils.c.o  -o amqp_unbind  ../librabbitmq/librabbitmq.dylib 

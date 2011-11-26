@@ -1,1 +1,0 @@
-/usr/bin/gcc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/amqp_sendstring.dir/amqp_sendstring.c.o CMakeFiles/amqp_sendstring.dir/utils.c.o CMakeFiles/amqp_sendstring.dir/unix/platform_utils.c.o  -o amqp_sendstring  ../librabbitmq/librabbitmq.dylib 
