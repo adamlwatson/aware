@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:client-ios/aware-client-ios.xcodeproj">
+      location = "group:aware-client-ios.xcodeproj">
    </FileRef>
 </Workspace>
