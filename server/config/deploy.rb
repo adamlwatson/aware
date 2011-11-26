@@ -1,31 +1,16 @@
 require 'capistrano/ext/multistage'
 require 'net/smtp'
 require 'bundler/capistrano'
-class Capistrano::Command
-  alias :old_process! :process!
-  def process!
-    start = Time.now
-    begin
-      logger.info "Starting", start.strftime("%F %T")
-      old_process!
-    ensure
-      end_time = Time.now
-      logger.info "Ending", end_time.strftime("%F %T")
-      logger.info "Duration: #{end_time-start}"
-    end
-  end
-end
 
+set :stages, %w(development staging production capistrano)
+set :default_stage, "staging"
+set :application, "aware_server"
 
-set :stages, %w(integration qa demo staging production capistrano)
-set :default_stage, "integration"
-set :application, "mobage-core"
-
-set :gateway, "plus@login.milp.ngmoco.com:50001"
+#set :gateway, "plus@login.milp.ngmoco.com:50001"
 set :rake, "/usr/bin/rake"
 
 set :ssh_options, {:forward_agent => true}
-set :repository, "git@github.milp.ngmoco.com:teamplatform/mobage-core.git"
+set :repository, "ssh://adam@soundemitter.dyndns.org/Volumes/2TB-Raid1/git/aware"
 set :git_enable_submodules, nil
 set :git_shallow_clone, 1
 set :scm, "git"
@@ -34,17 +19,14 @@ set :bundle_cmd, "/usr/bin/bundle"
 set :bundle_flags, "--deployment"
 
 role :app
+set :use_sudo, true
 
-# If you aren't deploying to /u/apps/#{application} on the target
-# servers (which is the default), you can specify the actual location
-# via the :deploy_to variable:
 set :deploy_to, "/var/apps/#{application}"
 set :user, "deploy"
 
-after :deploy, :tag_deployment
+before :deploy, :copy_to_level_up
 
-# This goes out even if the deploy fails, sadly
-#after "deploy:update", "newrelic:notice_deployment"
+#after :deploy, :tag_deployment
 
 namespace :deploy do
 
@@ -65,7 +47,37 @@ namespace :deploy do
       end      
     end
   end
+
 end
+
+
+namespace :deploy do
+  desc "Copy code application to level up"
+  task :copy_to_level_up do
+    puts "level up release_path: #{release_path}"
+    #run "mv -R #{release_path}/ ....." #rewrite it with your conditions
+  end
+end
+
+
+desc "Tag deployments"
+task :tag_deployment do
+  tag_name = "deploy_#{stage}_#{Time.now.strftime('%Y_%m_%d_%H_%M_%S')}"
+  `git fetch origin`
+  b = branch || master
+  commit_id = `git log -n1 --pretty="format:%H" origin/#{b}`.chomp
+  `git tag #{tag_name} #{commit_id}`
+  `git push origin #{tag_name}`
+end
+
+namespace :setup do
+  desc "install bundler gem"
+  task :gem_bundler, :roles => :app do
+    run "sudo gem install --no-rdoc --no-ri bundler"
+  end
+end
+
+
 
 
 =begin
@@ -90,31 +102,14 @@ task :after_update_code, :roles => [:web, :app, :resque], :except=>{:no_release=
 end
 =end
 
-desc "Tag deployments"
-task :tag_deployment do
-  tag_name = "deploy_#{stage}_#{Time.now.strftime('%Y_%m_%d_%H_%M_%S')}"
-  `git fetch origin`
-  b = branch || master
-  commit_id = `git log -n1 --pretty="format:%H" origin/#{b}`.chomp
-  `git tag #{tag_name} #{commit_id}`
-  `git push origin #{tag_name}`
-end
-
-namespace :setup do
-  desc "install bundler gem"
-  task :gem_bundler, :roles => :app do
-    run "sudo gem install --no-rdoc --no-ri bundler"
-  end
-end
-
-
+=begin
 desc "Email about deploys"
 task :email_deployment do
   tags = `git tag -l deploy_#{stage}_20*`.split("\n").sort.reverse[0,2]
   changes = `git log --oneline #{tags[1]}..#{tags[0]}`
   msgstr = <<END_OF_MESSAGE
-From: Deploy Notifier <ngdeploynotify@gmail.com>
-To: Server Deployment Notifications <server-deployments@ngmoco.com>
+From: Deploy Notifier <donotreply@alwlabs.com>
+To: Deployment Notifications <deployments@alwlabs.com>
 Subject: Plus #{stage} deployment
 
 We have just deployed the following commits to the #{stage} environment:
@@ -128,11 +123,11 @@ END_OF_MESSAGE
   begin
     smtp = Net::SMTP.new('smtp.gmail.com', 587)
     smtp.enable_starttls
-    smtp.start('localhost', 'ngdeploynotify@gmail.com', 'XLyEB2SMgg4MGz', :login) do |smtp|
-      smtp.send_message msgstr, 'ngdeploynotify@gmail.com', 'server-deployments@ngmoco.com'
+    smtp.start('localhost', 'donotreply@alwlabs.com', 'XLyEB2SMgg4MGz', :login) do |smtp|
+      smtp.send_message msgstr, 'donotreply@alwlabs.com', 'deployments@alwlabs.com'
     end
   rescue
     puts "Couldn't send email"
   end
 end
-after :tag_deployment, :email_deployment
+=end
