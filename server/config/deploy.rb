@@ -1,12 +1,11 @@
 require 'capistrano/ext/multistage'
-require 'net/smtp'
 require 'bundler/capistrano'
+#require 'net/smtp'
 
 set :stages, %w(development staging production capistrano)
 set :default_stage, "staging"
 set :application, "aware_server"
 
-#set :gateway, "plus@login.milp.ngmoco.com:50001"
 set :rake, "/usr/bin/rake"
 
 set :ssh_options, {:forward_agent => true}
@@ -16,7 +15,7 @@ set :git_shallow_clone, 1
 set :scm, "git"
 
 set :bundle_cmd, "/usr/bin/bundle"
-set :bundle_flags, "--deployment"
+#set :bundle_flags, "--deployment"
 
 role :app
 set :use_sudo, true
@@ -51,12 +50,11 @@ namespace :deploy do
 end
 
 
-namespace :deploy do
-  desc "Copy code application to level up"
-  task :copy_to_level_up do
-    puts "level up release_path: #{release_path}"
-    #run "mv -R #{release_path}/ ....." #rewrite it with your conditions
-  end
+
+desc "Copy code application to level up"
+task :copy_to_level_up do
+  desc "level up release_path: #{release_path}"
+  #run "mv -R #{release_path}/ ....." #rewrite it with your conditions
 end
 
 
