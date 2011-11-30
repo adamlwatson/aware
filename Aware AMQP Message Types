@@ -6,6 +6,7 @@ All messages have the following string-based keys:
 
 Current msg_type types:
 
+Client --> Server
 
 CONNECT
 - Sent from client to server to register when connecting to the amqp server
@@ -26,6 +27,9 @@ LOCATION_UPDATE
 
 {"msg_type":"location_update","udid":"7695c9cf9d4c6acfcda3a298068178ea","latitude":"37.757958","longitude":"-122.445580"} 
 
+
+
+Server <--> Client
 
 HEARTBEAT
 - Send from server to system fanout exchange once every n seconds
