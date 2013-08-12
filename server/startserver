@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ "$1" = "" ]; then
+    ENV="development"
+else
+    ENV=$1
+fi
+
+echo "starting server: $ENV"
+
+ruby ./aware_server.rb -s -v -c ./config/aware_server_config.rb -l ./log/$ENV.log -p 8000 -e $ENV
+

@@ -1,0 +1,41 @@
+source 'http://rubygems.org'
+
+group :development, :test do
+  gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'rspec'
+end
+
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-ext'
+end
+
+
+#gem "rack-oauth2-server"
+
+gem 'amqp',             '=0.8.3'
+gem 'bson',             '~> 1.4.0'
+gem 'mongo',            '=1.4.0'
+gem 'em-synchrony',     '1.0.0'
+gem 'em-http-request',  '=1.0.0'
+gem 'em-mongo',         '=0.4.1'
+gem 'eventmachine',     '=1.0.0.beta.4'
+gem 'goliath',          '=0.9.4'
+gem 'mongoid',          '~> 2.3'
+gem 'rack',             '~>1.3.5'
+gem 'remcached',        '=0.4.1'
+gem 'yajl-ruby',        '=1.1.0'
+
+
+# to use ActiveRecord models from gserver, you'll want the following gems:
+#gem 'activerecord', '~>3.0.10'
+#gem 'actionpack', '~>3.0.10'
+#gem 'acts_as_list', '0.1.4'
+#gem 'acts_as_state_machine'
+#gem 'class_loader'#gem 'has_flags', '0.0.2'
+#gem 'mysql2', '0.3.7' # need this if upgrading to activerecord 3.1
+#gem "paperclip", "~> 2.3"
+
+# note: validates_as_email needs to have "#encoding: binary" added to the top of its .rb file to work in Ruby 1.9
+#gem 'validates_as_email'
+

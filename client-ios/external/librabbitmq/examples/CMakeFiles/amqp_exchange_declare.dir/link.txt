@@ -1,0 +1,1 @@
+/usr/bin/gcc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/amqp_exchange_declare.dir/amqp_exchange_declare.c.o CMakeFiles/amqp_exchange_declare.dir/utils.c.o CMakeFiles/amqp_exchange_declare.dir/unix/platform_utils.c.o  -o amqp_exchange_declare  ../librabbitmq/librabbitmq.dylib 

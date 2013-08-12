@@ -1,0 +1,5 @@
+*.idea
+.idea/*
+*.DS_Store
+aware-client-ios.xcodeproj/xcuserdata/awatson.*
+ws-aware.xcworkspace/xcuserdata/awatson.*

@@ -1,0 +1,1 @@
+/usr/bin/gcc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/amqp_listen.dir/amqp_listen.c.o CMakeFiles/amqp_listen.dir/utils.c.o CMakeFiles/amqp_listen.dir/unix/platform_utils.c.o  -o amqp_listen  ../librabbitmq/librabbitmq.dylib 

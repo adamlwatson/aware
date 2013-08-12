@@ -1,6 +1,0 @@
-[submodule "server"]
-	path = server
-	url = ssh://adam@soundemitter.dyndns.org/Volumes/2TB-Raid1/git/aware-server
-[submodule "client-ios"]
-	path = client-ios
-	url = ssh://adam@soundemitter.dyndns.org/Volumes/2TB-Raid1/git/aware-client-ios

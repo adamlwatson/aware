@@ -1,0 +1,296 @@
+    1  sudop iptables list
+    2  sudo iptables -L
+    3  sudo vim /etc/iptables.up.rules 
+    4  sudo restart networking
+    5  sudo service networking restart
+    6  sudo restart network
+    7  ls -al /etc/init
+    8  sudo restart networking
+    9  sudo su -
+   10  sudo apt-get update
+   11  sudo apt-get upgrade
+   12  wget ftp://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p180.zip
+   13  tar xjvf ruby-1.9.2-p290.tar.bz2
+   14  tar xjvf ruby-1.9.2-p180.tar.bz2
+   15  tar xjvf ruby-1.9.2-p180.zip
+   16  unzip ruby-1.9.2-p180.zip 
+   17  ls -al
+   18  cd ruby-1.9.2-p180
+   19  ls -la
+   20  which ruby
+   21  ruby
+   22  ./configure --prefix=/user/local
+   23  ./configure --prefix=/usr/local
+   24  sudo apt-get -y install libc6-dev libssl-dev libmysql++-dev libsqlite3-dev make build-essential libssl-dev libreadline5-dev zlib1g-dev
+   25  ./configure --prefix=/usr/local
+   26  sudo make && sudo make install
+   27  ruby -v
+   28  exit
+   29  yes
+   30  no
+   31  ls -la
+   32  sudo apt-get update
+   33  sudo apt-get install
+   34  sudo vim /etc/apt/sources.list
+   35  wget http://www.rabbitmq.com/rabbitmq-signing-key-public.asc sudo apt-key add rabbitmq-signing-key-public.asc
+   36  wget http://www.rabbitmq.com/rabbitmq-signing-key-public.asc 
+   37  sudo apt-key add rabbitmq-signing-key-public.asc
+   38  sudo apt-get update && install rabbitmq-server
+   39  sudo apt-key remove rabbitmq-signing-key-public.asc
+   40  sudo apt-key remove rabbitmq-signing-key-public.asc1
+   41  sudo apt-key list
+   42  sudo apt-key add rabbitmq-signing-key-public.asc
+   43  sudo apt-key list
+   44  sudo apt-get update && install rabbitmq-server
+   45  sudo apt-get update
+   46  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
+   47  sudo apt-get update
+   48  sudo apt-get update && install rabbitmq-server
+   49  sudo apt-get install rabbitmq-server
+   50  sudo apt-get update
+   51  sudo apt-get install mongodb-10gen
+   52  ps aux
+   53  rabbitmq-plugins enable management
+   54  rabbitmq-plugins list
+   55  rabbitmq-plugins rabbitmq_management
+   56  rabbitmq-plugins rabbitmq_management enable
+   57  rabbitmq-plugins enable rabbitmq_management
+   58  sudo rabbitmq-plugins enable rabbitmq_management
+   59  sudo restart rabbitmq-server
+   60  sudo service rabbitmq restart
+   61  sudo service rabbitmq-server restart
+   62  sudo netstat -tap
+   63  exit
+   64  sudo netstat -tap
+   65  sudo restart networking
+   66  sudo su -
+   67  sudo netstat -tap
+   68  ifconfig
+   69  man adduser
+   70  sudo adduser deploy
+   71  usermod -a -G admin deploy
+   72  sudo usermod -a -G admin deploy
+   73  sudo vim /etc
+   74  sudo visudo
+   75  su deploy -
+   76  exit
+   77  cd /home/deploy/
+   78  ls -al
+   79  sudo mkdir .ssh
+   80  sudo chown deploy:deploy .ssh/
+   81  cd .ssh/
+   82  ls -al
+   83  touch authorized_keys
+   84  sudo touch authorized_keys
+   85  sudo vim authorized_keys 
+   86  sudo chown deploy:deploy authorized_keys 
+   87  sudo chmod 0600 authorized_keys 
+   88  exit
+   89  groups deploy
+   90  exit
+   91  sudo gem install rubygems-update
+   92  sudo update_rubygems
+   93  ls -al
+   94  which bundle
+   95  exit
+   96  which bundler
+   97  which bundle
+   98  bundle
+   99  gem install bundler
+  100  sudo gem install bundler
+  101  gem list
+  102  exit
+  103  sudo apt-get update
+  104  sudo apt-get install git-core
+  105  exit
+  106  sudo mkdir -p /var/apps
+  107  chown -R deploy:adam /var/apps/
+  108  sudo chown -R deploy:adam /var/apps/
+  109  sudo chmod 0775 /var/apps/
+  110  ls -la
+  111  cd /var/apps/
+  112  ls -al
+  113  cd aware-server/
+  114  ls -al
+  115  cd current 
+  116  ls -la
+  117  gem list
+  118  cd shared/
+  119  ls -la
+  120  cd bundle/
+  121  ls -la
+  122  cd ruby/
+  123  ls -al
+  124  cd 1.9.1/
+  125  ls -la
+  126  cd gems/
+  127  ls -la
+  128  cd ..
+  129  rm -rf bundle/
+  130  sudo rm -rf bundle/
+  131  ls -al
+  132  ls -la
+  133  cd bundle/ruby/1.9.1/gems/
+  134  ls -al
+  135  cd /var/apps/aware-server/current
+  136  ls -la
+  137  cd ..
+  138  cd shared/
+  139  mkdir lgo
+  140  sudo mkdir log
+  141  sudo chown deploy:deploy log
+  142  sudo chown deploy:adam log
+  143  cd ../current
+  144  ls -al
+  145  ./startserver
+  146  ./startserver production
+  147  ls -al
+  148  cd log
+  149  ls -al
+  150  cd ..
+  151  cd shared/
+  152  ls a-l
+  153  ls -al
+  154  chmod 0775 log/
+  155  sudo chmod 0775 log/
+  156  cd ..
+  157  cd current
+  158  ./startserver
+  159  sudo apt-get update
+  160  sudo apt-get install memcached
+  161  ls -la
+  162  sudo vim /etc/aware-server-cluster.conf
+  163  sudo vim /etc/aware-serverr.conf
+  164  vim aware_server.rb 
+  165  sudo vim /etc/aware-server.conf
+  166  mv /etc/aware-serverr.conf /etc/init/aware-server.conf
+  167  sudo mv /etc/aware-serverr.conf /etc/init/aware-server.conf
+  168  sudo mv /etc/aware-server-cluster.conf /etc/init/
+  169  cd /etc/init
+  170  sl -la
+  171  ls -la
+  172  cat aware-server
+  173  cat aware-server.conf
+  174  vim aware-server.conf 
+  175  sudo vim aware-server.conf 
+  176  cd /var/apps/aware-server/current
+  177  ls -la
+  178  ls -al log
+  179  ls -al log/
+  180  exit
+  181  sudo start aware-server PORT=8000
+  182  ps aux
+  183  sudo initctl list
+  184  sudo tail /var/log/syslog 
+  185  cat /etc/init/aware-server
+  186  cat /etc/init/aware-server.conf 
+  187  cd /var/apps/aware-server/current
+  188  exec /usr/bin/bundle exec /usr/bin/ruby aware_server.rb -s -v -c /var/apps/aware-server/current/config/aware_server_config.rb -p 8000 -e production -l /var/apps/aware-server/current/log/production.log
+  189  which bundle
+  190  bundle exec /usr/bin/ruby aware_server.rb -s -v -c /var/apps/aware-server/current/config/aware_server_config.rb -p 8000 -e production -l /var/apps/aware-server/current/log/production.log
+  191  which ruby
+  192  bundle exec /usr/local/bin/ruby aware_server.rb -s -v -c /var/apps/aware-server/current/config/aware_server_config.rb -p 8000 -e production -l /var/apps/aware-server/current/log/production.log
+  193  which bundle
+  194  sudo vim /etc/init/aware-server.conf 
+  195  sudo start aware-server PORT=8000
+  196  ps aux
+  197  sudo stop aware-server PORT=8000
+  198  ps aux
+  199  start aware-server PORT=8000
+  200  sudo vim /etc/init/aware-server.conf 
+  201  sudo start aware-server PORT=8000
+  202  ps aux
+  203  sudo stop aware-server PORT=8000
+  204  ps aux
+  205  sudo start aware-server PORT=8000
+  206  curl http://localhost:8000/status
+  207  tail log/production.log 
+  208  curl http://localhost:8000/status
+  209  tail log/production.log 
+  210  sudo stop aware-server PORT=8000
+  211  sudo vim /etc/init/aware-server.conf 
+  212  sudo start aware-server PORT=8000
+  213  ps aux
+  214  curl http://localhost:8000/status
+  215  curl http://localhost:8000/locations
+  216  sudo visudo
+  217  which start
+  218  which stop
+  219  which restart
+  220  sudo visudo
+  221  sudo vim /etc/init/aware-server-cluster.conf 
+  222  sudo restart aware-server-cluster
+  223  sudo stop aware-server PORT=8000
+  224  sudo restart aware-server-cluster
+  225  sudo start aware-server-cluster
+  226  ps aux
+  227  sudo netstat -tap
+  228  ps aux
+  229  sudo apt-get update
+  230  ls -al
+  231  free
+  232  exit
+  233  sudo apt-get upgrade
+  234  free
+  235  free -m
+  236  exit
+  237  ls -al
+  238  top
+  239  htop
+  240  ls -al
+  241  cd /mnt/
+  242  ls -la
+  243  cd ..
+  244  ls -al
+  245  df
+  246  df -h
+  247  cat /etc/fstab 
+  248  ls -la
+  249  cd /etc/
+  250  ls -la
+  251  cd rabbitmq/
+  252  ls -al
+  253  cd ..
+  254  ls -al
+  255  cd init.d
+  256  ls -la
+  257  cd ..
+  258  ls -al
+  259  cd init
+  260  ls -la
+  261  cat aware-server.conf 
+  262  cat aware-server-cluster.conf 
+  263  ls -al
+  264  cd ..
+  265  sl -la
+  266  ls -la
+  267  cd services 
+  268  ls -al
+  269  cd services 
+  270  cat host
+  271  cat hosts
+  272  cat adduser.conf 
+  273  cat memcached.conf 
+  274  ls -la
+  275  cd ..
+  276  ls -la
+  277  cd home
+  278  s -la
+  279  ls -la
+  280  cd deploy/
+  281  ls -al
+  282  cd ..
+  283  cd adam/
+  284  ls -la
+  285  cat rabbitmq-signing-key-public.asc
+  286  cat rabbitmq-signing-key-public.asc.1 
+  287  ls -la
+  288  cat .profile 
+  289  cd ruby-1.9.2-p180
+  290  ls -la
+  291  cd ..
+  292  ls -al
+  293  hostory
+  294  history
+  295  history | less
+  296  history > ~/history.txt

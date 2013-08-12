@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ "$1" = "" ]; then
+    ENV="development"
+else
+    ENV=$1
+fi
+
+echo "starting ssl server: $ENV"
+
+ruby ./aware_server.rb -s -v -c ./config/aware_server_config.rb -p 8000 --ssl --ssl-key ../keys/server.key --ssl-cert ../keys/server.crt --ssl-verify -l ./log/$ENV.log -e $ENV
